@@ -1,0 +1,420 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-03 19:48+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=2; plural=(n!=1);\n"
+
+#: main/templates/career/career_page.html:7
+#: main/templates/career/career_page.html:12
+msgid "Careers"
+msgstr "კარიერა"
+
+msgid "Apply"
+msgstr "გადაგზავნა"
+
+msgid "No Position Available At This Moment"
+msgstr "ამ დროისთვის ვაკანსიები არ არის ხელმისაწვდომი"
+
+msgid "Job Description"
+msgstr "სამუშაოს აღწერა"
+
+msgid "Submit Application"
+msgstr "განაცხადის გაგზავნა"
+
+msgid "Home"
+msgstr "მთავარი"
+
+msgid "Who We Are"
+msgstr "ვინ ვართ ჩვენ"
+
+msgid "Services"
+msgstr "სერვისები"
+
+msgid "Contact Us"
+msgstr "დაგვიკავშირდით"
+
+msgid "News & Insights"
+msgstr "სიახლეები და ანალიტიკა"
+
+msgid "Carrers"
+msgstr "კარიერა"
+
+msgid "Ask for a Call"
+msgstr "საუბრის მოთხოვნა"
+
+msgid "Name"
+msgstr "სახელი"
+
+msgid "Enter your phone number"
+msgstr "შეიყვანეთ თქვენი ტელეფონის ნომერი"
+
+msgid "Email"
+msgstr "ელ.ფოსტა"
+
+msgid "Way of Contact"
+msgstr "კავშირის მეთოდი"
+
+msgid "Phone Call"
+msgstr "ტელეფონის ზარი"
+
+msgid "Close"
+msgstr "დახურვა"
+
+msgid "Send message"
+msgstr "შეტყობინების გაგზავნა"
+
+msgid "About Listing"
+msgstr "ქონების აღწერა"
+
+msgid ""
+"Our listings feature high-quality homes, off-plan projects, and investment-"
+"ready properties in top locations."
+msgstr ""
+"ჩვენი განცხადებები მოიცავს მაღალი ხარისხის საცხოვრებლებს, დაგეგმილ პროექტებს"
+" და საინვესტიციოდ მზად ქონებებს ტოპ ლოკაციებზე."
+
+msgid "Information"
+msgstr "ინფორმაცია"
+
+msgid "About"
+msgstr "ჩვენ შესახებ"
+
+msgid "Service"
+msgstr "სერვისი"
+
+msgid "Customer Support"
+msgstr "მომხმარებლის მხარდაჭერა"
+
+msgid "Who We Are ?"
+msgstr "ვინ ვართ ჩვენ?"
+
+msgid "Have Questions?"
+msgstr "გაქვთ კითხვები?"
+
+msgid "Toll Free calling in world"
+msgstr "უფასო ზარი მსოფლიოს მასშტაბით"
+
+msgid "Email Us"
+msgstr "მოგვწერეთ ელ.ფოსტით"
+
+msgid "View On Map"
+msgstr "რუკაზე ნახვა"
+
+msgid "Blog Categories"
+msgstr "ბლოგის კატეგორიები"
+
+msgid "Blog"
+msgstr "ბლოგი"
+
+msgid "Read more"
+msgstr "ვრცლად"
+
+msgid "No Blog Available At This Moment"
+msgstr "ამ დროისთვის ბლოგი არ არის ხელმისაწვდომი"
+
+msgid "Subscribe to Our List"
+msgstr "გამოიწერეთ ჩვენი სიახლეები"
+
+msgid "Type your Email Address"
+msgstr "შეიყვანეთ თქვენი ელ.ფოსტის მისამართი"
+
+msgid "Subscribe"
+msgstr "გამოწერა"
+
+msgid "Address"
+msgstr "მისამართი"
+
+msgid "Phone"
+msgstr "ტელეფონი"
+
+msgid "Web Address"
+msgstr "ვებსაიტის მისამართი"
+
+msgid "Have Questions"
+msgstr "გაქვთ კითხვები"
+
+msgid "Get in Touch"
+msgstr "დაგვიკავშირდით"
+
+msgid "Discover exceptional opportunities with us."
+msgstr "აღმოაჩინეთ განსაკუთრებული შესაძლებლობები ჩვენთან ერთად."
+
+msgid ""
+"Provide your contact details and an executive consultant will be in touch "
+"shortly."
+msgstr ""
+"შეიყვანეთ თქვენი საკონტაქტო ინფორმაცია და ჩვენი კონსულტანტი მალე "
+"დაგიკავშირდებათ."
+
+msgid "Message"
+msgstr "შეტყობინება"
+
+msgid "Send"
+msgstr "გაგზავნა"
+
+msgid "INVEST IN THE UAE"
+msgstr "დააბანდეთ არაბთა გაერთიანებულ ემირატებში"
+
+msgid "UNCOVER EXLUSIVE OPPORTUNITES"
+msgstr "აღმოაჩინეთ ექსკლუზიური შესაძლებლობები"
+
+msgid "Browse Listings"
+msgstr "განცხადებების დათვალიერება"
+
+msgid "Consultation Booking"
+msgstr "კონსულტაციის დაჯავშნა"
+
+msgid "City"
+msgstr "ქალაქი"
+
+msgid "Sub City"
+msgstr "ქვექალაქი"
+
+msgid "Property Type"
+msgstr "უძრავი ქონების ტიპი"
+
+msgid "Max Price"
+msgstr "უმაღლესი ფასი"
+
+msgid "Phone Number"
+msgstr "ტელეფონის ნომერი"
+
+msgid "INVEST IN GEORGIA"
+msgstr "გააკეთე ინვესტიცია საქართველოში"
+
+msgid "Select City"
+msgstr "აირჩიეთ ქალაქი"
+
+msgid "Featured Property"
+msgstr "რჩეული ქონება"
+
+msgid "All"
+msgstr "ყველა"
+
+msgid "Details"
+msgstr "დეტალები"
+
+msgid "Total Units"
+msgstr "სულ ერთეულები"
+
+msgid "Partners"
+msgstr "პარტნიორები"
+
+msgid "Projected"
+msgstr "პროგნოზირებული"
+
+msgid "Clients"
+msgstr "კლიენტები"
+
+msgid "Our Best Agents"
+msgstr "ჩვენი საუკეთესო აგენტები"
+
+msgid "View All Posts"
+msgstr "ყველა პოსტის ნახვა"
+
+msgid "Our Services Includes"
+msgstr "ჩვენი სერვისები მოიცავს"
+
+msgid "Expert Cross-Border Investment Consultant"
+msgstr "საზღვარგარეთული ინვესტიციების ექსპერტი კონსულტანტი"
+
+msgid ""
+"Invest in Georgia LLC is a premier investment and real estate advisory "
+"company, bridging opportunities between Georgia and the United Arab "
+"Emirates..."
+msgstr ""
+"Invest in Georgia LLC არის წამყვანი საინვესტიციო და უძრავი ქონების "
+"საკონსულტაციო კომპანია, რომელიც აერთიანებს შესაძლებლობებს საქართველოსა და "
+"არაბთა გაერთიანებულ ემირატებს შორის..."
+
+msgid "Vision & Mission"
+msgstr "ხედვა და მისია"
+
+msgid "Our Mission"
+msgstr "ჩვენი მისია"
+
+msgid ""
+"To provide transparent, profitable, and reliable investment solutions..."
+msgstr ""
+"გავუწიოთ გამჭვირვალე, მომგებიანი და სანდო საინვესტიციო სერვისები ჩვენს "
+"კლიენტებს..."
+
+msgid "Our Vision"
+msgstr "ჩვენი ხედვა"
+
+msgid "To be the leading investment gateway connecting Georgia..."
+msgstr ""
+"ვიყოთ წამყვანი საინვესტიციო პლატფორმა, რომელიც აკავშირებს საქართველოს "
+"გლობალურ ინვესტორებთან..."
+
+msgid "Values"
+msgstr "ღირებულებები"
+
+msgid "Our Core Values"
+msgstr "ჩვენი ძირითადი ღირებულებები"
+
+msgid "Integrity and Transparency"
+msgstr "პატიოსნება და გამჭვირვალობა"
+
+msgid "Market Expertise"
+msgstr "საბაზრო ექსპერტიზა"
+
+msgid "Client-Centered Approach"
+msgstr "კლიენტზე ორიენტირებული მიდგომა"
+
+msgid "Innovation and Efficiency"
+msgstr "ინოვაცია და ეფექტურობა"
+
+msgid "Long-term Partnerships"
+msgstr "გრძელვადიანი პარტნიორობა"
+
+msgid "Properties"
+msgstr "ქონება"
+
+msgid "Property Detail"
+msgstr "ქონების დეტალები"
+
+msgid "Type"
+msgstr "ტიპი"
+
+msgid "Status"
+msgstr "სტატუსი"
+
+msgid "Completion Date"
+msgstr "დასრულების თარიღი"
+
+msgid "Price"
+msgstr "ფასი"
+
+msgid "Area"
+msgstr "ფართობი"
+
+msgid "Bathrooms"
+msgstr "სველი წერტილები"
+
+msgid "Parking"
+msgstr "პარკინგი"
+
+msgid "Take A Tour"
+msgstr "დათვალიერება"
+
+msgid "Apartments Amities"
+msgstr "ბინების კეთილმოწყობა"
+
+msgid "Floor Plans"
+msgstr "სართულიანი გეგმა"
+
+msgid "Location On Map"
+msgstr "ადგილმდებარეობა რუკაზე"
+
+msgid "Ratings"
+msgstr "შეფასებები"
+
+msgid "Overall Rating of 251 guest rating"
+msgstr "სულ 251 სტუმრის შეფასება"
+
+msgid "Send Message"
+msgstr "შეტყობინების გაგზავნა"
+
+msgid "Filter"
+msgstr "ფილტრი"
+
+msgid "Sort By"
+msgstr "დახარისხება"
+
+msgid "Featured"
+msgstr "რჩეული"
+
+msgid "Newest"
+msgstr "უახლესი"
+
+msgid "Price (Low)"
+msgstr "ფასი (დაბალი)"
+
+msgid "Price (High)"
+msgstr "ფასი (მაღალი)"
+
+msgid "Beds (Least)"
+msgstr "საწოლები (პატარად)"
+
+msgid "Beds (Most)"
+msgstr "საწოლები (მეტად)"
+
+msgid "Bathrooms (Least)"
+msgstr "სველი წერტილები (ნაკლებად)"
+
+msgid "Bathrooms (Most)"
+msgstr "სველი წერტილები (მეტად)"
+
+msgid "Bedrooms"
+msgstr "საძინებლები"
+
+msgid "Min Price"
+msgstr "მინიმალური ფასი"
+
+msgid "Reset Filters"
+msgstr "ფილტრების გაწმენდა"
+
+msgid "Search by Word"
+msgstr "სიტყვით ძიება"
+
+msgid "bedrooms"
+msgstr "საძინებლები"
+
+msgid "bathrooms"
+msgstr "სველი წერტილები"
+
+msgid "No Properties Available"
+msgstr "არ არის ხელმისაწვდომი ქონება"
+
+msgid "Buy"
+msgstr "გაყიდვა"
+
+msgid "News"
+msgstr "სიახლეები"
+
+msgid "Your property deserves the best possible price"
+msgstr "თქვენი ქონება იმსახურებს საუკეთესო შესაძლო ფასს"
+
+msgid "Beds & Baths"
+msgstr "საძინებლები & აბაზანები"
+
+msgid "Beds:"
+msgstr "საძინებლები:"
+
+msgid "Baths:"
+msgstr "აბაზანები:"
+
+msgid "Search"
+msgstr "ძიება"
+
+msgid "Blogs"
+msgstr "ბლოგები"
+
+msgid "Property offers"
+msgstr "უძრავი ქონების შეთავაზებები"
+
+msgid "International Calling Available"
+msgstr "საერთაშორისო ზარები ხელმისაწვდომია"
+
+
+msgid "beds & baths"
+msgstr "საძინებლები და სველი წერტილები"
+
+
+msgid "Register Interest"
+msgstr "ინტერესის გამოხატვა"

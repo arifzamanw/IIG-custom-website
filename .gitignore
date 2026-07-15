@@ -1,0 +1,13 @@
+backups/
+projects_backup/
+temp_extract/
+*.sql
+*.bak
+.env
+.env.*
+venv/
+__pycache__/
+*.pyc
+*.sqlite3
+media/
+staticfiles/

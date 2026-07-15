@@ -1,0 +1,846 @@
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+    <!-- Title / Meta -->
+    <title>
+      {% block title %}
+        Invest In Georgia – Buy Real Estate In Georgia
+      {% endblock %}
+    </title>
+    <meta name="description"
+      content="{% block meta_description %}
+        
+        Discover properties for sale in Georgia. Apartments, houses, and villas available in Tbilisi, Batumi, Gudauri, and Kutaisi.
+
+      {% endblock %}" />
+    <meta name="keywords"
+      content="{% block meta_keywords %}
+        
+        
+        
+        
+        
+        real estate, properties, georgia
+
+
+
+
+
+      {% endblock %}" />
+
+    <link rel="shortcut icon" href="{% static 'images/favicon.png' %}" />
+
+    <!-- Hreflang -->
+    {% get_current_language as CURRENT_LANG %}
+    {% get_available_languages as LANGUAGES %}
+    {% get_language_info_list for LANGUAGES as languages %}
+    {% for lang in languages %}
+      <link rel="alternate" hreflang="{{ HREFLANG_MAP|dict_get:lang.code }}" href="https://investingeorgia.ae/{{ lang.code }}/{{ request.path|slice:'4:'|lstrip_slash }}" />
+    {% endfor %}
+
+    <!-- Canonical -->
+    <link rel="canonical" href="https://investingeorgia.ae/{{ CURRENT_LANG }}/{{ request.path|slice:'4:'|lstrip_slash }}" />
+
+    <!-- OG / SEO -->
+    {% block extra_meta %}
+      {% if seo.og_title %}
+        <meta property="og:title" content="{{ seo.og_title }}" />
+      {% endif %}
+      {% if seo.og_description %}
+        <meta property="og:description" content="{{ seo.og_description }}" />
+      {% endif %}
+      {% if seo.og_url %}
+        <meta property="og:url" content="{{ seo.og_url }}" />
+      {% endif %}
+      {% if seo.og_title or seo.og_description %}
+        <meta property="og:type" content="website" />
+      {% endif %}
+      {% if seo.schema_json %}
+        <script type="application/ld+json">
+          {
+            {
+              seo.schema_json
+            }
+          }
+        </script>
+      {% endif %}
+    {% endblock %}
+
+    {% if seo.robots_meta %}
+      <meta name="robots" content="{{ seo.robots_meta }}" />
+    {% endif %}
+
+    <!-- CSS -->
+    {% block css %}
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/toastr.min.css" />
+      <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css" />
+      <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons" />
+      <link rel="stylesheet" href="{% static 'css/listing-icons.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/owl.carousel.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/datepicker.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/bootstrap-slider.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/tail.select-default.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/animate.min.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/style.css' %}" />
+      <link rel="stylesheet" href="{% static 'css/colors/color-green.css' %}" />
+    {% endblock %}
+
+    <style>
+      /* ── Page header transition ── */
+      .page_header {
+        transition: background-image 0.5s ease-in-out, opacity 0.5s ease-in-out;
+        opacity: 1;
+      }
+      .fade-out {
+        opacity: 0;
+      }
+      
+      /* ── Toast z-index ── */
+      #toast-container {
+        z-index: 99999999999 !important;
+      }
+      
+      /* ── Checkbox ── */
+      input[type='checkbox'] {
+        appearance: none;
+        -webkit-appearance: none;
+        border: 2px solid #333;
+        border-radius: 4px;
+        background: white;
+        cursor: pointer;
+      }
+      input[type='checkbox']:checked {
+        background: red;
+        border-color: red;
+      }
+      
+      /* ── Header ── */
+      .ev-header {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        padding: 0 80px;
+        position: fixed;
+        top: 0;
+        left: 0;
+        width: 100%;
+        z-index: 1000;
+        transition: transform 0.3s ease;
+      }
+      .ev-header.hidden {
+        transform: translateY(-100%);
+      }
+      
+      .ev-top {
+        display: flex;
+        align-items: center;
+        justify-content: space-between;
+      }
+      
+      .ev-logo {
+        padding: 20px 0;
+      }
+      
+      .ev-right {
+        display: none;
+        align-items: center;
+        gap: 20px;
+      }
+      
+      .ev-icon {
+        text-decoration: none;
+        color: #555;
+        font-size: 14px;
+      }
+      .ev-icon:hover {
+        color: #000;
+      }
+      
+      .ev-btn {
+        background: #000;
+        color: #fff;
+        padding: 8px 18px;
+        border-radius: 3px;
+        text-decoration: none;
+        font-size: 14px;
+        font-weight: 500;
+        transition: background 0.3s;
+      }
+      .ev-btn:hover {
+        background: #333;
+      }
+      
+      /* ── Mobile toggle ── */
+      .ev-mobile-toggle {
+        display: none;
+        flex-direction: column;
+        gap: 5px;
+        background: none;
+        border: none;
+        cursor: pointer;
+        padding: 5px;
+        z-index: 1002;
+      }
+      .ev-mobile-toggle span {
+        width: 25px;
+        height: 3px;
+        background: #333;
+        transition: 0.3s;
+        border-radius: 2px;
+      }
+      
+      /* ── Overlay ── */
+      .ev-menu-overlay {
+        display: none;
+        position: fixed;
+        inset: 0;
+        background: rgba(0, 0, 0, 0.5);
+        z-index: 998;
+        opacity: 0;
+        transition: opacity 0.3s;
+      }
+      .ev-menu-overlay.active {
+        display: block;
+        opacity: 1;
+      }
+      
+      /* ── Second bar ── */
+      .ev-second-bar {
+        background: #fff;
+        border-bottom: 1px solid #eee;
+        padding: 12px 80px;
+        position: fixed;
+        top: 93px;
+        width: 100%;
+        z-index: 999;
+        transition: top 0.3s ease;
+      }
+      .ev-header.hidden + .ev-second-bar {
+        top: 0;
+      }
+      
+      .ev-second-bar .ev-bottom {
+        display: flex;
+        gap: 40px;
+        align-items: center;
+      }
+      .ev-second-bar .ev-bottom a {
+        text-decoration: none;
+        color: #555;
+        font-size: 20px;
+        font-weight: 500;
+        transition: color 0.3s;
+      }
+      .ev-second-bar .ev-bottom a:hover,
+      .ev-second-bar .ev-bottom a.active {
+        color: #ec1c24;
+        font-weight: bold;
+      }
+      
+      /* ── Nav buttons (desktop) ── */
+      @media (min-width: 769px) {
+        .ev-menu-links a {
+          align-content: center;
+        }
+      
+        .but-nav-btn {
+          display: inline-block;
+          background-color: transparent;
+          padding: 4px 12px;
+          border-radius: 4px;
+          font-weight: 500;
+          font-size: 15px;
+          text-decoration: none;
+          transition: all 0.3s ease;
+          border: 2px solid transparent;
+          line-height: 1.5;
+        }
+        .but-nav-btn:hover,
+        .but-nav-btn:focus,
+        .but-nav-btn.active {
+          background-color: #ec1c24;
+          color: #fff !important;
+          border-color: #ec1c24;
+        }
+      }
+      
+      /* ── Tablet ── */
+      @media (max-width: 992px) and (min-width: 769px) {
+        .ev-header,
+        .ev-second-bar {
+          padding: 12px 30px;
+        }
+        .ev-second-bar .ev-bottom {
+          gap: 25px;
+        }
+      }
+      
+      /* ── Mobile ── */
+      @media (max-width: 768px) {
+        .sticky-btn {
+          padding: 11px !important;
+          font-size: 10px !important;
+        }
+      
+        .ev-right {
+          display: flex;
+        }
+      
+        .ev-header {
+          padding: 0 20px;
+          transform: none !important;
+        }
+      
+        .ev-second-bar {
+          top: 100px !important;
+        }
+      
+        .ev-top {
+          position: relative;
+          padding: 15px 0;
+        }
+      
+        .ev-mobile-toggle {
+          display: flex;
+        }
+      
+        .navbar-brand {
+          margin-right: 0;
+        }
+      
+        .ev-logo {
+          padding: 0;
+        }
+
+        .ev-logo .site-logo {
+          width: 110px !important;
+          height: auto;
+        }
+      
+        /* Slide-in menu */
+        .ev-right {
+          position: fixed;
+          top: 0;
+          right: -100%;
+          width: 280px;
+          height: 100vh;
+          background: #fff;
+          flex-direction: column;
+          align-items: flex-start;
+          gap: 0;
+          padding: 80px 30px 30px;
+          box-shadow: -2px 0 10px rgba(0, 0, 0, 0.1);
+          transition: right 0.3s ease;
+          z-index: 1000;
+          overflow-y: auto;
+        }
+        .ev-right.active {
+          right: 0;
+        }
+        .ev-right a {
+          width: 100%;
+          padding: 15px 0;
+          border-bottom: 1px solid #eee;
+        }
+        .ev-icon {
+          font-size: 16px;
+        }
+        .ev-btn {
+          width: 100%;
+          text-align: center;
+          margin-top: 10px;
+        }
+      
+        /* Second bar mobile */
+        .ev-second-bar {
+          position: fixed;
+          top: 0;
+          left: -100%;
+          width: 280px;
+          height: 100vh;
+          padding: 0;
+          border: none;
+          background: #fff;
+          z-index: 999;
+          transition: left 0.3s ease;
+        }
+        .ev-second-bar.active {
+          left: 0;
+        }
+        .ev-second-bar .ev-bottom {
+          display: none !important;
+          flex-direction: column;
+          gap: 0;
+          padding: 80px 30px 30px;
+          align-items: flex-start;
+        }
+        .ev-second-bar .ev-bottom a {
+          width: 100%;
+          padding: 15px 0;
+          border-bottom: 1px solid #eee;
+          font-size: 16px;
+        }
+      
+        /* Hamburger animation */
+        .ev-mobile-toggle.active span:nth-child(1) {
+          transform: rotate(45deg) translate(6px, 6px);
+        }
+        .ev-mobile-toggle.active span:nth-child(2) {
+          opacity: 0;
+        }
+        .ev-mobile-toggle.active span:nth-child(3) {
+          transform: rotate(-45deg) translate(6px, -6px);
+        }
+      
+        .but-nav-btn.mobile-active {
+          color: #ec1c24 !important;
+          font-size: 20px;
+        }
+      }
+      
+      /* ── Sticky CTA button ── */
+      .sticky-btn {
+        position: fixed;
+        bottom: 20px;
+        left: 50%;
+        transform: translateX(-50%);
+        z-index: 9999;
+        padding: 14px 26px;
+        background: #ec1c24;
+        color: #fff;
+        font-size: 14px;
+        font-weight: 600;
+        text-transform: uppercase;
+        letter-spacing: 0.5px;
+        border-radius: 30px;
+        text-decoration: none;
+        box-shadow: 0 8px 20px rgba(231, 230, 230, 0.25);
+        transition: transform 0.2s ease, box-shadow 0.2s ease;
+      }
+      .sticky-btn:hover {
+        transform: translateX(-50%) translateY(-2px);
+        box-shadow: 0 12px 28px rgba(0, 0, 0, 0.35);
+        color: white;
+      }
+      
+      /* ── Bitrix ── */
+      .b24-widget-button-wrapper.b24-widget-button-position-bottom-right,
+      .b24-widget-button-wrapper.b24-widget-button-position-bottom-middle,
+      .b24-widget-button-wrapper.b24-widget-button-position-bottom-left {
+        right: 10px;
+      }
+      
+      /* ── Social links ── */
+      .social_links {
+        display: grid;
+        grid-template-columns: repeat(4, 1fr);
+        gap: 5px;
+        list-style: none;
+        padding: 0;
+        margin: 0;
+      }
+      .social_links > li {
+        justify-self: anchor-center;
+      }
+      .social_links a {
+        display: flex;
+        align-items: center;
+        justify-content: center;
+        width: 40px;
+        height: 40px;
+        text-decoration: none;
+        transition: all 0.3s ease;
+      }
+      .social_links i {
+        font-size: 18px;
+      }
+      
+      /* ── Flag selector ── */
+      .flag-selector {
+        display: inline-flex;
+        gap: 8px;
+        zoom: 0.8;
+      }
+      .flag-btn {
+        display: flex;
+        align-items: center;
+        gap: 4px;
+        padding: 4px 8px;
+        background: #fff;
+        border: 1px solid #ccc;
+        border-radius: 6px;
+        cursor: pointer;
+        font-weight: bold;
+        font-size: 14px;
+        transition: 0.2s;
+      }
+      .flag-btn img {
+        width: 28px;
+        height: 20px;
+        border-radius: 3px;
+        object-fit: cover;
+      }
+      .flag-btn:hover {
+        transform: scale(1.05);
+        border-color: #888;
+      }
+      .flag-btn.inactive {
+        opacity: 0.6;
+      }
+      .container {
+        max-width: 100% !important;
+        padding-left: 40px !important;
+        padding-right: 40px !important;
+      }
+    </style>
+  </head>
+
+  <body>
+    <!-- ═══════════════════════════════════════ HEADER ══ -->
+    <header class="ev-header site_nav_area">
+      <div class="container">
+        <div class="ev-top d-flex align-items-center justify-content-between">
+          <div class="ev-logo">
+            <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'images/logo_black.svg' %}" alt="Invest Georgia Logo" class="site-logo" style="width: 180px; height: auto;" /></a>
+          </div>
+
+          <button class="ev-mobile-toggle d-lg-none" aria-label="Toggle menu"><span></span><span></span><span></span></button>
+
+          <!-- Desktop Navigation -->
+          <nav class="ev-menu-links d-none d-lg-flex gap-4 align-items-center m-0">
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'property_search' %}active{% endif %}" href="{% url 'property_search' %}">{% trans 'Buy' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'who_we_are' %}active{% endif %}" href="{% url 'who_we_are' %}">{% trans 'Who We Are' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'services' %}active{% endif %}" href="{% url 'services' %}">{% trans 'Services' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'blogs' %}active{% endif %}" href="{% url 'blogs' %}">{% trans 'Blogs' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'news' %}active{% endif %}" href="{% url 'news' %}">{% trans 'News' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'contact_us' %}active{% endif %}" href="{% url 'contact_us' %}">{% trans 'Contact Us' %}</a>
+          </nav>
+
+          <!-- Desktop Language Switcher -->
+          <div class="d-none d-lg-flex align-items-center">
+            {% include 'global/_language_switcher.html' with show_labels=True %}
+          </div>
+
+          <!-- Mobile slide-in nav -->
+          <div class="ev-right align-items-start gap-3">
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'property_search' %}mobile-active{% endif %}" href="{% url 'property_search' %}">{% trans 'Buy' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'who_we_are' %}mobile-active{% endif %}" href="{% url 'who_we_are' %}">{% trans 'Who We Are' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'services' %}mobile-active{% endif %}" href="{% url 'services' %}">{% trans 'Services' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'blogs' %}mobile-active{% endif %}" href="{% url 'blogs' %}">{% trans 'Blogs' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'news' %}mobile-active{% endif %}" href="{% url 'news' %}">{% trans 'News' %}</a>
+            <a class="but-nav-btn {% if request.resolver_match.url_name == 'contact_us' %}mobile-active{% endif %}" href="{% url 'contact_us' %}">{% trans 'Contact Us' %}</a>
+
+            {% include 'global/_language_switcher.html' with show_labels=False %}
+          </div>
+        </div>
+      </div>
+    </header>
+
+    <!-- Overlay -->
+    <div class="ev-menu-overlay"></div>
+
+    <!-- ════════════════════════════════════════ MAIN ══ -->
+    <main>
+      {% block content %}
+
+      {% endblock %}
+    </main>
+
+    <!-- ══════════════════════════════════════ FOOTER ══ -->
+    <footer class="site_footer real_eastate_footer">
+      <div class="footer_top">
+        <div class="container">
+          <div class="row footer_widget">
+            <!-- Social -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget widget_about">
+                <br />
+                <div class="media_side">
+                  <ul class="social_links">
+                    <li>
+                      <a href="https://www.facebook.com/share/1DyZyiW6ii/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.instagram.com/investin.georgia?igsh=MXdueGd4Z3ZwM2NjNg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://x.com/ininvest86873?s=21" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.tiktok.com/@investin.georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.linkedin.com/company/invest-in-georgia/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.youtube.com/@Invest.in.Georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    </li>
+                  </ul>
+                </div>
+              </div>
+            </div>
+
+            <!-- Property offers -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget widget_info">
+                <h2 class="widget_title">{% trans 'Property offers' %}</h2>
+                <div class="link-items">
+                  <a href="{% url 'property_search' %}" class="link-item"><i class="fa fa-long-arrow-right"></i> {% trans 'Buy' %}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Customer support -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget widget_support">
+                <h2 class="widget_title">{% trans 'Customer Support' %}</h2>
+                <div class="link-items">
+                  <a href="{% url 'who_we_are' %}" class="link-item"><i class="fa fa-long-arrow-right"></i> {% trans 'Who We Are ?' %}</a>
+                  <a href="{% url 'contact_us' %}" class="link-item"><i class="fa fa-long-arrow-right"></i> {% trans 'Contact Us' %}</a>
+                  <a href="{% url 'services' %}" class="link-item"><i class="fa fa-long-arrow-right"></i> {% trans 'Service' %}</a>
+                  <a href="{% url 'blogs' %}" class="link-item"><i class="fa fa-long-arrow-right"></i> {% trans 'Blogs' %}</a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Contact -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget widget_contact">
+                <h2 class="widget_title">{% trans 'Contact Us' %}</h2>
+                <div class="link-items">
+                  <a href="tel:+97145477804" class="link-item">
+                    <i class="icon fa fa-phone"></i>
+                    <div class="link-detail">
+                      <h4>{% trans 'International Calling Available' %}</h4>
+                      <p>+97145477804</p>
+                    </div>
+                  </a>
+                  <a href="mailto:Info@investingeorgia.ae" class="link-item">
+                    <i class="icon fa fa-envelope"></i>
+                    <div class="link-detail">
+                      <h4>{% trans 'Email Us' %}</h4>
+                      <p style="text-transform:lowercase;font-size:17px;">Info@investingeorgia.ae</p>
+                    </div>
+                  </a>
+                  <a href="{% url 'contact_us' %}" class="link-item">
+                    <i class="icon fa fa-map-marker"></i>
+                    <div class="link-detail">
+                      <h4>{% trans 'View On Map' %}</h4>
+                    </div>
+                  </a>
+                </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="footer_bottom">
+        <div class="container">
+          <div class="col-lg-12">
+            <div class="copyright_text text-center">
+              <p>
+                © 2025 Invest In Georgia LLC. All rights reserved.
+                <a href="{% url 'privacy' %}">Privacy Policy</a>
+              </p>
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <div class="mobile-buttons">
+        <a href="javascript:" id="return_to_top"><i class="fa fa-angle-up"></i></a>
+        <a href="/contact-us#get_in_touch" class="sticky-btn" id="return_lead_redirect">{% trans 'Register Interest' %}</a>
+        <div id="bitrix_button_container"></div>
+      </div>
+    </footer>
+
+    <!-- ══════════════════════════════════════ SCRIPTS ══ -->
+    <script src="{% static 'js/jquery.min.js' %}"></script>
+    <script src="https://unpkg.com/imagesloaded@5/imagesloaded.pkgd.min.js"></script>
+    <script src="{% static 'js/popper.min.js' %}"></script>
+    <script src="{% static 'js/bootstrap.min.js' %}"></script>
+    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js"></script>
+    <script src="{% static 'js/owl.carousel.min.js' %}"></script>
+    <script src="{% static 'js/isotope.pkgd.min.js' %}"></script>
+    <script src="{% static 'js/tail.select.min.js' %}"></script>
+    <script src="{% static 'js/wow.min.js' %}"></script>
+    <script src="{% static 'js/functions.js' %}"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/toastr.js/latest/js/toastr.min.js"></script>
+
+    {% if not debug %}
+      <!-- Bitrix24 (production only) -->
+      <script>
+        ;(function (w, d, u) {
+          var s = d.createElement('script')
+          s.async = true
+          s.src = u + '?' + ((Date.now() / 60000) | 0)
+          var h = d.getElementsByTagName('script')[0]
+          h.parentNode.insertBefore(s, h)
+        })(window, document, 'https://cdn.bitrix24.com/b32970891/crm/site_button/loader_2_wy0qob.js')
+      </script>
+
+      <!-- Google Analytics (production only) -->
+      <script async src="https://www.googletagmanager.com/gtag/js?id=G-C91F1XYMKQ"></script>
+      <script>
+        window.dataLayer = window.dataLayer || []
+        function gtag() {
+          dataLayer.push(arguments)
+        }
+        gtag('js', new Date())
+        gtag('config', 'G-C91F1XYMKQ')
+      </script>
+    {% endif %}
+
+    <script>
+      // ── Toastr config ──
+      toastr.options = {
+        closeButton: false,
+        progressBar: false,
+        positionClass: "toast-top-right",
+        preventDuplicates: false,
+        timeOut: "5000",
+        showMethod: "fadeIn",
+        hideMethod: "fadeOut"
+      };
+
+      // ── Background slideshow ──
+      const bgImages = [
+        {% for i in "1234567890123"|make_list %}
+        "{% static 'images/bg/' %}{{ forloop.counter }}.jpg",
+        {% endfor %}
+      ];
+
+      let imageBlobs = [];
+
+      async function preloadImages() {
+        imageBlobs = await Promise.all(
+          bgImages.map(async url => {
+            try {
+              const blob = await fetch(url).then(r => r.blob());
+              return URL.createObjectURL(blob);
+            } catch { return url; }
+          })
+        );
+        changeBackground();
+      }
+
+      function changeBackground() {
+        const headers = document.querySelectorAll('.page_header.bg_image.bg_overlay');
+        if (!imageBlobs.length) return;
+        const img = imageBlobs[Math.floor(Math.random() * imageBlobs.length)];
+        headers.forEach(h => {
+          h.classList.add('fade-out');
+          setTimeout(() => {
+            h.style.backgroundImage = `url('${img}')`;
+            h.classList.remove('fade-out');
+          }, 500);
+        });
+      }
+
+      preloadImages();
+      setInterval(changeBackground, 5000);
+
+      // ── Subscribe ──
+      async function subscribe() {
+        const emailInput = document.getElementById('emailInput');
+        const subscribeButton = document.getElementById('subscribeButton');
+        const email = emailInput.value.trim();
+        const emailRegex = /^[a-zA-Z0-9._%+-]+@[a-zA-Z0-9.-]+\.[a-zA-Z]{2,}$/;
+
+        if (!email || !emailRegex.test(email)) {
+          toastr.warning('Please enter a valid email!');
+          return;
+        }
+
+        subscribeButton.disabled = true;
+        subscribeButton.textContent = 'Subscribed';
+
+        try {
+          const res = await fetch('/subscribe/', {
+            method: 'POST',
+            headers: {
+              'Content-Type': 'application/json',
+              'X-CSRFToken': document.cookie.match(/csrftoken=([^ ;]+)/)?.[1] || ''
+            },
+            body: JSON.stringify({ email })
+          });
+          const data = await res.json();
+          if (res.ok) {
+            toastr.success(data.message);
+          } else {
+            toastr.error(data.error);
+            subscribeButton.disabled = false;
+            subscribeButton.textContent = 'Subscribe';
+          }
+        } catch (err) {
+          console.error(err);
+        }
+      }
+
+      // ── DOM ready ──
+      window.addEventListener('DOMContentLoaded', () => {
+
+        // Move Bitrix button
+        const moveInterval = setInterval(() => {
+          const bitrixBtn = document.querySelector('#bx_composite_button');
+          const container = document.getElementById('bitrix_button_container');
+          if (bitrixBtn && container && !container.contains(bitrixBtn)) {
+            container.appendChild(bitrixBtn);
+          }
+        }, 500);
+
+        // Mobile menu
+        const toggle = document.querySelector('.ev-mobile-toggle');
+        const menu = document.querySelector('.ev-right');
+        const secondBar = document.querySelector('.ev-second-bar');
+        const overlay = document.querySelector('.ev-menu-overlay');
+
+        if (toggle && menu) {
+          toggle.addEventListener('click', e => {
+            e.stopPropagation();
+            toggle.classList.toggle('active');
+            menu.classList.toggle('active');
+            overlay.classList.toggle('active');
+            if (secondBar) secondBar.classList.toggle('active');
+          });
+
+          overlay.addEventListener('click', () => {
+            [toggle, menu, overlay].forEach(el => el.classList.remove('active'));
+            if (secondBar) secondBar.classList.remove('active');
+          });
+
+          document.querySelectorAll('.ev-right a').forEach(link => {
+            link.addEventListener('click', () => {
+              [toggle, menu, overlay].forEach(el => el.classList.remove('active'));
+              if (secondBar) secondBar.classList.remove('active');
+            });
+          });
+        }
+
+        // Hide header on scroll down
+        const header = document.querySelector('.ev-header');
+        let lastScroll = 0;
+        window.addEventListener('scroll', () => {
+          const current = window.pageYOffset;
+          header.classList.toggle('hidden', current > lastScroll && current > 80);
+          lastScroll = current;
+        });
+
+        // Hide sticky CTA on contact page
+        const stickyBtn = document.getElementById('return_lead_redirect');
+        if (stickyBtn && window.location.pathname.includes('contact-us')) {
+          stickyBtn.style.display = 'none';
+        }
+
+      });
+    </script>
+  </body>
+</html>
+

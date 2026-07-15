@@ -1,0 +1,56 @@
+{% extends 'global/base.html' %}
+{% block content %}
+  {% load humanize %}
+  {% load i18n %}
+  {% load custom_filters %}
+  {% load static %}
+  <!--                                                      page proeprty header
+==================================================                                                      -->
+  <style>
+    @media (max-width: 768px) {
+      .estate_single_area .estate_apartment_amities .amities_lists > li {
+        display: grid;
+        justify-items: center;
+      }
+    }
+  </style>
+  <div class="page_header bg_image bg_overlay bg_white" data-bg-image="images/pattern/3.png">
+    <div class="container">
+      <!-- Property Title -->
+      <h2 class="page_title">{{ job.title }}</h2>
+
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Carrers</a>
+        </li>
+        <li class="breadcrumb-item active">{{ job.title }}</li>
+      </ol>
+    </div>
+  </div>
+
+  <!--                                                      Site Content
+==================================================                                                      -->
+  <div class="site_content">
+    <div class="page_content pd-t-90 pd-b-120">
+      <div class="container">
+        <div class="row" style="justify-self: anchor-center;">
+          <div class="col-lg-14 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+            <div class="page_sidebar estate_sidebara_area sidebar">
+              <div class="widget widget_find_search" style="     justify-items: center;">
+                <h1 style="color: #ec1c24;">{% trans 'Thank you for your application!' %}</h1>
+                <p>
+                  {% trans 'Your application has been successfully submitted. We will review your details and get back to you soon.' %}
+                </p>
+                <a href="{% url 'career_page' %}">{% trans 'Back to Career Page' %}</a>
+              </div>
+              <!-- ~./ end widget find search ~ -->
+            </div>
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+      </div>
+    </div>
+    <!-- /.page_content -->
+  </div>
+{% endblock %}

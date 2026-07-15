@@ -1,0 +1,422 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-03 19:48+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=4; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<12 || n%100>14) ? 1 : n%10==0 || (n%10>=5 && n%10<=9) || (n%100>=11 && n%100<=14)? 2 : 3);\n"
+
+#: main/templates/career/career_page.html:7
+#: main/templates/career/career_page.html:12
+msgid "Careers"
+msgstr "Карьера"
+
+msgid "Apply"
+msgstr "Откликнуться"
+
+msgid "No Position Available At This Moment"
+msgstr "В данный момент вакансий нет"
+
+msgid "Job Description"
+msgstr "Описание вакансии"
+
+msgid "Submit Application"
+msgstr "Отправить заявку"
+
+msgid "Home"
+msgstr "Главная"
+
+msgid "Who We Are"
+msgstr "О нас"
+
+msgid "Services"
+msgstr "Услуги"
+
+msgid "Contact Us"
+msgstr "Связаться с нами"
+
+msgid "News & Insights"
+msgstr "Новости и аналитика"
+
+msgid "Carrers"
+msgstr "Карьера"
+
+msgid "Ask for a Call"
+msgstr "Запросить звонок"
+
+msgid "Name"
+msgstr "Имя"
+
+msgid "Enter your phone number"
+msgstr "Введите номер телефона"
+
+msgid "Email"
+msgstr "Электронная почта"
+
+msgid "Way of Contact"
+msgstr "Способ связи"
+
+msgid "Phone Call"
+msgstr "Телефонный звонок"
+
+msgid "Close"
+msgstr "Закрыть"
+
+msgid "Send message"
+msgstr "Отправить сообщение"
+
+msgid "About Listing"
+msgstr "О недвижимости"
+
+msgid ""
+"Our listings feature high-quality homes, off-plan projects, and investment-"
+"ready properties in top locations."
+msgstr ""
+"Наш каталог содержит качественные дома, проекты на стадии строительства и "
+"инвестиционные объекты в лучших локациях."
+
+msgid "Information"
+msgstr "Информация"
+
+msgid "About"
+msgstr "О нас"
+
+msgid "Service"
+msgstr "Услуга"
+
+msgid "Customer Support"
+msgstr "Поддержка клиентов"
+
+msgid "Who We Are ?"
+msgstr "Кто мы?"
+
+msgid " Contact Us"
+msgstr "Связаться с нами"
+
+msgid "Have Questions?"
+msgstr "Остались вопросы?"
+
+msgid "Toll Free calling in world"
+msgstr "Бесплатные звонки по всему миру"
+
+msgid "Email Us"
+msgstr "Напишите нам"
+
+msgid "View On Map"
+msgstr "Показать на карте"
+
+msgid "Blog Categories"
+msgstr "Категории блога"
+
+msgid "Blog"
+msgstr "Блог"
+
+msgid "Read more"
+msgstr "Читать далее"
+
+msgid "No Blog Available At This Moment"
+msgstr "В данный момент блогов нет"
+
+msgid "Subscribe to Our List"
+msgstr "Подписаться на рассылку"
+
+msgid "Type your Email Address"
+msgstr "Введите адрес электронной почты"
+
+msgid "Subscribe"
+msgstr "Подписаться"
+
+msgid "Address"
+msgstr "Адрес"
+
+msgid "Phone"
+msgstr "Телефон"
+
+msgid "Web Address"
+msgstr "Веб-сайт"
+
+msgid "Have Questions"
+msgstr "Есть вопросы"
+
+msgid "Get in Touch"
+msgstr "Связаться с нами"
+
+msgid "Discover exceptional opportunities with us."
+msgstr "Откройте для себя уникальные возможности с нами."
+
+msgid ""
+"Provide your contact details and an executive consultant will be in touch "
+"shortly."
+msgstr ""
+"Оставьте свои контактные данные, и наш консультант свяжется с вами в "
+"ближайшее время."
+
+msgid "Message"
+msgstr "Сообщение"
+
+msgid "Send"
+msgstr "Отправить"
+
+msgid "INVEST IN THE UAE"
+msgstr "ИНВЕСТИРУЙТЕ В ОАЭ"
+
+msgid "UNCOVER EXLUSIVE OPPORTUNITES"
+msgstr "ОТКРОЙТЕ ЭКСКЛЮЗИВНЫЕ ВОЗМОЖНОСТИ"
+
+msgid "Browse Listings"
+msgstr "Просмотреть объекты"
+
+msgid "Consultation Booking"
+msgstr "Записаться на консультацию"
+
+msgid "City"
+msgstr "Город"
+
+msgid "Sub City"
+msgstr "Район"
+
+msgid "Property Type"
+msgstr "Тип недвижимости"
+
+msgid "Max Price"
+msgstr "Максимальная цена"
+
+msgid "Phone Number"
+msgstr "Номер телефона"
+
+msgid "INVEST IN GEORGIA"
+msgstr "ИНВЕСТИРУЙТЕ В ГРУЗИЮ"
+
+msgid "Select City"
+msgstr "Выберите город"
+
+msgid "Featured Property"
+msgstr "Рекомендуемая недвижимость"
+
+msgid "All"
+msgstr "Все"
+
+msgid "Details"
+msgstr "Подробнее"
+
+msgid "Total Units"
+msgstr "Всего объектов"
+
+msgid "Partners"
+msgstr "Партнёры"
+
+msgid "Projected"
+msgstr "Проектируется"
+
+msgid "Clients"
+msgstr "Клиенты"
+
+msgid "Our Best Agents"
+msgstr "Наши лучшие агенты"
+
+msgid "View All Posts"
+msgstr "Просмотреть все записи"
+
+msgid "Our Services Includes"
+msgstr "Наши услуги включают"
+
+msgid "Expert Cross-Border Investment Consultant"
+msgstr "Эксперт по международным инвестициям"
+
+msgid ""
+"Invest in Georgia LLC is a premier investment and real estate advisory "
+"company..."
+msgstr ""
+"Invest in Georgia LLC — ведущая инвестиционная и консалтинговая компания в "
+"сфере недвижимости..."
+
+msgid "Vision & Mission"
+msgstr "Миссия и Видение"
+
+msgid "Our Mission"
+msgstr "Наша миссия"
+
+msgid ""
+"To provide transparent, profitable, and reliable investment solutions..."
+msgstr ""
+"Предоставлять прозрачные, прибыльные и надежные инвестиционные решения..."
+
+msgid "Our Vision"
+msgstr "Наше видение"
+
+msgid ""
+"To be the leading investment gateway connecting Georgia with global "
+"investors..."
+msgstr ""
+"Стать ведущим инвестиционным мостом между Грузией и международными "
+"инвесторами..."
+
+msgid "Values"
+msgstr "Ценности"
+
+msgid "Our Core Values"
+msgstr "Наши основные ценности"
+
+msgid "Integrity and Transparency"
+msgstr "Честность и прозрачность"
+
+msgid "Market Expertise"
+msgstr "Экспертность в рынке"
+
+msgid "Client-Centered Approach"
+msgstr "Ориентированность на клиента"
+
+msgid "Innovation and Efficiency"
+msgstr "Инновации и эффективность"
+
+msgid "Long-term Partnerships"
+msgstr "Долгосрочные партнёрства"
+
+msgid "Properties"
+msgstr "Недвижимость"
+
+msgid "Property Detail"
+msgstr "Детали объекта"
+
+msgid "Type"
+msgstr "Тип"
+
+msgid "Status"
+msgstr "Статус"
+
+msgid "Completion Date"
+msgstr "Дата завершения"
+
+msgid "Price"
+msgstr "Цена"
+
+msgid "Area"
+msgstr "Площадь"
+
+msgid "Bathrooms"
+msgstr "Ванные комнаты"
+
+msgid "Parking"
+msgstr "Парковка"
+
+msgid "Take A Tour"
+msgstr "Совершить тур"
+
+msgid "Apartments Amities"
+msgstr "Удобства в апартаментах"
+
+msgid "Floor Plans"
+msgstr "Планировка"
+
+msgid "Location On Map"
+msgstr "Расположение на карте"
+
+msgid "Ratings"
+msgstr "Оценки"
+
+msgid "Overall Rating of 251 guest rating"
+msgstr "Общая оценка по 251 отзыву"
+
+msgid "Send Message"
+msgstr "Отправить сообщение"
+
+msgid "Filter"
+msgstr "Фильтр"
+
+msgid "Sort By"
+msgstr "Сортировать по"
+
+msgid "Featured"
+msgstr "Избранные"
+
+msgid "Newest"
+msgstr "Новейшие"
+
+msgid "Price (Low)"
+msgstr "Цена (по возрастанию)"
+
+msgid "Price (High)"
+msgstr "Цена (по убыванию)"
+
+msgid "Beds (Least)"
+msgstr "Спален (меньше всего)"
+
+msgid "Beds (Most)"
+msgstr "Спален (больше всего)"
+
+msgid "Bathrooms (Least)"
+msgstr "Ванных (меньше всего)"
+
+msgid "Bathrooms (Most)"
+msgstr "Ванных (больше всего)"
+
+msgid "Bedrooms"
+msgstr "Спальни"
+
+msgid "Min Price"
+msgstr "Минимальная цена"
+
+msgid "Reset Filters"
+msgstr "Сбросить фильтры"
+
+msgid "Search by Word"
+msgstr "Поиск по слову"
+
+msgid "bedrooms"
+msgstr "спальни"
+
+msgid "bathrooms"
+msgstr "ванные комнаты"
+
+msgid "No Properties Available"
+msgstr "Нет доступной недвижимости"
+
+msgid "Buy"
+msgstr "Купить"
+
+msgid "News"
+msgstr "Новости"
+
+msgid "Your property deserves the best possible price"
+msgstr "Ваша недвижимость заслуживает наилучшей возможной цены"
+
+msgid "Beds & Baths"
+msgstr "Спальни и ванные"
+
+msgid "Beds:"
+msgstr "Спальни:"
+
+msgid "Baths:"
+msgstr "Ванные:"
+
+msgid "Search"
+msgstr "Поиск"
+
+msgid "Blogs"
+msgstr "Блоги"
+
+msgid "International Calling Available"
+msgstr "Доступны международные звонки"
+
+msgid "beds & baths"
+msgstr "спальни и ванные"
+
+msgid "Property offers"
+msgstr "Предложения недвижимости"
+
+
+msgid "Register Interest"
+msgstr "Выразить интерес"
+

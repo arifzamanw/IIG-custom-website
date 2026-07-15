@@ -1,0 +1,14 @@
+Django==5.0.1
+whitenoise
+gunicorn
+psycopg2
+django-object-actions
+django-filter
+requests
+pillow
+#adminsortable2
+django-admin-sortable2
+django-smart-selects
+django-ckeditor
+deep-translator
+cloudinary==1.41.0

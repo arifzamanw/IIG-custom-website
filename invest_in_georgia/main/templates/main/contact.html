@@ -1,0 +1,241 @@
+{% extends "global/base.html" %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block title %}
+  {{ seo|translate_property:"meta_title"|default:"Contact Invest in Georgia UAE | Dubai Office Business Bay | Schedule Consultation" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo|translate_property:"meta_description"|default:"Contact our Dubai-based Georgia property investment team. Office in Business Bay. Phone +971 4 547 7804, WhatsApp, or schedule consultation. 24-hour response time." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo|translate_property:"meta_keywords"|default:"contact invest georgia uae, dubai office business bay, georgia property consultation, real estate advisory dubai, whatsapp property investment" }}
+{% endblock %}
+
+{% block extra_meta %}
+
+<meta property="og:title"
+      content="{{ seo|translate_property:'meta_title'|default:'Contact Invest in Georgia UAE | Dubai Office' }}">
+
+<meta property="og:description"
+      content="{{ seo|translate_property:'meta_description'|default:'Start your Georgia property investment journey. Contact our Dubai team via phone, WhatsApp, or visit our Business Bay office.' }}">
+
+<meta property="og:url" content="https://investingeorgia.ae/en/contact-us/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Invest in Georgia UAE",
+  "description": "Contact our Dubai-based Georgia property investment advisory team",
+  "url": "https://investingeorgia.ae/en/contact-us/",
+  "mainEntity": {
+    "@type": "RealEstateAgent",
+    "name": "Invest in Georgia LLC",
+    "telephone": "+97145477804",
+    "email": "info@investingeorgia.ae",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Court Tower, Office 804 & Showroom G01",
+      "addressLocality": "Business Bay",
+      "addressRegion": "Dubai",
+      "addressCountry": "AE"
+    }
+  }
+}
+</script>
+
+{% endblock %}
+
+{% block content %}
+
+<section class="page_header bg_image bg_overlay"
+         style="background-image:url('{% static "images/header/2.jpg" %}')">
+
+  <div class="container">
+
+    <h2 class="page_title">
+      {{ contact_page|translate_property:"hero_title" }}
+    </h2>
+
+    <ol class="breadcrumb">
+      <li class="breadcrumb-item">
+        <a href="#">{% trans "Home" %}</a>
+      </li>
+      <li class="breadcrumb-item active">
+        {{ contact_page|translate_property:"hero_title" }}
+      </li>
+    </ol>
+
+  </div>
+</section>
+
+<div class="site_content">
+
+  <div class="contact_map_and_info wow fadeIn">
+
+    <div class="map-view with-info">
+      <div class="google-map">
+        <iframe src="{{ contact_page.map_embed_url }}"
+                width="600"
+                height="450"
+                style="border:0;"
+                allowfullscreen
+                loading="lazy">
+        </iframe>
+      </div>
+    </div>
+
+    <div class="contact_info_area">
+
+      <div class="container ml-t-120">
+
+        <div class="row">
+
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card_contact_info">
+              <i class="lp lp-location-large info_icon"></i>
+              <h2 class="info_title">{% trans "Address" %}</h2>
+              <p>{{ contact_page|translate_property:"address" }}</p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card_contact_info">
+              <i class="lp lp-phone-large info_icon"></i>
+              <h2 class="info_title">{% trans "Phone" %}</h2>
+              <p>
+                <a href="tel:{{ contact_page.phone }}">
+                  {{ contact_page|translate_property:"phone" }}
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card_contact_info">
+              <i class="lp lp-email-large info_icon"></i>
+              <h2 class="info_title">{% trans "Email" %}</h2>
+              <p style="text-transform:lowercase">
+                <a href="mailto:{{ contact_page.email }}">
+                  {{ contact_page.email }}
+                </a>
+              </p>
+            </div>
+          </div>
+
+          <div class="col-lg-3 col-sm-6">
+            <div class="card card_contact_info">
+              <i class="lp lp-phone-large info_icon"></i>
+
+              <h2 class="info_title">{% trans "WhatsApp" %}</h2>
+
+              <p>
+                <a href="https://api.whatsapp.com/send/?phone={{ contact_page.whatsapp_number }}"
+                   target="_blank"
+                   class="btn btn-default btn-red">
+                  {% trans "Chat on WhatsApp" %}
+                </a>
+              </p>
+
+            </div>
+          </div>
+
+        </div>
+
+      </div>
+
+    </div>
+
+  </div>
+
+  <section id="get_in_touch" class="get_in_touch wow fadeIn" style="background-color: #f6f6f6; padding: 100px 0;">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-10 col-xl-9">
+          <div class="row align-items-center justify-content-between">
+
+            <div class="col-md-5 mb-5 mb-md-0 pe-md-4">
+              <h2 class="fw-bold mb-3" style="color: #000; font-size: 2rem;">
+                {{ contact_page|translate_property:"contact_title" }}
+              </h2>
+              <div style="color: #333; font-size: 1.1rem; line-height: 1.6;">
+                {{ contact_page|translate_property:"contact_paragraph"|safe }}
+              </div>
+            </div>
+
+            <div class="col-md-6">
+              <div class="bg-white p-4 p-md-5 shadow-sm">
+                <h3 class="fw-bold mb-4" style="color: #000; font-size: 1.75rem;">Contact</h3>
+                <form id="contact_form" class="default_form contact_form">
+                  <div class="row">
+                    
+                    <div class="col-md-12 mb-3">
+                      <input name="full_name"
+                             placeholder="{% trans 'Name' %}"
+                             class="form-control require py-3 rounded-0 shadow-none"
+                             style="border: 1px solid #ff7a7a;"
+                             type="text">
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                      <input name="email"
+                             placeholder="{% trans 'Email Address' %}"
+                             class="form-control require py-3 rounded-0 shadow-none"
+                             style="border: 1px solid #ff7a7a;"
+                             type="email">
+                    </div>
+
+                    <div class="col-md-12 mb-3">
+                      <input type="tel"
+                             name="phone"
+                             id="phone_number"
+                             class="form-control require py-3 rounded-0 shadow-none"
+                             style="border: 1px solid #ff7a7a;"
+                             placeholder="{% trans 'Phone Number' %}">
+                    </div>
+
+                    <div class="col-md-12 mb-4">
+                      <textarea name="message"
+                                class="form-control rounded-0 shadow-none"
+                                style="border: 1px solid #ff7a7a; padding: 15px;"
+                                rows="5"
+                                placeholder="{% trans 'Message' %}"></textarea>
+                    </div>
+
+                    <div class="col-md-12">
+                      <div class="response"></div>
+                      <input type="hidden" name="form_type" value="contact">
+                      <button type="button" class="btn submitForm w-100 py-3 rounded-1" style="background-color: #f22323; color: white; font-weight: bold; text-transform: uppercase; border: none; font-size: 16px;">
+                        {% trans "Send" %}
+                      </button>
+                    </div>
+
+                  </div>
+                </form>
+              </div>
+            </div>
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <br>
+
+  {% include "parts/subscribe.html" %}
+
+</div>
+
+<script>
+document.getElementById("phone_number").addEventListener("input", function () {
+    this.value = this.value.replace(/\D/g, "");
+});
+</script>
+
+{% endblock %}

@@ -1,0 +1,72 @@
+{% extends "global/base.html" %}
+{% load i18n %}
+{% load static %}
+{% block content %}
+<div class="site_content">
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+      <h2 class="page_title">{% trans "Careers" %}</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Home</a>
+        </li>
+        <li class="breadcrumb-item active">{% trans "Careers" %}</li>
+      </ol>
+    </div>
+  </div>
+{% if jobs %}
+<section class="page-blog">
+  <div class="container">
+    <div class="row">
+      <div class="col-lg-9">
+        <div class="blog-page-content">
+          {% for job in jobs %}
+            <!-- Start Single Post -->
+            <article class="post post-large">
+              <div class="post-thumbnail">
+                <a href="blog-single.html">
+                  {% if job.image %}
+                    <img src="{{job.image.url }}" alt="{{job.image.url_alt }}" loading="lazy" />
+                  {% else %}
+             {% comment %} <img src="{% static 'images/logo_black.svg' %}" alt="Gerigia Real Estate Logo" class="site-logo" /> {% endcomment %}
+                  {% endif %}
+                </a>
+              </div>
+              <div class="entry-meta">
+                <div class="tag meta-date">
+                  <i class="tag-icon fa fa-calendar-o"></i>
+                  {{job.created_at }}
+                </div>
+              </div>
+              <div class="entry-content">
+                <h2 class="entry-title"><a href="{% url 'apply_for_job' job.id %}">{{job.title }}</a></h2>
+                <p>{{job.description|slice:':150' }}...</p>
+                <a class="link-more btn btn-default btn-red" href="{% url 'apply_for_job' job.id %}">{% trans "Apply" %}</a>
+              </div>
+            </article>
+          {% endfor %}
+
+        </div>
+      </div>
+
+    
+    </div>
+  </div>
+</section>
+{% else %}
+<section class="page-blog">
+  <div class="container">
+    <div class="container">
+      <div class="col-md-100">
+        <!-- ~~~~~ Start Section Header ~~~~~ -->
+        <div class="section_header center_section_header">
+          <h2 class="section_title">{% trans "No Position Available At This Moment" %}</h2>
+        </div>
+        <!-- ~./ end section header ~ -->
+      </div>
+    </div>
+  </div>
+</section>
+{% endif %}
+{% include "parts/subscribe.html" %}
+{% endblock %}
