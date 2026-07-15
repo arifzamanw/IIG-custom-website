@@ -1,0 +1,87 @@
+{% extends 'base.html' %}
+        {% load static %}
+
+        {% block content %}
+
+
+        <style>
+label{
+    color:#595534 !important
+}
+        </style>
+
+        <div class="page-head" > 
+            <video src="{% static 'assets/dubai.mp4' %}" autoplay muted loop style=" position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            object-fit: cover;z-index:-1"
+            >
+            <div class="container">
+                <div class="row">
+                    <div class="page-head-content">
+                        {% include "./searchform.html"  with cities=sub_locations properties_type=apptype city=city p_status=p_status p_type=p_type %}
+
+                    </div>
+                </div>
+            </div>
+        </div>
+        
+        <div class="content-area home-area-1 recent-property" style="background-color:#381107 ; padding-bottom: 55px;">
+            <div class="container-fluid">  
+                    <div class=" clear"> 
+                        <div id="list-type" class="proerty-th" style='margin-top:50px'>
+                            {% comment %} {% for property in  properties %} {% endcomment %}
+                        {% comment %} {% with tower_name=property.tower_name  sub_location=property.sub_location %} {% endcomment %}
+                            {% include "./grid.html"  with properties=properties  off_plans=off_plans   BASE_URL=BASE_URL %}
+                            {% comment %} {% endwith %} {% endcomment %}
+                                {% comment %} <div class="box-two proerty-item">
+                                    <div class="item-thumb">
+                                        <a href="{% url 'core:get-property-by-id' property.id%}" >
+                                            {% if property.picture_1 %}
+                                            <img  style='height:0;' src="http://9061-185-225-28-213.ngrok-free.app/media/{{property.picture_1}}" />
+                                            {% else %}
+                                            <img  style='height:0;' src="{% static 'assets/img/logo.png' %}" />
+                                            {% endif %}
+                                    </div>
+                                    <div class="item-entry overflow">
+                                        <h5 style="min-height: 53px; max-height: 53px;">{{property}}</h5>
+                                        <div class="dot-hr"></div>
+                                        <span class="pull-left"><b> Area :</b> {{property.size}}{{property.size_unit}}</span>
+                                        <span class="proerty-price pull-right"> AED {{property.price}}</span>
+                                        <p style="display: none;">{{property.description}}</p>
+                                    </div>
+                                </div>
+                            </div>  {% endcomment %}
+                        </div>
+                </div>     
+            </div>
+        </div>
+    </body>
+    <script>
+        function filterDivs() {
+            console.log('ds')
+            var sublocation = document.querySelector('#sublocation').value;
+            var tower = document.querySelector('#tower').value;
+            var divs = document.querySelectorAll('div[data-sublocation][data-tower]');
+            for (var i = 0; i < divs.length; i++) {
+              var div = divs[i];
+              var divSublocation = div.getAttribute('data-sublocation');
+              var divTower = div.getAttribute('data-tower');
+                
+             
+              if ( divSublocation === sublocation) {
+                if ( divTower === tower) {
+
+                  div.style.display = 'block';
+                } else {
+                  div.style.display = 'none';
+                }
+              } else {
+                div.style.display = 'none';
+              }
+            }
+          }
+    </script>
+
+    {% endblock %}

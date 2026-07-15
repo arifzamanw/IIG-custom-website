@@ -1,0 +1,779 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filter_template %}
+{% block content%}
+<style>
+   .gallery {
+   display: grid;
+   grid-template-columns: repeat(8, 1fr);
+   grid-template-rows: repeat(6, 5vw);
+   grid-gap: 1.5rem; 
+   }
+   .gallery__img {
+   width: 100%;
+   height: 100%;
+   object-fit: cover;
+   display: block; 
+   }
+   .gallery__item--1 {
+   grid-column-start: 1;
+   grid-column-end: 3;
+   grid-row-start: 1;
+   grid-row-end: 3;
+   /** Alternative Syntax **/
+   /* grid-column: 1 / span 2;  */
+   /* grid-row: 1 / span 2; */
+   }
+   .gallery__item--2 {
+   grid-column-start: 3;
+   grid-column-end: 5;
+   grid-row-start: 1;
+   grid-row-end: 3;
+   /** Alternative Syntax **/
+   /* grid-column: 3 / span 2;  */
+   /* grid-row: 1 / span 2; */
+   }
+   .gallery__item--3 {
+   grid-column-start: 5;
+   grid-column-end: 9;
+   grid-row-start: 1;
+   grid-row-end: 6;
+   /** Alternative Syntax **/
+   /* grid-column: 5 / span 4;
+   grid-row: 1 / span 5; */
+   }
+   .gallery__item--4 {
+   grid-column-start: 1;
+   grid-column-end: 5;
+   grid-row-start: 3;
+   grid-row-end: 6;
+   /** Alternative Syntax **/
+   /* grid-column: 1 / span 4;  */
+   /* grid-row: 3 / span 3; */
+   }
+   .gallery__item--5 {
+   grid-column-start: 1;
+   grid-column-end: 5;
+   grid-row-start: 6;
+   grid-row-end: 9;
+   /** Alternative Syntax **/
+   /* grid-column: 1 / span 4; */
+   /* grid-row: 6 / span 3; */
+   }
+   .gallery__item--6 {
+   grid-column-start: 5;
+   grid-column-end: 9;
+   grid-row-start: 6;
+   grid-row-end: 9;
+   /** Alternative Syntax **/
+   /* grid-column: 5 / span 4; */
+   /* grid-row: 6 / span 3; */
+   }
+
+
+   .mobile-version-email-forum{
+      display:flex;
+      justify-content: space-between
+   }
+
+@media (max-width:600px) {
+
+   .mobile-version-email-forum{
+      display:block;
+   }
+
+   .p-features > h4{
+      font-size: 12px;
+
+   }
+   .p-features > h5{
+      font-size: 10px;
+
+   }
+   .p-features > p{
+      font-size: 8px;
+
+   }
+   .fake-div{
+      display:none;
+   }
+   .project-download{
+      width: 100%;
+      font-size:11px;
+      color:white !important;
+   }
+   .mobile-phone-projectrow{
+      zoom: 0.5;
+   }
+}
+.icons-container{
+   justify-content: space-between;
+}
+.icons-container >div >i{
+      font-size:50px;
+      color:#595534 !important
+}
+
+
+
+
+</style>
+
+<div class="page-head">
+   <div style='position: relative;'>
+      {% if custom_project.banner_image %}
+      <img src="{{ custom_project.banner_image.url }}" alt="" srcset="" style="position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         object-fit: cover;
+         z-index: -1;">
+      {% else %}
+      <video src="{% static 'assets/dubai.mp4' %}" autoplay muted loop style="position: absolute;
+         top: 0;
+         left: 0;
+         width: 100%;
+         object-fit: cover;
+         z-index: -1;">
+      </video>
+      {% endif %}
+      <div class="container" style="width:100%">
+         <div class="row">
+            <div class="page-head-content ">
+               <div class=" padding-bottom-40 mobile-version-email-forum large-search" style="zoom: 1" >
+                  <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+                     animation-name: pulse;
+                     text-align: center; " >
+                     <div class="col-md-14">
+                        <h1>{{custom_project.project_title}}</h1>
+                        <h2>{{custom_project.project_room_infos}}</h2>
+                        <h3>{{custom_project.project_location_infos}}</h3>
+                        <h4>{{custom_project.project_price_infos}}</h4>
+                     </div>
+                  </div>
+                  <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+                     animation-name: pulse;
+                     text-align: center;">
+                     <div class="row">
+                        <!--Grid column-->
+                        <div class="col-md-9 mb-md-0 mb-5">
+                           <form id="contact-form" method="post">
+                              {% csrf_token %}
+                              <div class="row">
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label for="firstname">Firstname</label>
+                                       <input type="text" class="form-control" id="firstname" name="firstname">
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label for="lastname">Lastname</label>
+                                       <input type="text" class="form-control" id="lastname" name="lastname">
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label for="email">Email</label>
+                                       <input type="text" class="form-control" id="email" name="email">
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label for="subject">Phone Number</label>
+                                       <input type="text" class="form-control"  id="phoneNumber" name="subject">
+                                    </div>
+                                 </div>
+
+                                 {% comment %} <div class="col-sm-6">
+                                    <div class="form-group">
+                                       <label for="subject">Subject</label>
+                                       <input type="text" class="form-control" value="{{custom_project.project_title}}" id="subject" name="subject">
+                                    </div>
+                                 </div> {% endcomment %}
+                                 <div class="col-sm-12">
+                                    <div class="form-group">
+                                       <label for="message">Message</label>
+                                       <textarea id="message" class="form-control" name="message"></textarea>
+                                    </div>
+                                 </div>
+                                 <div class="col-sm-12 text-center">
+                                 </div>
+                              </div>
+                           </form>
+                           <div class="text-center text-md-left">
+                              <button class="btn btn-primary submitbtn" >Send</button>
+                           </div>
+                           <div class="status"></div>
+                        </div>
+                     </div>
+                  </div>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+
+   <div class="content-area home-area-1 recent-property" style="background-color:#381107 ; padding-bottom: 55px;">
+      <div class="container-fluid">
+          <div class="row">
+              <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                  <h2>Project Features</h2>
+                  <p></p>
+              </div>
+          </div>
+          <div class="row" style='    display: flex;
+          flex-wrap: wrap;'>
+              {% for i, v in custom_project|get_feature_details %}
+                  <div class="padding-bottom-40 large-search" style="zoom: 1; display: flex;width: 50%; justify-content: space-between;">
+                     <div class="search-form wox pulse animated" style="visibility: visible; animation-name: pulse; text-align: center;">
+                        <div class="col-md-14 p-features">
+                            <img src="{{ v.get_image_url }}" alt="">
+                            <h4>{{ v.project_detail_title }}</h4>
+                            <h5>{{ v.project_detail_sub_title }}</h5>
+                            <p>{{ v.project_detail_description }}</p>
+                        </div>
+                    </div>
+               </div>
+
+                  {% comment %} {% if not forloop.last %}
+                      <div class="padding-bottom-40 large-search" style="zoom: 1; display: flex; justify-content: space-between;">
+                          <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse; text-align: center;">
+                              <div class="col-md-14">
+                                  <img src="" alt="">
+                                  <h2>{{ v.project_detail_title }}</h2>
+                                  <h3>{{ v.project_detail_sub_title }}</h3>
+                                  <h4>{{ v.project_detail_description }}</h4>
+                              </div>
+                          </div>
+                      </div>
+                  {% endif %} {% endcomment %}
+              {% endfor %}
+          </div>
+      </div>
+  </div>
+  
+
+
+
+<div class="count-area">
+   <div class="container">
+      <div class="row">
+         {% if custom_project.project_payment_plan_construction or custom_project.project_payment_plan_handover %}
+         <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+            <h2>Payment Plan</h2>
+         </div>
+         <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+            <div class="row">
+               <div class="col-sm-3 col-xs-6 fake-div">
+               </div>
+               <div class="col-sm-3 col-xs-6">
+                  <div class="count-item">
+                     <div class="chart" >
+                        
+                        <h5>{{custom_project.project_payment_plan_cunstruction}}</h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-3 col-xs-6">
+                  <div class="count-item">
+                     <div class="chart" >
+                        <h5>{{custom_project.project_payment_plan_handover}}</h5>
+                     </div>
+                  </div>
+               </div>
+               <div class="col-sm-3 col-xs-6  fake-div">
+               </div>
+            </div>
+         </div>
+         {% endif %}
+         {% if custom_project.project_brochur or custom_project.project_floorplan %}
+         <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+            <h2>Project Downloads</h2>
+         </div>
+         <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+            <div class="row">
+               <div class="col-sm-3 col-xs-6 fake-div">
+               </div>
+               <div class="col-sm-3 col-xs-6">
+                  <div class="count-item">
+                     {% if custom_project.project_brochur %}
+                     <div class="chart" >
+                        <a  href='{{custom_project.project_brochur}}' target="_blank" l download="{{custom_project.project_title}}" class="btn btn-primary submitbtn  project-download">Download Brochure</a>
+                     </div>
+                     {% endif %}
+                  </div>
+               </div>
+               <div class="col-sm-3 col-xs-6">
+                  <div class="count-item">
+                     {% if custom_project.project_floorplan %}
+                     <div class="chart" data-percent="12000">
+                        <a  href='{{custom_project.project_brochur}}' target="_blank" l download="{{custom_project.project_title}}" class="btn btn-primary submitbtn project-download">Download Floor Plan</a>
+                     </div>
+                     {% endif %}
+                  </div>
+               </div>
+               <div class="col-sm-3 col-xs-6 fake-div">
+               </div>
+            </div>
+         </div>
+         {% endif %}
+      </div>
+   </div>
+</div>
+
+{% for i, project in  custom_project|get_project_details %}
+<div class="row">
+   <div class=" large-search" style="zoom: 1;display: flex;justify-content: space-between" >
+      <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+         animation-name: pulse;
+         text-align: center; " >
+         <div class="col-md-14 mobile-phone-projectrow">
+            <h1>{{project.project_detail_title}}</h1>
+            <h2>{{project.project_detail_sub_title}}</h2>
+            <p>{{project.project_detail_description}}</p>
+         </div>
+      </div>
+      <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+         animation-name: pulse;
+         text-align: center;">
+         <div class="row">
+            <!--Grid column-->
+            <div class="col-md-9 mb-md-0 mb-5">
+               <div class="gallery">
+                  <figure class="gallery__item gallery__item--1">
+                     <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 1">
+                  </figure>
+                  <figure class="gallery__item gallery__item--2">
+                     <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 2">
+                  </figure>
+                  <figure class="gallery__item gallery__item--3">
+                     <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 3">
+                  </figure>
+                  <figure class="gallery__item gallery__item--4">
+                     <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 4">
+                  </figure>
+               </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endfor %}
+   {% comment %} <div class="row">
+      <div class=" large-search" style="zoom: 1;display: flex;justify-content: space-between" >
+        
+         <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+            animation-name: pulse;
+            text-align: center;">
+            <div class="row">
+               <!--Grid column-->
+               <div class="col-md-9 mb-md-0 mb-5" style="float: right;">
+                  <div class="gallery">
+                     <figure class="gallery__item gallery__item--1">
+                        <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 1">
+                     </figure>
+                     <figure class="gallery__item gallery__item--2">
+                        <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 2">
+                     </figure>
+                     <figure class="gallery__item gallery__item--3">
+                        <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 3">
+                     </figure>
+                     <figure class="gallery__item gallery__item--4">
+                        <img src="	https://cdn.pixabay.com/photo/2018/05/28/22/11/message-in-a-bottle-3437294__340.jpg" class="gallery__img" alt="Image 4">
+                     </figure>
+                  </div>
+               </div>
+            </div>
+         </div>
+         <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;    visibility: visible;
+         animation-name: pulse;
+         text-align: center; " >
+         <div class="col-md-14  mobile-phone-projectrow" style="margin-top: 25%;">
+            <h1>{{custom_project.project_title}}</h1>
+            <h2>{{custom_project.project_room_infos}}</h2>
+            <h3>{{custom_project.project_location_infos}}</h3>
+            <h4>{{custom_project.project_price_infos}}</h4>
+         </div>
+      </div>
+      </div>
+</div> {% endcomment %}
+{% if  custom_project.about_the_developper %}
+<div class="row">
+ 
+
+  {% comment %} {% if custom_project.project_payment_plan_construction or custom_project.project_payment_plan_handover %} {% endcomment %}
+  <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+    <h2>About The Developer</h2>
+    <p>{{custom_project.about_the_developper}}</p>
+</div>
+  {% comment %} {% endif %} {% endcomment %}
+</div>
+{% endif %}
+<div class="content-area home-area-1 recent-property" style="background-color:#381107 ; padding-bottom: 55px;">
+   <div class="container-fluid">
+      <div class="row">
+         <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+            <h2>Project Features</h2>
+            <p></p>
+         </div>
+      </div>
+      <div class="row">
+         <div class="page-head-content">
+            <div class=" padding-bottom-40 large-search" style="zoom: 1;   " >
+               <div class=" icons-container search-form wow pulse animated" style="visibility: visible; animation-name: pulse;  display: flex;flex-wrap: wrap;  visibility: visible;
+                  animation-name: pulse;
+                  text-align: center; " >
+             
+                  
+                  {% comment %} gym {% endcomment %}
+{% if custom_project.has_gym %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-dumbbell"></i>
+</div>
+{% endif %}
+
+{% comment %} pool {% endcomment %}
+
+{% if custom_project.has_pool %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% comment %} private pool  {% endcomment %}
+{% if custom_project.has_private_pool %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+{% if custom_project.has_private_parking %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+{% if custom_project.has_laundry %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_pet_friendly %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+{% if custom_project.has_elevator %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-elevator"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_security %}
+<div class='col-md-14'>
+   <i class="fa-duotone fa-camera-cctv"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_air_conditioning %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-snowflake"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_heating %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_dishwasher %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_internet %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-wifi"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_cable_tv %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-tv"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_fireplace %}
+<div class='col-md-14'>
+   <i class="fa-regular fa-fireplace"></i>
+</div>
+{% endif %}
+{% if custom_project.has_furnished %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-couch"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_wheelchair_accessible %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-wheelchair"></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_hardwood_or_tiledfloor %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_balcony_or_patio %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-bed"></i>
+</div>
+{% endif %}
+{% if custom_project.has_walk_in_closet %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+{% if custom_project.has_modern_kitchen_appliances %}
+   <div class='col-md-14'>
+      <i class="fa-solid fa-kitchen-set"></i>
+   </div>
+
+{% endif %}
+{% if custom_project.has_soundproofing %}
+   <div class='col-md-14'>
+      <i style='font-size:24px' class=''></i>
+   </div>
+{% endif %}
+
+
+{% if custom_project.has_smart_home_features %}
+   <div class='col-md-14'>
+      <i style='font-size:24px' class=''></i>
+   </div>
+{% endif %}
+
+
+
+
+{% if custom_project.has_home_theater %}
+   <div class='col-md-14'>
+      <i style='font-size:24px' class=''></i>
+   </div>
+{% endif %}
+
+{% if custom_project.has_wine_cellar %}
+   <div class='col-md-14'>
+      <i style='font-size:24px' class=''></i>
+   </div>
+{% endif %}
+
+
+{% if custom_project.has_solar_panel %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-solar-panel"></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_eco_friendly_feature %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_sauna_or_steam %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_gated_security %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+{% if custom_project.has_clubhouse_or_community_center %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_tennis_or_basketball %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-basketball"></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_playground_or_park %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+{% if custom_project.has_walking_or_joggin_trail %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-person-walking-dashed-line-arrow-right"></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_lake_water_feature %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_golf_course %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-golf-ball-tee"></i>
+</div>
+{% endif %}
+
+
+{% if custom_project.has_restaurant_or_cafee %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-utensils"></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_shuttle_or_transport_service %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-bus"></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_buisness_center %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-building"></i>
+</div>
+{% endif %}
+
+
+
+
+
+
+{% if custom_project.has_community_event_or_classes %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+{% if custom_project.has_24_hours_maintenance_service %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_landscape_garden %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_barbecue_or_picnic_aeas %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_yoga_space %}
+<div class='col-md-14'>
+   <i style='font-size:24px' class=''></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_on_site_storage %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-warehouse"></i>
+</div>
+{% endif %}
+
+
+
+
+
+{% if custom_project.has_recycling_and_waste_service %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-recycle"></i>
+</div>
+{% endif %}
+
+
+
+{% if custom_project.has_bike_storage_and_path %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-person-biking"></i>
+</div>
+{% endif %}
+
+
+{% if custom_project.has_health_or_spa_centers %}
+<div class='col-md-14'>
+   <i class="fa-solid fa-spa"></i>
+</div>
+{% endif %}
+
+             </div>
+            </div>
+         </div>
+      </div>
+   </div>
+</div>
+{% endblock %}

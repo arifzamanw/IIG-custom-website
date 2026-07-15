@@ -1,0 +1,180 @@
+{% extends 'base.html' %}
+{% load static %}
+{% block content %}
+<link rel="stylesheet" href="{% static 'assets/css/wizard.css' %}" />
+
+<style>
+    .form-message.success {
+        position: fixed;
+        top: 5%;
+        right: 0;
+        transform: translateY(-50%);
+        padding: 10px 20px;
+        background-color: #dff0d8;
+        border: 1px solid #d6e9c6;
+        color: #3c763d;
+        border-radius: 5px;
+        z-index: 9999;
+    }
+</style>
+<div class="form-message"></div>
+{% include "./modalquiz.html"%}
+<div class="slider-area">
+    <div class="slider-content">
+
+        <div class="row">
+            <div class="col-lg-8 col-lg-offset-2 col-md-10 col-md-offset-1 col-sm-12">
+                <h2>Elevating Luxury Living: Homes Beyond the Ordinary</h2>
+                {% include "./searchform.html" with cities=sub_locations properties_type=apptype %}
+            </div>
+        </div>
+    </div>
+    <video src="{% static 'assets/dubai.mp4' %}" autoplay muted loop style=" position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            object-fit: cover;z-index:-1">
+</div>
+
+<div class="content-area home-area-1 recent-property" style="background-color:#381107 ; padding-bottom: 55px;">
+    <div class="container-fluid">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                <h2>Recently added properties</h2>
+                <p>Elevate your lifestyle with our newly added, handpicked luxury homes. From breathtaking views to
+                    top-tier amenities, each property offers an unmatched living experience. Discover your dream home
+                    today with us</p>
+            </div>
+        </div>
+        <div class="row">
+            {% comment %} {% for property in  all_properties|slice:":7" %} {% endcomment %}
+            {% include "./grid.html"  with properties=all_properties  slice=True %}
+            <div class="col-sm-6 col-md-3 p0">
+                <div class="box-tree more-proerty text-center">
+                    <div class="item-tree-icon">
+                        <i class="fa fa-th"></i>
+                    </div>
+                    <div class="more-entry overflow">
+                        <h5><a href="{% url 'core:all-properties'%}">More ? </a></h5>
+                        <h5 class="tree-sub-ttl">Show all properties</h5>
+
+                        <a href="{% url 'core:all-properties'%}">
+                            <button class="btn border-btn more-black" value="All properties"
+                                href="{% url 'core:all-properties'%}">All properties</button></a>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</div>
+</div>
+</div>
+
+<!-- Count area -->
+<div class="count-area">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-10 col-md-offset-1 col-sm-12 text-center page-title">
+                <!-- /.feature title -->
+                <h2>Your Trusted Partner in Luxury Real Estate</h2>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-12 col-xs-12 percent-blocks m-main" data-waypoint-scroll="true">
+                <div class="row">
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="count-item">
+                            <div class="count-item-circle">
+                                <span style="
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 100%;
+                                        border-radius: 50%;
+                                        background-image: url('https://i.pinimg.com/originals/d4/c8/59/d4c859af719d8454be68f79e3ae665b8.jpg');
+                                        height:100%;
+                                        "></span>
+                            </div>
+                            <div class="chart" data-percent="5000">
+                                <h2 class="percent" id="counter">0</h2>
+                                <h5>HAPPY CUSTOMER</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="count-item">
+                            <div class="count-item-circle">
+                                <span style="
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 100%;
+                                        border-radius: 50%;
+                                        background-image: url('https://i.pinimg.com/originals/43/3d/0b/433d0b1d54ecf32206afc803de24e6f3.jpg');
+                                        height:100%;
+                                        "></span>
+                            </div>
+                            <div class="chart" data-percent="12000">
+                                <h2 class="percent" id="counter1">0</h2>
+                                <h5>Properties in stock</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="count-item">
+                            <div class="count-item-circle">
+                                <span style="
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 100%;
+                                        border-radius: 50%;
+                                        background-image: url('https://i.pinimg.com/originals/f5/7a/c5/f57ac5fa38c49f8328c9495e3efffd4b.jpg');
+                                       
+                                        height:100%;
+                                        "></span>
+                            </div>
+                            <div class="chart" data-percent="50">
+                                <h2 class="percent" id="counter2">50</h2>
+                                <h5>Partnered with the Finest Developers in Dubai</h5>
+                            </div>
+                        </div>
+                    </div>
+                    <div class="col-sm-3 col-xs-6">
+                        <div class="count-item">
+                            <div class="count-item-circle">
+                                <span style="
+                                        background-repeat: no-repeat;
+                                        background-position: center;
+                                        background-size: 100%;
+                                        border-radius: 50%;
+                                        background-image: url('https://i.pinimg.com/originals/be/f1/e1/bef1e18534b9c8f03405d5269b04119b.jpg');
+                                        height:100%;
+                                        "></span>
+                            </div>
+                            <div class="chart" data-percent="5000">
+                                <h2 class="percent" id="counter3">5000</h2>
+                                <h5>Property Stock Value</h5>
+                            </div>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="boy-sale-area" style='background:#381107'>
+    <div class="container">
+        <div class="row">
+
+            <div class="col-xs-12">
+                <p class="asks-call">For any queries, reach us at <span class="strong"> +971 52 785 6412</span></p>
+            </div>
+        </div>
+    </div>
+</div>
+
+</body>
+
+</html>
+{% endblock %}

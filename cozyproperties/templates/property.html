@@ -1,0 +1,296 @@
+{% extends 'base.html' %}
+{% load static %}
+{% load filter_template %}
+{% block content %}
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js"
+    integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous">
+</script>
+
+<body>
+
+    <style>
+        .carousel-item-next,
+        .carousel-item-prev,
+        .carousel-item.active {
+            display: block;
+        }
+
+        .carousel-inner>.active {
+            left: 0;
+        }
+
+        .carousel-inner>.active,
+        .carousel-inner>.next,
+        .carousel-inner>.prev {
+            display: block;
+        }
+
+        .carousel-item {
+            position: relative;
+            display: none;
+            float: left;
+            width: 100%;
+            margin-right: -100%;
+            -webkit-backface-visibility: hidden;
+            backface-visibility: hidden;
+            transition: transform .6s ease-in-out;
+        }
+
+        #image-gallery{
+            display: flex;
+            align-items: center;
+            line-height: 10px;
+            margin-top: 11px;
+            width: 100%;
+
+        }
+
+
+        #image-gallery > li{
+
+    width: 25%;
+    height: 25%;
+    opacity: 0.5;
+
+        }
+
+        #image-gallery > li:hover{
+            cursor:pointer;
+       
+            opacity: 1;
+        
+                }
+
+                .icon-text-container {
+                    display: flex;
+                    align-items: center; /* Vertically center items */
+                }
+                
+                .icon-text-container svg {
+                    margin-right: 10px; /* Add some spacing between the SVG and text */
+                }
+
+    </style>
+   
+    <div class="container mt-5">
+        <div class="row">
+            <div class="col-lg-12">
+                <h2 class="mb-3"></h2>
+
+            </div>
+        </div>
+    </div>
+    <div class="content-area single-property" style="background-color: #FCFCFC;">&nbsp;
+
+        <div class="container">
+            <div class="clearfix padding-top-40">
+                <div class="col-md-8 prp-style-1 ">
+                    <div class="row">
+                        <div class="light-slide-item">
+                            <div class="clearfix">
+                                <div class="carousel-inner">
+                                    {% with property.images.all as pictures %}
+                                        {% if pictures %}
+                                            {% for picture in pictures %}
+                                                <div class="carousel-item {% if forloop.first %}active{% endif %}">
+                                                    <img src="{{ picture.image.url }}" class="d-block w-100" alt="{{ picture.caption|default:'Property Image' }}">
+                                                </div>
+                                            {% endfor %}
+                                        {% else %}
+                                            <div class="carousel-item active">
+                                                <img src="{% static 'assets/img/logo.png' %}" class="d-block w-100" alt="Default Logo">
+                                            </div>
+                                        {% endif %}
+                                    {% endwith %}
+                                </div>
+                            
+                                <ul id="image-gallery" class="gallery list-unstyled">
+                                    {% for picture in property.images.all %}
+                                        <li>
+                                            <img src="{{ picture.image.url }}">
+                                        </li>
+                                    {% empty %}
+                                        <li>
+                                            <img src="{% static 'assets/img/logo.png' %}">
+                                        </li>
+                                    {% endfor %}
+                                </ul>
+                            </div>
+                            
+                        </div>
+                    </div>
+                    <div class="">
+                        <div class="single-property-header">
+                            <h1 class="property-title pull-left">{{property.title}}</h1>
+                            <span class="property-price pull-right"
+                                style='color:#595534'>{{property.price|filter_currency}} AED</span>
+                        </div>
+
+                        <div class="property-meta entry-meta clearfix ">
+
+                            <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                <span class="property-info-icon icon-tag">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill=#595534
+                                        shape-rendering="geometricPrecision" width=35px height=35px
+                                        text-rendering="geometricPrecision" image-rendering="optimizeQuality"
+                                        fill-rule="evenodd" clip-rule="evenodd" viewBox="0 0 510 511.91">
+                                        <path fill-rule="nonzero"
+                                            d="M375.81 301.17 167.58 509.4a8.552 8.552 0 0 1-12.11 0L2.51 356.45a8.564 8.564 0 0 1 0-12.12L210.74 136.1a8.51 8.51 0 0 1 6.06-2.52h83.97C329.63 58.8 366.74 20.67 401.25 6.67c32.8-13.31 63.44-5.58 83.86 13.35 20.29 18.81 30.27 48.72 21.95 79.92-10.07 37.78-47.22 77.46-126.25 99.74-1.92.54-3.86.5-5.65.01l3.13 95.16c.08 2.45-.89 4.69-2.5 6.3l.02.02zm-52.48-167.59h41.39c4.74 0 8.57 3.84 8.57 8.57 0 .15 0 .3-.01.44l1.22 37.01.62-.2c70.54-19.89 103.2-53.39 111.58-84.82 6.2-23.24-1.07-45.37-15.94-59.15-14.74-13.66-37.21-19.12-61.6-9.22-28.86 11.71-60.15 44.01-85.83 107.37zm.52 59.45c1.16 1.33 2 2.94 2.37 4.76 1.03 2.77 1.6 5.76 1.6 8.88 0 7.02-2.85 13.38-7.45 17.98s-10.96 7.45-17.98 7.45-13.37-2.85-17.97-7.45a25.315 25.315 0 0 1-7.45-17.98c0-5.89 2-11.32 5.37-15.63 3.82-14.39 7.89-27.8 12.19-40.31h-74.18L20.69 350.39l140.83 140.83 199.57-199.57-4.63-140.92h-39.67c-3.46 9.66-6.79 19.96-9.99 30.9 5.26.93 9.96 3.45 13.57 7.06 1.31 1.32 2.48 2.77 3.48 4.34z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="property-info-entry">
+                                    <span class="property-info-label">Status</span>
+                                    <span class="property-info-value">{{property.status}}</span>
+                                </span>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                <span class="property-info icon-area">
+                                    <svg xmlns="http://www.w3.org/2000/svg" fill=#595534 width=35px height=35px
+                                        shape-rendering="geometricPrecision" text-rendering="geometricPrecision"
+                                        image-rendering="optimizeQuality" fill-rule="evenodd" clip-rule="evenodd"
+                                        viewBox="0 0 512 301.57">
+                                        <path fill-rule="nonzero"
+                                            d="M65.11 107.53 253.54 1.15a8.968 8.968 0 0 1 8.82.02l188.27 107.31c4.31 2.45 5.83 7.94 3.38 12.25a8.987 8.987 0 0 1-3.13 3.23L264.6 237.36c-2.99 1.83-6.64 1.69-9.44-.05L64.4 123.34c-4.25-2.55-5.64-8.07-3.09-12.32a8.912 8.912 0 0 1 3.8-3.49zm253.74 176.35c4.79 1.26 7.66 6.19 6.4 10.99-1.26 4.79-6.19 7.66-10.98 6.4l-30.27-8c-4.8-1.26-7.67-6.19-6.4-10.99l8.15-30.84c1.26-4.8 6.18-7.66 10.98-6.4 4.8 1.26 7.67 6.18 6.41 10.98l-2.81 10.61 179.38-103.48-9.85-2.64c-4.8-1.28-7.65-6.22-6.37-11.01 1.28-4.8 6.22-7.66 11.02-6.38l30.81 8.26c4.8 1.28 7.65 6.22 6.37 11.02l-8.1 30.24c-1.28 4.8-6.22 7.65-11.02 6.37-4.8-1.28-7.65-6.22-6.37-11.02l2.49-9.3-178.42 102.92 8.58 2.27zm-115.09 17.38c-4.96.41-9.32-3.28-9.72-8.23-.4-4.96 3.28-9.32 8.24-9.72l9.07-.77-187.91-112.3 2.36 8.82c1.28 4.79-1.57 9.73-6.37 11.01-4.8 1.29-9.74-1.57-11.02-6.37l-8.1-30.23c-1.28-4.8 1.57-9.74 6.37-11.02l30.81-8.26c4.8-1.28 9.74 1.57 11.02 6.37 1.28 4.8-1.57 9.73-6.37 11.02l-10.28 2.75 191.55 114.49-.87-10.23c-.4-4.95 3.28-9.31 8.24-9.71 4.95-.41 9.31 3.28 9.71 8.23l2.7 31.79c.41 4.95-3.28 9.31-8.23 9.72l-31.2 2.64zM257.9 19.29 86.88 115.84l173 103.36L428.5 116.54 257.9 19.29z">
+                                        </path>
+                                    </svg>
+                                </span>
+                                <span class="property-info-entry">
+                                    <span class="property-info-label">Area</span>
+                                    <span class="property-info-value">{{property.size}}<b class="property-info-unit">Sq
+                                            Ft</b></span>
+                                </span>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                <span class="property-info-icon icon-bed">
+                                    <svg version="1.1" id="Layer_1" fill=#595534 width=35px height=35px
+                                        xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink"
+                                        x="0px" y="0px" viewBox="0 0 122.88 99.94"
+                                        style="enable-background:new 0 0 122.88 99.94" xml:space="preserve">
+                                        <g>
+                                            <path
+                                                d="M4.22,67.36h114.31v-4.67c0-1.13-0.22-2.18-0.61-3.12c-0.42-1-1.04-1.89-1.81-2.66c-0.47-0.47-1-0.9-1.57-1.28 c-0.58-0.39-1.2-0.73-1.85-1.02c-1.75-0.38-3.49-0.74-5.22-1.08c-1.74-0.34-3.49-0.66-5.25-0.96c-0.08-0.01-0.14-0.02-0.22-0.04 c-0.89-0.15-1.74-0.29-2.55-0.42c-0.81-0.13-1.67-0.26-2.57-0.4l-0.02,0c-6.12-0.78-12.22-1.38-18.31-1.78 c-6.1-0.4-12.17-0.6-18.2-0.61c-3.58,0-7.15,0.06-10.72,0.2c-3.55,0.14-7.12,0.34-10.69,0.62l-0.02,0 c-3.34,0.31-6.67,0.7-10.01,1.15c-3.33,0.45-6.67,0.98-10.03,1.57l-0.37,0.09c-0.07,0.02-0.14,0.03-0.2,0.03 c-0.06,0.01-0.12,0.01-0.18,0.01c-1.57,0.28-3.18,0.59-4.84,0.92c-1.61,0.32-3.22,0.66-4.82,1.01c-0.4,0.22-0.78,0.47-1.14,0.73 c-0.36,0.27-0.71,0.56-1.02,0.87v0c-0.67,0.67-1.2,1.44-1.56,2.3c-0.34,0.81-0.53,1.71-0.53,2.69V67.36L4.22,67.36z M14.2,0h92.99 c1.21,0,2.37,0.24,3.43,0.68c1.1,0.46,2.09,1.13,2.92,1.95c0.83,0.83,1.5,1.82,1.95,2.92c0.44,1.06,0.68,2.22,0.68,3.43v42.69 c0.51,0.3,1.01,0.63,1.47,0.99c0.52,0.4,1.01,0.82,1.46,1.27c1.16,1.16,2.1,2.51,2.73,4.03c0.6,1.43,0.93,3.02,0.93,4.74v6.09 c0.03,0.1,0.06,0.2,0.08,0.3l0,0.02c0.02,0.13,0.03,0.25,0.03,0.37c0,0.13-0.01,0.26-0.04,0.39l0,0c-0.02,0.1-0.05,0.2-0.08,0.3 v27.66c0,0.58-0.24,1.11-0.62,1.49c-0.38,0.38-0.91,0.62-1.49,0.62h-4.35c-0.49,0-0.94-0.17-1.3-0.45 c-0.36-0.28-0.63-0.68-0.74-1.14c-0.8-2.3-1.61-4.12-2.48-5.54c-0.86-1.4-1.78-2.4-2.84-3.11c-1.07-0.71-2.35-1.16-3.9-1.43 c-1.58-0.28-3.42-0.37-5.61-0.36l-79.76,0.1l-0.04,0c-1.57-0.03-2.86,0.17-3.94,0.59c-1.07,0.42-1.94,1.05-2.66,1.86 c-0.81,0.9-1.49,2.05-2.11,3.39c-0.63,1.37-1.2,2.93-1.77,4.64l0,0c-0.14,0.44-0.42,0.79-0.77,1.04c-0.33,0.24-0.73,0.38-1.14,0.4 c-0.03,0.01-0.06,0.01-0.09,0.01H2.11c-0.58,0-1.11-0.24-1.49-0.62C0.24,98.94,0,98.41,0,97.83V61.52c0-1.57,0.3-3.01,0.84-4.31 c0.58-1.38,1.43-2.61,2.49-3.67c0.3-0.3,0.63-0.6,0.98-0.88c0.3-0.24,0.6-0.47,0.92-0.68V8.89c0-1.21,0.24-2.36,0.68-3.4 c0.46-1.09,1.13-2.07,1.96-2.89c0.83-0.82,1.82-1.47,2.91-1.92C11.84,0.24,12.99,0,14.2,0L14.2,0z M107.19,4.22H14.2 c-0.65,0-1.27,0.13-1.84,0.36c-0.59,0.24-1.11,0.59-1.55,1.02c-0.43,0.42-0.78,0.94-1.02,1.5C9.57,7.65,9.45,8.25,9.45,8.89v41.06 c0.3-0.1,0.6-0.18,0.91-0.26c0.49-0.13,0.98-0.24,1.47-0.32c0.68-0.12,1.42-0.25,2.22-0.39c0.6-0.1,1.24-0.21,1.9-0.31V38.19 c0-1.58,0.32-3.09,0.89-4.47c0.6-1.44,1.47-2.73,2.55-3.81c1.08-1.08,2.37-1.95,3.81-2.55c1.38-0.57,2.89-0.89,4.47-0.89h19.82 c1.58,0,3.09,0.32,4.47,0.89c1.44,0.6,2.73,1.47,3.81,2.55c1.08,1.08,1.95,2.37,2.55,3.81c0.57,1.38,0.89,2.89,0.89,4.47v6.69 c0.7-0.01,1.4-0.01,2.11-0.01v-6.68c0-1.58,0.32-3.09,0.89-4.47c0.6-1.44,1.47-2.73,2.55-3.81c1.08-1.08,2.37-1.95,3.81-2.55 c1.38-0.57,2.89-0.89,4.47-0.89h19.82c1.58,0,3.09,0.32,4.47,0.89c1.44,0.6,2.73,1.47,3.81,2.55c1.08,1.08,1.95,2.37,2.55,3.81 c0.57,1.38,0.89,2.89,0.89,4.47v10.34c0.75,0.11,1.55,0.24,2.41,0.38c0.95,0.15,1.86,0.3,2.74,0.45c0.45,0.08,0.91,0.17,1.37,0.28 c0.29,0.07,0.57,0.14,0.84,0.22V8.98c0-0.64-0.13-1.25-0.36-1.81c-0.24-0.58-0.6-1.1-1.04-1.55c-0.44-0.44-0.97-0.8-1.54-1.04 C108.44,4.35,107.83,4.22,107.19,4.22L107.19,4.22z M43.21,45.56c2.01-0.15,4.03-0.28,6.08-0.38c1.89-0.1,3.8-0.17,5.71-0.22v-6.77 c0-1.01-0.2-1.98-0.57-2.86c-0.38-0.92-0.94-1.74-1.64-2.44c-0.69-0.69-1.52-1.25-2.44-1.64c-0.88-0.37-1.85-0.57-2.86-0.57H27.67 c-1.01,0-1.98,0.2-2.86,0.57c-0.92,0.38-1.74,0.94-2.44,1.64c-0.69,0.69-1.25,1.52-1.64,2.44c-0.37,0.88-0.57,1.85-0.57,2.86V48 c1.62-0.24,3.26-0.46,4.94-0.68c1.81-0.23,3.61-0.44,5.39-0.64c0.69-0.08,1.43-0.17,2.2-0.25c0.72-0.08,1.47-0.15,2.27-0.23 c1.36-0.13,2.71-0.25,4.04-0.36C40.37,45.75,41.77,45.65,43.21,45.56L43.21,45.56z M65.54,44.9c1.21,0.02,2.42,0.05,3.63,0.09 c1.34,0.04,2.68,0.1,4.01,0.16l0.01,0c2.19,0.08,4.33,0.18,6.41,0.3c2.08,0.12,4.11,0.27,6.05,0.44c2.82,0.25,5.55,0.55,8.14,0.9 c2.32,0.32,4.52,0.68,6.58,1.08v-9.68c0-1.01-0.2-1.98-0.57-2.86c-0.38-0.92-0.94-1.74-1.64-2.44c-0.69-0.69-1.52-1.25-2.44-1.64 c-0.88-0.37-1.85-0.57-2.86-0.57H73.05c-1.01,0-1.98,0.2-2.86,0.57c-0.92,0.38-1.74,0.94-2.44,1.64c-0.69,0.69-1.25,1.52-1.64,2.44 c-0.37,0.88-0.57,1.85-0.57,2.86V44.9L65.54,44.9z M118.54,71.59H4.22v24.13h1.43c0.56-1.58,1.14-3.05,1.79-4.36 c0.7-1.4,1.49-2.64,2.45-3.71c1.14-1.28,2.48-2.27,4.09-2.93c1.61-0.65,3.49-0.98,5.75-0.93l79.69-0.1c2.57,0,4.77,0.12,6.69,0.49 c1.95,0.37,3.63,1,5.14,2c1.4,0.93,2.6,2.16,3.68,3.77c1.03,1.54,1.95,3.43,2.83,5.76h0.76V71.59L118.54,71.59z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="property-info-entry">
+                                    <span class="property-info-label">Bedrooms</span>
+                                    <span class="property-info-value">{{property.bedrooms}}</span>
+                                </span>
+                            </div>
+
+                            <div class="col-xs-6 col-sm-3 col-md-3 p-b-15">
+                                <span class="property-info-icon icon-bath">
+                                    <svg version="1.1" id="Layer_1" fill=#595534 xmlns="http://www.w3.org/2000/svg"
+                                        xmlns:xlink="http://www.w3.org/1999/xlink" x="0px" y="0px"
+                                        viewBox="0 0 127.9 95.25" width=35px height=35px xml:space="preserve">
+                                        <g>
+                                            <path
+                                                d="M98.97,22.32l-0.06-0.08c-0.31-0.45-0.93-0.55-1.37-0.24l-7.6,5.32c-0.45,0.31-0.55,0.93-0.24,1.37l0.06,0.08 c0.31,0.45,0.93,0.55,1.37,0.24l7.6-5.32C99.17,23.38,99.28,22.76,98.97,22.32L98.97,22.32L98.97,22.32z M119.01,52.32l-4.12,19.22 c-1.02,4.78-3.33,8.43-6.61,10.93c-2.27,1.73-4.98,2.88-8.03,3.45l2.7,5.78c0.58,1.25,0.04,2.74-1.21,3.32 c-1.25,0.58-2.74,0.04-3.32-1.21l-3.5-7.48H35.1l-3.5,7.48c-0.58,1.25-2.07,1.79-3.32,1.21c-1.25-0.58-1.79-2.07-1.21-3.32 l2.55-5.46c-3.9-0.34-7.1-1.59-9.68-3.73c-3.01-2.5-5.07-6.13-6.3-10.86L8.57,52.32H4.61c-1.26,0-2.41-0.52-3.25-1.35l0-0.01 l-0.01,0.01C0.52,50.13,0,48.98,0,47.71v-4.19c0-1.27,0.52-2.42,1.35-3.26c0.06-0.06,0.13-0.13,0.2-0.18 c0.81-0.73,1.88-1.17,3.05-1.17h0.61c0.17-1.82,0.87-3.54,1.95-5.04c1.1-1.54,2.62-2.85,4.35-3.75c1.74-0.91,3.71-1.42,5.7-1.36 c1.75,0.06,3.49,0.54,5.1,1.56c0.7-1.02,1.57-1.93,2.57-2.68c1.96-1.47,4.41-2.35,7.06-2.35c2.2,0,4.26,0.6,6.01,1.64 c1.37,0.81,2.55,1.9,3.47,3.18c2.79,0.22,5.31,1.41,7.2,3.23c1.55,1.5,2.67,3.42,3.16,5.56h67.25V14.1 c-1.46-7.17-5.6-9.12-11.13-8.33c2.49,4.34,2.17,8.75-1.36,13.25c0.45,0.73,0.41,1.53-0.08,2.38l-1.1,1.27 c-0.44,0.45-0.99,0.49-1.7-0.08L86.76,5.52c-0.46-0.55-0.37-1.03,0.17-1.45c1.2-1.47,1.35-1.72,3.48-1.36 c4.74-3.08,9.25-3.63,13.5-1.19c10.67-4.38,19.75,1.12,20.98,12.32l0,0V39.2c0.63,0.23,1.19,0.6,1.65,1.06 c0.83,0.83,1.35,1.99,1.35,3.26v4.19c0,1.27-0.52,2.42-1.35,3.26c-0.83,0.83-1.99,1.35-3.25,1.35H119.01L119.01,52.32z M89.4,14.1 l-0.06-0.08c-0.31-0.45-0.93-0.55-1.37-0.24l-7.6,5.32c-0.45,0.31-0.55,0.93-0.24,1.37l0.06,0.08c0.31,0.45,0.93,0.55,1.37,0.24 l7.6-5.32C89.61,15.16,89.71,14.54,89.4,14.1L89.4,14.1L89.4,14.1z M85.03,9.7l-0.06-0.08c-0.31-0.45-0.93-0.55-1.37-0.24 l-7.6,5.32c-0.45,0.31-0.55,0.93-0.24,1.37l0.06,0.08c0.31,0.45,0.93,0.55,1.37,0.24l7.6-5.32C85.23,10.76,85.34,10.14,85.03,9.7 L85.03,9.7L85.03,9.7z M93.76,18.35l-0.06-0.08c-0.31-0.45-0.93-0.55-1.37-0.24l-7.6,5.32c-0.45,0.31-0.55,0.93-0.24,1.37 l0.06,0.08c0.31,0.45,0.93,0.55,1.37,0.24l7.61-5.32C93.96,19.41,94.07,18.8,93.76,18.35L93.76,18.35L93.76,18.35z M10.29,38.91 h36.25c-0.32-0.74-0.79-1.4-1.37-1.95c-1.19-1.15-2.84-1.86-4.67-1.86c-0.28,0,0.02-0.01-0.17-0.01l-0.17,0.01 c-0.94,0.04-1.87-0.45-2.33-1.34c-0.54-1.03-1.38-1.9-2.41-2.51c-1-0.59-2.19-0.94-3.46-0.94c-1.54,0-2.95,0.5-4.06,1.33 c-1.11,0.84-1.94,2.01-2.3,3.35c-0.12,0.51-0.41,0.99-0.85,1.35c-1.07,0.87-2.65,0.71-3.52-0.36c-1.23-1.51-2.71-2.17-4.16-2.22 c-1.1-0.04-2.22,0.26-3.23,0.79c-1.02,0.54-1.92,1.32-2.59,2.24C10.78,37.45,10.44,38.17,10.29,38.91L10.29,38.91z M8.5,43.93 c-0.4,0.1-0.8,0.09-1.18,0h-2.3v3.36h117.86v-3.36H8.5L8.5,43.93z M13.74,52.32l4.74,18.07c0.96,3.68,2.48,6.45,4.66,8.25 c2.13,1.77,5,2.67,8.73,2.67h63.75c3.86,0,7.15-0.95,9.61-2.82c2.34-1.78,3.99-4.45,4.75-7.99l3.9-18.18H13.74L13.74,52.32z">
+                                            </path>
+                                        </g>
+                                    </svg>
+                                </span>
+                                <span class="property-info-entry">
+                                    <span class="property-info-label">Bathrooms</span>
+                                    <span class="property-info-value">{{property.bathroom}}</span>
+                                </span>
+                            </div>
+
+                        </div>
+                        <!-- .property-meta -->
+
+                        <div class="section">
+                            <h4 class="s-property-title">Description</h4>
+                            <div class="s-property-content">
+                                <p>{{property.description}}</p>
+                            </div>
+                        </div>
+                    </div>
+                    <br>
+                    <br>
+                    <br>
+                </div>
+                <div class="col-md-4 p0">
+                    <aside class="sidebar sidebar-property blog-asside-right">
+
+                        <div class="section additional-details">
+
+                            <h4 class="s-property-title">Amenities and Features </h4>
+
+                            <ul class="additional-details-list clearfix">
+                                {% for amenity in property.amenities|amenities_list %}
+                                <li style="position: relative; width: 100%;">
+                                    <span class="col-xs-12 col-sm-8 col-md-12 add-d-title text-center">{{ amenity }}</span>
+                                    
+                                    {% with amenity_lower=amenity|lower %}
+                                        {% if amenity_lower == 'air conditioning' %}
+                                        <span style="position: absolute; left: 40px;">
+                                            <img src="{% static 'assets/img/amnt/airconditioning.png' %}" />
+                                        </span>
+                                        {% elif amenity_lower == 'balcony' %}
+                                        <span style="position: absolute; left: 40px;">
+                                            <img src="{% static 'assets/img/amnt/balcony.png' %}" />
+                                        </span>
+                                        {% endif %}
+                                        <!-- Add more conditions/icons as needed -->
+                                    {% endwith %}
+                                </li>
+                                {% endfor %}
+                            </ul>
+                            
+                            
+                        </div>
+                        <div class="section additional-details">
+                            {% with map=property.geopoints|clean_geo_points %}
+                                <iframe src="https://maps.google.com/maps?q={{map.1}},{{map.0}}&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;layer=c&amp;output=embed" width="100%" height="400" allowfullscreen></iframe>
+                            {% endwith %}
+                        </div>
+                        <div class="section additional-details"  style="backgroud">
+                            <a class="btn btn-primary submitbtn" href="https://api.whatsapp.com/send?phone=971527856412&text=Hello!👋I'm interested in your {{property.title}} listing.  Could you please provide me with more details about it? You can view the property here: https://www.cozyproperties.ae/property/{{property.id}} 🏡" target="_blank">
+                                <div class="icon-text-container">
+                                    <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="27px" width="27px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                                        <g>
+                                            <path style="fill:#2CB742;" d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z"></path>
+                                            <path style="fill:#FFFFFF;" d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z"></path>
+                                          </g>
+                                    </svg>
+                                    <span>Get More Details On Whatsapp !</span>
+                                </div>
+                            </a>
+                        </div>
+                    </aside>
+                </div>
+            </div>
+
+            <div class="panel panel-default sidebar-menu similar-property-wdg wow fadeInRight animated">
+                <div class="panel-heading">
+                    <h3 class="title">Similar Properties</h3>
+                </div>
+                <div class="panel-body recent-property-widget">
+                    {% include "./grid.html"  with properties=all_properties  slice=True max=3 %}
+                </div>
+            </div>
+</body>
+
+<script>
+
+
+document.querySelectorAll('#image-gallery > li').forEach(function(e){
+    e.onclick=function(ev){
+        document.querySelector('.carousel-item.active > img').src=ev.target.src
+    }
+ 
+})
+
+    </script>
+
+
+
+</html>
+
+
+{% endblock %}

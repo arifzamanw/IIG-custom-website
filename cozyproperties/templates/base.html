@@ -1,0 +1,221 @@
+{% load static %}
+{% load filter_template %}
+
+<!DOCTYPE html>
+<html class="">
+  <head>
+    <meta charset="utf-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge" />
+    <title>Cozy Properties</title>
+    <meta
+      name="keyword"
+      content="html5, css, bootstrap, property"
+    />
+    <meta name="viewport" content="width=device-width, initial-scale=1" />
+    
+
+    <link rel="icon" type="image/png" href="{% static 'assets/img/logo.png' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/normalize.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/bootstrap-select.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/wizard.css' %}" />
+    <link rel="stylesheet" href="{% static 'bootstrap/css/bootstrap.min.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/price-range.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.carousel.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.theme.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/owl.transitions.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/style.css' %}" />
+    <link rel="stylesheet" href="{% static 'assets/css/responsive.css' %}" />
+
+    
+
+    <style>
+      h1,
+      h2,
+      a,
+      h1,
+      span,
+      p {
+          color: #595534 !important
+      }
+      input, select{
+        border-radius: 10px !important;
+      }
+    </style>
+  </head>
+  <body>
+   
+    <!-- Body content -->
+
+    <div class="header-connect">
+      <div class="container">
+        <div class="row">
+          <div class="col-md-5 col-sm-8 col-xs-12">
+            <div class="header-half header-call">
+              <p>
+                {% comment %} <span><i class="pe-7s-call"></i> +971 52 785 6412</span>
+                <span><i class="pe-7s-call"></i> +971 04 433 8849</span> {% endcomment %}
+                <a href="mailto:info@cozyproperties.ae"><span><i class="pe-7s-mail"></i>info@cozyproperties.ae</span></a>
+
+              </p>
+            </div>
+          </div>
+          <div
+            class="col-md-2 col-md-offset-5 col-sm-3 col-sm-offset-1 col-xs-12"
+          >
+          
+          </div>
+        </div>
+      </div>
+    </div>
+    <nav class="navbar navbar-default">
+      <div class="container">
+        <div class="navbar-header">
+          <button
+            type="button"
+            class="navbar-toggle collapsed"
+            data-toggle="collapse"
+            data-target="#navigation"
+          >
+            <span class="sr-only">Toggle navigation</span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+            <span class="icon-bar"></span>
+          </button>
+          <a class="navbar-brand" href="/"
+            ><img  src="{% static 'assets/img/logo.png' %}"  width='120px'; height='120px' style='position: absolute;top: 5px;'/></a>
+        </div>
+
+        <div class="collapse navbar-collapse yamm" id="navigation">
+          <ul class="main-nav nav navbar-nav navbar-right">
+            <li class="wow fadeInDown" data-wow-delay="0.2s">
+              <a class="" href="/">Home</a>
+            </li>
+            <li class="dropdown ymm-sw" data-wow-delay="0.1s">
+              <a
+                class="dropdown-toggle "
+                data-toggle="dropdown"
+                data-hover="dropdown"
+                data-delay="200"
+                >BUY <b class="caret"></b
+              ></a>
+              <ul class="dropdown-menu navbar-nav">
+                <li>
+                  <a href='/search?property_type=&selected_city=&property_status=Sale' > See All</a>
+                </li>
+                  {% for type in apptype|get_buy_properties %}
+                    <li>
+                      <a  href="{% url 'core:get-properties-by-type' type.id "Sale" %}"> {{type}}</a>
+                    </li>
+                {% endfor %}
+                <li>
+                  <a  href="{% url 'core:off-plan' %}" >Off Plan</a>
+                </li>
+
+              </ul>
+            </li>
+            <li class="dropdown ymm-sw" data-wow-delay="0.1s">
+              <a
+                
+                class="dropdown-toggle "
+                data-toggle="dropdown"
+                data-hover="dropdown"
+                data-delay="200"
+                >RENT<b class="caret"></b
+              ></a>
+              <ul class="dropdown-menu navbar-nav">
+                <li>
+                  <a href='/search?property_type=&selected_city=&property_status=Rent'>See All</a>
+                </li>
+                {% for type in apptype|get_rent_properties %}
+                  <li>
+                    <a  href="{% url 'core:get-properties-by-type' type.id "Rent" %}"> {{type}}</a>
+                  </li>
+              {% endfor %}
+            </ul>
+            </li>
+            {% comment %} <li class="wow fadeInDown" data-wow-delay="0.3s">
+              <a class=""  href="{% url 'custom_project:gallery' %}">NEW PROJECTS</a>
+            </li> {% endcomment %}
+
+            <li class="dropdown ymm-sw" data-wow-delay="0.1s">
+              <a
+                
+                class="dropdown-toggle "
+                data-toggle="dropdown"
+                data-hover="dropdown"
+                data-delay="200"
+                >ABOUT<b class="caret"></b
+              ></a>
+              <ul class="dropdown-menu navbar-nav">
+                {% for info in  infos%}
+                <li>
+                  <a href="{% url 'core:infos-by-code' info.id %}">{{info.title}}</a>
+                </li> 
+                {% endfor %}
+                <li>
+                  <a href="{% url 'core:team' %}" >Our team</a>
+                </li>
+              </ul>
+            </li>
+            <li class="wow fadeInDown" data-wow-delay="0.3s">
+              <a class="" href="{% url 'core:contact' %}" >CONTACT US</a>
+            </li>
+          </ul>
+        </div>
+      </div>
+    </nav>
+    {% block content %}
+    {% endblock %} 
+   
+  </div>
+
+  <div class='sticky-whatsapp' style=' z-index: 1111;bottom: 0;  position: fixed;  right: 0px; transform: rotate(268deg)'>
+      <a href="https://api.whatsapp.com/send?phone=971527856412" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="50px"
+                  width="50px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                  <g>
+                    <path style="fill:#2CB742;"
+                      d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z" />
+                    <path style="fill:#FFFFFF;"
+                      d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z" />
+                  </g>
+                </svg>
+              </a>
+  </div>
+   <div class="footer-area">
+
+      <div class=" footer">
+          <div class="container">
+              <div class="row">
+                  <div class="col-md-3 col-sm-6 wow fadeInRight animated">
+                        <div class="single-footer">
+                          {% comment %} <h4>About us </h4> {% endcomment %}
+                          {% comment %} <div class="footer-title-line"></div> {% endcomment %}
+                          {% comment %} <img src="assets/img/footer-logo.png" alt="" class="wow pulse" data-wow-delay="1s">
+                          <p>Lorem ipsum dolor cum necessitatibus su quisquam molestias. Vel unde, blanditiis.</p> {% endcomment %}
+                          {% comment %} <ul class="footer-adress">
+                              <li><i class="pe-7s-map-marker strong"> </i> 9089 your adress her</li>
+                              <li><i class="pe-7s-mail strong"> </i> email@yourcompany.com</li>
+                              <li><i class="pe-7s-call strong"> </i> +1 908 967 5906</li>
+                          </ul> {% endcomment %}
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+  </body>
+
+  <script src="{% static 'assets/js/modernizr-2.6.2.min.js' %}" ></script>
+  <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}" ></script>
+  <script src="{% static 'assets/js/bootstrap.min.js' %}" ></script>
+   <script src="{% static 'assets/js/bootstrap-select.min.js' %}" ></script>  
+  <script src="{% static 'assets/js/bootstrap-hover-dropdown.js' %}" ></script>
+  <script src="{% static 'assets/js/bootstrap-slider.js' %}" ></script>
+  <script src="{% static 'assets/js/jquery.bootstrap.wizard.js' %}" ></script>
+  <script src="{% static 'assets/js/owl.carousel.min.js' %}" ></script>
+  <script src="{% static 'assets/js/wow.js' %}" ></script>
+  <script src="{% static 'assets/js/price-range.js' %}" ></script>
+  <script src="{% static 'assets/js/main.js' %}" ></script>
+
+  
+</html>

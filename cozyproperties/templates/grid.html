@@ -1,0 +1,1197 @@
+{% load static %}
+{% load filter_template %}
+<style>
+  h1,
+  h2,
+  a,
+  h1,
+  span,
+  p {
+    color: #595534 !important;
+  }
+
+
+  @media all {
+    .owl-carousel .owl-stage-outer {
+      position: relative;
+      overflow: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+    }
+
+    .owl-carousel {
+      display: none;
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      width: 100%;
+      z-index: 1;
+    }
+
+    .propertySlider {
+      margin-top: 40px;
+    }
+
+    .owl-carousel.owl-loaded {
+      display: block;
+    }
+
+
+    .container {
+      width: 100%;
+      padding-left: 10px !important;
+      padding-right: 10px !important;
+      margin-right: auto !important;
+      margin-left: auto !important;
+      max-width: 1180px !important;
+    }
+
+    .featureProjects:not(.pt-0)>.container:first-child {
+      padding-top: 80px;
+    }
+
+    section {
+      display: block;
+    }
+
+    .contentSection {
+      display: block;
+      position: relative;
+    }
+
+    .featureProjects {
+      display: block;
+      padding: 0;
+      position: relative;
+      z-index: 2;
+    }
+
+    .body-mpp {
+      position: relative;
+      display: flex;
+      flex-direction: column;
+      justify-content: space-between;
+    }
+
+
+
+
+
+    .owl-stage {
+      position: relative;
+      -ms-touch-action: pan-Y;
+      touch-action: manipulation;
+      -moz-backface-visibility: hidden;
+    }
+
+
+
+    .owl-stage:after {
+      content: ".";
+      display: block;
+      clear: both;
+      visibility: hidden;
+      line-height: 0;
+      height: 0;
+    }
+
+    .owl-item {
+      -webkit-tap-highlight-color: transparent;
+      position: relative;
+      -webkit-backface-visibility: hidden;
+      -moz-backface-visibility: hidden;
+      -ms-backface-visibility: hidden;
+      -webkit-transform: translate3d(0, 0, 0);
+      -moz-transform: translate3d(0, 0, 0);
+      -ms-transform: translate3d(0, 0, 0);
+      min-height: 1px;
+      float: left;
+      -webkit-touch-callout: none;
+      -ms-touch-action: pan-y;
+      touch-action: pan-y;
+      -webkit-user-select: none;
+      -moz-user-select: none;
+      -ms-user-select: none;
+      user-select: none;
+    }
+
+    .property__inner {
+
+      border: 1px solid #e9e9e9;
+      border-radius: 8px;
+      overflow: hidden;
+      color: #222;
+    }
+
+    .property__image-wrap {
+      width: 100%;
+      height: 400px;
+      position: relative;
+      overflow: hidden;
+    }
+
+    .property__body {
+      padding: 25px;
+    }
+
+
+
+    .property__link {
+      color: #222;
+      text-decoration: none;
+      transition: .2s ease-in-out;
+    }
+
+    a:hover {
+      color: #007bff;
+    }
+
+    .property__link:hover {
+      color: #01aee6;
+    }
+
+    .property__stickers {
+      position: absolute;
+      bottom: auto;
+      top: 12px;
+      left: 12px;
+      z-index: 1;
+    }
+
+    button {
+      margin: 0;
+
+      font-size: inherit;
+      line-height: inherit;
+      -webkit-appearance: none;
+      outline: 0 !important;
+    }
+
+    .property__shortlist-btn {
+      position: absolute;
+      bottom: auto;
+      top: 12px;
+      right: 12px;
+      width: 24px;
+      height: 22px;
+      z-index: 99;
+      padding: 0;
+      border: none;
+      font-size: 0;
+      color: inherit;
+      cursor: pointer;
+      background-color: transparent;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-repeat-x: no-repeat;
+      background-repeat-y: no-repeat;
+    }
+
+    button:not(:disabled) {
+      cursor: pointer;
+    }
+
+    .property__shortlist-btn.load {}
+
+    .property__price-wrap {
+      margin-bottom: 8px;
+    }
+
+    .property__icons-wrap {
+      margin-bottom: 8px;
+    }
+
+    .property__title-wrap {
+      margin-bottom: 8px;
+    }
+
+    .property__locate {
+      display: flex;
+      align-items: center;
+    }
+
+    .property__band {
+      margin: 14px 0;
+      border-bottom: 1px solid #ebebeb;
+    }
+
+    img {
+      vertical-align: middle;
+      border-style: none;
+    }
+
+    .property__image-wrap img {
+      width: 100% !important;
+      height: 100% !important;
+      max-height: 100%;
+      position: absolute;
+      z-index: 1;
+      object-fit: cover;
+    }
+
+    .owl-item img {
+      display: block;
+      width: 100%;
+    }
+
+    .owl-item .owl-lazy {
+      opacity: 0;
+      transition: opacity .4s;
+    }
+
+    .owl-item img.owl-lazy {
+      transform-style: preserve-3d;
+    }
+
+    .property__sticker {
+
+      text-transform: uppercase !important;
+      font-size: 12px;
+      display: inline-block !important;
+      z-index: 2;
+      color: #fff;
+      padding: 7px 10px 5px !important;
+      border-radius: 8px !important;
+      line-height: 12px !important;
+      transition: .2s ease-out;
+    }
+
+    .property__sticker.buy {
+      background: #01aee6;
+    }
+
+    .property__sticker:hover {
+      color: #fff;
+    }
+
+    .property__sticker.buy:hover {
+      background: #fff;
+      color: #01aee6;
+    }
+
+    .property__sticker.type {
+      background: #005a8c;
+    }
+
+    .property__sticker.type:hover {
+      background: #fff;
+      color: #005a8c;
+    }
+
+    .property__price {
+
+      font-size: 24px;
+      line-height: 32px;
+      color: #005a8c;
+    }
+
+    .property__icons {
+      display: flex;
+      align-items: center;
+      margin: 0 -18px;
+    }
+
+    .property__locate img {
+      height: 14px !important;
+      width: auto !important;
+    }
+
+    .property__locate span {
+      font-size: 12px;
+      line-height: 20px;
+      color: #8f8f8f;
+    }
+
+    .property__locate img+span {
+      margin-left: 8px;
+    }
+
+    .agent-property__card {
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+    }
+
+    .owl-item .owl-lazy:not([src]) {
+      max-height: 0;
+    }
+
+    .property__icon {
+      padding: 0 18px;
+    }
+
+
+
+    .property__title {
+      margin: 0;
+
+      font-size: 18px;
+      line-height: 1.3;
+    }
+
+    .agent-property__photo {
+      width: 100%;
+      max-width: 50px;
+      border-radius: 8px;
+      margin-right: 8px;
+      overflow: hidden;
+      background: #d9d9d9;
+      text-align: center;
+    }
+
+    .agent-property__info {
+      flex-grow: 1;
+      margin-right: 8px;
+    }
+
+    .agent-property__photo.mpp {
+      min-width: 67px;
+    }
+
+    .property__icon-value {
+      display: flex;
+      align-items: flex-end;
+      margin-bottom: 2px;
+    }
+
+    .agent-property__photo a {
+      display: block;
+      width: 100%;
+      height: 100%;
+    }
+
+
+    .agent-property__info-listed {
+      font-size: 14px;
+      line-height: 24px;
+    }
+
+    .agent-property__info p {
+      margin: 0;
+    }
+
+    .agent-property__info-name {
+
+      font-size: 16px;
+      line-height: 20px;
+    }
+
+    .agent-property__whatsapp {
+
+      display: block;
+      width: 42px;
+      height: 42px;
+      background-position: center;
+      background-repeat: no-repeat;
+      background-size: contain;
+      background-repeat-x: no-repeat;
+      background-repeat-y: no-repeat;
+    }
+
+    .agent-property__whatsapp:hover {
+      animation: .6s swing;
+    }
+
+    .agent-property__photo img.mpp {
+      width: 100% !important;
+      height: 100% !important;
+      object-fit: contain;
+      vertical-align: top;
+    }
+
+    .agent-property__info-name.mpp {
+      font-size: 14px;
+      line-height: 18px;
+    }
+
+    .property__icon-value span {
+
+      font-size: 18px;
+      line-height: 18px;
+    }
+
+    .property__icon-value img {
+      margin-left: 4px;
+      height: 18px !important;
+      width: auto !important;
+      vertical-align: bottom;
+    }
+
+    .property__icon-caption span {
+      font-size: 12px;
+      line-height: 20px;
+    }
+
+    .agent-property__photo img.user {
+      width: auto !important;
+      height: 140% !important;
+      margin: 5px auto 0;
+      object-fit: contain;
+    }
+  }
+
+
+  /* These were inline style tags. Uses id+class to override almost everything */
+  #style-hhqeY.style-hhqeY {
+    transform: translate3d(0px, 0px, 0px);
+    transition: all 0s ease 0s;
+    width: 5895px;
+  }
+
+  #style-18GMq.style-18GMq {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-o1RME.style-o1RME {
+    opacity: 1;
+  }
+
+  #style-icvv8.style-icvv8 {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-RGhrO.style-RGhrO {
+    opacity: 1;
+  }
+
+  #style-HXFch.style-HXFch {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-Yv18p.style-Yv18p {
+    opacity: 1;
+  }
+
+  #style-qFwIX.style-qFwIX {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-JSfOQ.style-JSfOQ {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-a43kw.style-a43kw {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-82rW4.style-82rW4 {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-I67Ho.style-I67Ho {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-g1hto.style-g1hto {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-RwP6m.style-RwP6m {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-gKrCw.style-gKrCw {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-I9MNX.style-I9MNX {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-d1DBt.style-d1DBt {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-oldo8.style-oldo8 {
+    width: 374px;
+    margin-right: 19px;
+  }
+
+  #style-XCs3x.style-XCs3x {
+    width: 374px;
+    margin-right: 19px;
+  }
+</style>
+
+
+
+{% if slice %}
+
+{% if max  and max == 3 %}
+{% for property in  properties|slice:":3" %}
+<div class="col-sm-6 col-md-4  p10" style='margin-top:25px'>
+
+  <div class="property__inner">
+    <div class="property__image-wrap">
+      <a href="{% url 'core:get-property-by-code' property.id%}" class="property__link property__link_image">
+        {% with property.images.all as imgs %}
+        {% if imgs %}
+          {% with imgs|random as random_image %}
+            <img src="{{ random_image.image.url }}" />
+          {% endwith %}
+        {% else %}
+          <img src="{% static 'assets/img/logo.png' %}" />
+        {% endif %}
+      {% endwith %}
+      </a>
+      <div class="property__stickers">
+
+        <a class="property__sticker type">
+          {{property.appartment_type}}
+        </a>
+        <a class="property__sticker buy">
+          {{property.status|get_status }}
+        </a>
+      </div>
+      <button class="property__shortlist-btn load" data-type="shortlist" data-id="146133">
+        Shortlist
+      </button>
+    </div>
+    <div class="property__body">
+      <div class="property__price-wrap">
+        <span class="property__price">
+          {{property.price|filter_currency}} AED
+        </span>
+      </div>
+      <div class="property__icons-wrap">
+        <div class="property__icons">
+          <div class="property__icon property__icon_beds">
+            <div class="property__icon-value">
+              <span>
+                {{property.bedrooms}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/bedrooms-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Beds
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_baths">
+            <div class="property__icon-value">
+              <span>
+                {{property.bathroom}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/baths-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Baths
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_area">
+
+            <div class="property__icon-value">
+              <span>
+                {{property.size}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/square-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span class="area-ft">
+                Square (ft)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="property__title-wrap">
+        <h3 class="property__title">
+          {{property.title}}
+        </h3>
+        </a>
+      </div>
+      {% comment %} <div class="property__locate">
+        <noscript>
+          <img src="/wp-content/themes/framework/assets/icons/community-icon-gray.svg" alt="Location icon" />
+        </noscript>
+
+      </div> {% endcomment %}
+      <span>
+        {{property.sub_location.name}},{{property.tower_name.name}}
+      </span>
+      <div class="property__band">
+      </div>
+      <div class="property__agent agent-property">
+        <div class="agent-property__card">
+          <div class="agent-property__photo user">
+            {% if  property.agent.picture %}
+            <img src="{{property.agent.picture.url }}" />
+            {% else %}
+            <img src="{% static 'assets/img/logo.png' %} " alt="Location icon" />
+            {% endif %}
+            </a>
+          </div>
+          <div class="agent-property__info">
+            <p class="agent-property__info-listed">
+              Listing by
+            </p>
+            <p class="agent-property__info-name user">
+              {{property.agent.name}}
+            </p>
+          </div>
+          <div class="agent-property__whatsapp-wrap fa fa-whatsapp">
+            <div class="icon-container">
+              <a href="https://api.whatsapp.com/send?phone={{property.agent.phone|filter_phone_number}}" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="25px"
+                  width="25px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                  <g>
+                    <path style="fill:#2CB742;"
+                      d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z" />
+                    <path style="fill:#FFFFFF;"
+                      d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+            <div class="icon-container">
+              <a href="mailto:{{property.agent.email}}">
+                <svg height="25px" width="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#96a54a"
+                  stroke="#96a54a">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <title></title>
+                    <g id="Complete">
+                      <g id="mail">
+                        <g>
+                          <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744"></polyline>
+                          <rect fill="none" height="14" rx="2" ry="2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744" width="18" x="3" y="6.5"></rect>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{% else %}
+{% for property in  properties|slice:":7" %}
+<div class="col-sm-6 col-md-4  p10" style='margin-top:25px'>
+
+  <div class="property__inner">
+    <div class="property__image-wrap">
+      <a href="{% url 'core:get-property-by-code' property.id%}" class="property__link property__link_image">
+        
+        {% with property.images.all as imgs %}
+        {% if imgs %}
+          {% with imgs|random as random_image %}
+            <img src="{{ random_image.image.url }}" />
+          {% endwith %}
+        {% else %}
+          <img src="{% static 'assets/img/logo.png' %}" />
+        {% endif %}
+      {% endwith %}
+      </a>
+      <div class="property__stickers">
+
+        <a class="property__sticker type">
+          {{property.appartment_type}}
+        </a>
+        <a class="property__sticker buy">
+          {{property.status|get_status }}
+        </a>
+      </div>
+      <button class="property__shortlist-btn load" data-type="shortlist" data-id="146133">
+        Shortlist
+      </button>
+    </div>
+    <div class="property__body">
+      <div class="property__price-wrap">
+        <span class="property__price">
+          {{property.price|filter_currency}} AED
+        </span>
+      </div>
+      <div class="property__icons-wrap">
+        <div class="property__icons">
+          <div class="property__icon property__icon_beds">
+            <div class="property__icon-value">
+              <span>
+                {{property.bedrooms}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/bedrooms-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Beds
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_baths">
+            <div class="property__icon-value">
+              <span>
+                {{property.bathroom}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/baths-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Baths
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_area">
+
+            <div class="property__icon-value">
+              <span>
+                {{property.size}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/square-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span class="area-ft">
+                Square (ft)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="property__title-wrap">
+        <h3 class="property__title">
+          {{property.title}}
+        </h3>
+        </a>
+      </div>
+      {% comment %} <div class="property__locate">
+        <noscript>
+          <img src="/wp-content/themes/framework/assets/icons/community-icon-gray.svg" alt="Location icon" />
+        </noscript>
+
+      </div> {% endcomment %}
+      <span>
+        {{property.sub_location.name}},{{property.tower_name.name}}
+      </span>
+      <div class="property__band">
+      </div>
+      <div class="property__agent agent-property">
+        <div class="agent-property__card">
+          <div class="agent-property__photo user">
+            {% if  property.agent.picture %}
+            <img src="{{property.agent.picture.url }}" />
+            {% else %}
+            <img src="{% static 'assets/img/logo.png' %} " alt="Location icon" />
+            {% endif %}
+            </a>
+          </div>
+          <div class="agent-property__info">
+            <p class="agent-property__info-listed">
+              Listing by
+            </p>
+            <p class="agent-property__info-name user">
+              {{property.agent.name}}
+            </p>
+          </div>
+          <div class="agent-property__whatsapp-wrap fa fa-whatsapp">
+            <div class="icon-container">
+              <a href="https://api.whatsapp.com/send?phone={{property.agent.phone|filter_phone_number}}" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="25px"
+                  width="25px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                  <g>
+                    <path style="fill:#2CB742;"
+                      d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z" />
+                    <path style="fill:#FFFFFF;"
+                      d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+            <div class="icon-container">
+              <a href="mailto:{{property.agent.email}}">
+                <svg height="25px" width="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#96a54a"
+                  stroke="#96a54a">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <title></title>
+                    <g id="Complete">
+                      <g id="mail">
+                        <g>
+                          <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744"></polyline>
+                          <rect fill="none" height="14" rx="2" ry="2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744" width="18" x="3" y="6.5"></rect>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+{%endif%}
+{% else %}
+{% for property in  properties|slice:":7" %}
+<div class="col-sm-6 col-md-4  p10" style='margin-top:25px'>
+
+  <div class="property__inner">
+    <div class="property__image-wrap">
+      <a href="{% url 'core:get-property-by-code' property.id%}" class="property__link property__link_image">
+        {% with property.images.all as imgs %}
+        {% if imgs %}
+          {% with imgs|random as random_image %}
+            <img src="{{ random_image.image.url }}" />
+          {% endwith %}
+        {% else %}
+          <img src="{% static 'assets/img/logo.png' %}" />
+        {% endif %}
+      {% endwith %}
+      </a>
+      <div class="property__stickers">
+
+        <a class="property__sticker type">
+          {{property.appartment_type}}
+        </a>
+        <a class="property__sticker buy">
+          {{property.status|get_status }}
+        </a>
+      </div>
+      <button class="property__shortlist-btn load" data-type="shortlist" data-id="146133">
+        Shortlist
+      </button>
+    </div>
+    <div class="property__body">
+      <div class="property__price-wrap">
+        <span class="property__price">
+          {{property.price|filter_currency}} AED
+        </span>
+      </div>
+      <div class="property__icons-wrap">
+        <div class="property__icons">
+          <div class="property__icon property__icon_beds">
+            <div class="property__icon-value">
+              <span>
+                {{property.bedrooms}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/bedrooms-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Beds
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_baths">
+            <div class="property__icon-value">
+              <span>
+                {{property.bathroom}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/baths-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Baths
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_area">
+
+            <div class="property__icon-value">
+              <span>
+                {{property.size}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/square-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span class="area-ft">
+                Square (ft)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="property__title-wrap">
+        <h3 class="property__title">
+          {{property.title}}
+        </h3>
+        </a>
+      </div>
+      {% comment %} <div class="property__locate">
+        <noscript>
+          <img src="/wp-content/themes/framework/assets/icons/community-icon-gray.svg" alt="Location icon" />
+        </noscript>
+
+      </div> {% endcomment %}
+      <span>
+        {{property.sub_location.name}},{{property.tower_name.name}}
+      </span>
+      <div class="property__band">
+      </div>
+      <div class="property__agent agent-property">
+        <div class="agent-property__card">
+          <div class="agent-property__photo user">
+            {% if  property.agent.picture %}
+            <img src="{{property.agent.picture.url }}" />
+            {% else %}
+            <img src="{% static 'assets/img/logo.png' %} " alt="Location icon" />
+            {% endif %}
+            </a>
+          </div>
+          <div class="agent-property__info">
+            <p class="agent-property__info-listed">
+              Listing by
+            </p>
+            <p class="agent-property__info-name user">
+              {{property.agent.name}}
+            </p>
+          </div>
+          <div class="agent-property__whatsapp-wrap fa fa-whatsapp">
+            <div class="icon-container">
+              <a href="https://api.whatsapp.com/send?phone={{property.agent.phone|filter_phone_number}}" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="25px"
+                  width="25px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                  <g>
+                    <path style="fill:#2CB742;"
+                      d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z" />
+                    <path style="fill:#FFFFFF;"
+                      d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+            <div class="icon-container">
+              <a href="mailto:{{property.agent.email}}">
+                <svg height="25px" width="25px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#96a54a"
+                  stroke="#96a54a">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <title></title>
+                    <g id="Complete">
+                      <g id="mail">
+                        <g>
+                          <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744"></polyline>
+                          <rect fill="none" height="14" rx="2" ry="2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744" width="18" x="3" y="6.5"></rect>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </div>
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+{% endfor %}
+
+{% for property in  off_plans%}
+<div class="col-sm-6 col-md-4 p10" style='margin-top:25px'>
+  <div class="property__inner">
+    <div class="property__image-wrap">
+      <a href="{% url 'core:get-property-by-code' property.id %}" class="property__link property__link_image">
+        {% with property.images.all as imgs %}
+        {% if imgs %}
+          {% with imgs|random as random_image %}
+            <img src="{{ random_image.image.url }}" />
+          {% endwith %}
+        {% else %}
+          <img src="{% static 'assets/img/logo.png' %}" />
+        {% endif %}
+      {% endwith %}
+      </a>
+      <div class="property__stickers">
+
+        <a class="property__sticker type">
+          {{property.appartment_type}}
+        </a>
+        <a class="property__sticker buy">
+          {{property.status|get_status }}
+        </a>
+      </div>
+      <button class="property__shortlist-btn load" data-type="shortlist" data-id="146133">
+        Shortlist
+      </button>
+    </div>
+    <div class="property__body">
+      <div class="property__price-wrap">
+        <span class="property__price">
+          {{property.price|filter_currency}} AED
+        </span>
+      </div>
+      <div class="property__icons-wrap">
+        <div class="property__icons">
+          <div class="property__icon property__icon_beds">
+            <div class="property__icon-value">
+              <span>
+                {{property.bedrooms}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/bedrooms-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Beds
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_baths">
+            <div class="property__icon-value">
+              <span>
+                {{property.bathroom}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/baths-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span>
+                Baths
+              </span>
+            </div>
+          </div>
+          <div class="property__icon property__icon_area">
+
+            <div class="property__icon-value">
+              <span>
+                {{property.size}}
+              </span>
+              <noscript>
+                <img src="/wp-content/themes/framework/assets/icons/square-icon-black.svg" alt="" />
+              </noscript>
+            </div>
+            <div class="property__icon-caption">
+              <span class="area-ft">
+                Square (ft)
+              </span>
+            </div>
+          </div>
+        </div>
+      </div>
+      <div class="property__title-wrap">
+        <h3 class="property__title">
+          {{property.title}}
+        </h3>
+        </a>
+      </div>
+      {% comment %} <div class="property__locate">
+        <noscript>
+          <img src="/wp-content/themes/framework/assets/icons/community-icon-gray.svg" alt="Location icon" />
+        </noscript>
+
+      </div> {% endcomment %}
+      <span>
+        {{property.sub_location.name}},{{property.tower_name.name}}
+      </span>
+      <div class="property__band">
+      </div>
+      <div class="property__agent agent-property">
+        <div class="agent-property__card">
+          <div class="agent-property__photo user">
+            {% if  property.agent.picture %}
+            <img src="{{property.agent.picture.url }}" />
+            {% else %}
+            <img src="{% static 'assets/img/logo.png' %} " alt="Location icon" />
+            {% endif %}
+            </a>
+          </div>
+          <div class="agent-property__info">
+            <p class="agent-property__info-listed">
+              Listing by
+            </p>
+            <p class="agent-property__info-name user">
+              {{property.agent.name}}
+            </p>
+          </div>
+          <div class="agent-property__whatsapp-wrap fa fa-whatsapp">
+            <div class="icon-container">
+              <a href="https://api.whatsapp.com/send?phone={{property.agent.phone|filter_phone_number}}" target="_blank">
+                <svg xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" height="25px"
+                  width="25px" version="1.1" id="Capa_1" viewBox="0 0 58 58" xml:space="preserve">
+                  <g>
+                    <path style="fill:#2CB742;"
+                      d="M0,58l4.988-14.963C2.457,38.78,1,33.812,1,28.5C1,12.76,13.76,0,29.5,0S58,12.76,58,28.5   S45.24,57,29.5,57c-4.789,0-9.299-1.187-13.26-3.273L0,58z" />
+                    <path style="fill:#FFFFFF;"
+                      d="M47.683,37.985c-1.316-2.487-6.169-5.331-6.169-5.331c-1.098-0.626-2.423-0.696-3.049,0.42   c0,0-1.577,1.891-1.978,2.163c-1.832,1.241-3.529,1.193-5.242-0.52l-3.981-3.981l-3.981-3.981c-1.713-1.713-1.761-3.41-0.52-5.242   c0.272-0.401,2.163-1.978,2.163-1.978c1.116-0.627,1.046-1.951,0.42-3.049c0,0-2.844-4.853-5.331-6.169   c-1.058-0.56-2.357-0.364-3.203,0.482l-1.758,1.758c-5.577,5.577-2.831,11.873,2.746,17.45l5.097,5.097l5.097,5.097   c5.577,5.577,11.873,8.323,17.45,2.746l1.758-1.758C48.048,40.341,48.243,39.042,47.683,37.985z" />
+                  </g>
+                </svg>
+              </a>
+            </div>
+            <div class="icon-container">
+              <a href="mailto:{{property.agent.email}}">
+                <svg height="30px" width="30px" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg" fill="#96a54a"
+                  stroke="#96a54a">
+                  <g id="SVGRepo_bgCarrier" stroke-width="0"></g>
+                  <g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g>
+                  <g id="SVGRepo_iconCarrier">
+                    <title></title>
+                    <g id="Complete">
+                      <g id="mail">
+                        <g>
+                          <polyline fill="none" points="4 8.2 12 14.1 20 8.2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744"></polyline>
+                          <rect fill="none" height="14" rx="2" ry="2" stroke="#595534" stroke-linecap="round"
+                            stroke-linejoin="round" stroke-width="0.744" width="18" x="3" y="6.5"></rect>
+                        </g>
+                      </g>
+                    </g>
+                  </g>
+                </svg>
+              </a>
+            </div>
+
+            </a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+</div>
+{% endfor %}
+
+
+{% endif %}

@@ -1,0 +1,137 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+  <style>
+    .form-message.success {
+      position: fixed;
+      top: 5%;
+      right: 0;
+      transform: translateY(-50%);
+      padding: 10px 20px;
+      background-color: #dff0d8;
+      border: 1px solid #d6e9c6;
+      color: #3c763d;
+      border-radius: 5px;
+      z-index: 9999;
+    }
+  </style>
+  <div class="form-message"></div>
+
+  <body>
+    <div class="container">
+      <section class="mb-4" style="zoom: 1.5;">
+        <h2 class="h1-responsive font-weight-bold text-center my-4">Contact us</h2>
+        <p class="text-center w-responsive mx-auto mb-5">
+          To get in touch with us, please complete the form below. Your message will be promptly delivered to the appropriate Cozy Properties Real Estate property consultant, who will contact you within 24 hours. If you require immediate assistance, please don't hesitate to call us at
+          <strong>+971 52 785 6412</strong>
+        </p>
+        <br />
+        <br />
+        <br />
+
+        <div class="row">
+          <!-- Grid column -->
+          <div class="col-md-9 mb-md-0 mb-5">
+            <form id="contact-form" method="post">
+              {% csrf_token %}
+              <div class="row">
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="firstname">Firstname</label>
+                    <input type="text" class="form-control" id="firstname" name="firstname" />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="lastname">Lastname</label>
+                    <input type="text" class="form-control" id="lastname" name="lastname" />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="email">Email</label>
+                    <input type="text" class="form-control" id="email" name="email" />
+                  </div>
+                </div>
+                <div class="col-sm-6">
+                  <div class="form-group">
+                    <label for="subject">Subject</label>
+                    <input type="text" class="form-control" id="subject" name="subject" />
+                  </div>
+                </div>
+                <div class="col-sm-12">
+                  <div class="form-group">
+                    <label for="message">Message</label>
+                    <textarea id="message" class="form-control" name="message"></textarea>
+                  </div>
+                </div>
+                <div class="col-sm-12 text-center"></div>
+              </div>
+            </form>
+
+            <div class="text-center text-md-left">
+              <button class="btn btn-primary submitbtn">Send</button>
+            </div>
+            <div class="status"></div>
+          </div>
+          <!-- Grid column -->
+
+          <!-- Grid column -->
+          <div class="col-md-3 text-center">
+            <ul class="list-unstyled mb-0">
+              <li>
+                <i class="fas fa-envelope mt-4 fa-2x"></i>
+                <p class="text-muted">
+                  For electronic support or general inquiries, please email us at <strong><a href="mailto:">info@cozyproperties.ae</a></strong>.
+                </p>
+              </li>
+            </ul>
+          </div>
+          <!-- Grid column -->
+        </div>
+      </section>
+      <!-- Section: Contact v.2 -->
+    </div>
+    <!-- property area -->
+
+    <script src="{% static 'assets/js/jquery-1.10.2.min.js' %}"></script>
+    <script>
+      $(document).ready(function () {
+        document.querySelector('.submitbtn').addEventListener('click', (e) => {
+          $('#contact-form').submit()
+        })
+        $('#contact-form').submit(function (event) {
+          // Prevent the default form submission
+          event.preventDefault()
+      
+          // Get the form data
+          var formData = $(this).serialize()
+      
+          // Send the form data via AJAX
+          $.ajax({
+            type: 'POST',
+            url: "{% url 'core:send_email' %}",
+            data: formData,
+            success: function (response) {
+              // Display the success message
+      
+              $('.form-message').removeClass('error').addClass('success').text('Your email has been sent successfully.').fadeIn(500)
+              setTimeout(function () {
+                $('.form-message').fadeOut(500)
+              }, 3000)
+              $('#contact-form')[0].reset()
+            },
+            error: function (xhr, status, error) {
+              // Display the error message
+              $('.form-message').removeClass('success').addClass('error').text('An error occurred while sending your email.').fadeIn(500)
+              setTimeout(function () {
+                $('.form-message').fadeOut(500)
+              }, 3000)
+            }
+          })
+        })
+      })
+    </script>
+  </body>
+{% endblock %}

@@ -1,0 +1,74 @@
+{% extends 'base.html' %}
+        {% load static %}
+        {% load filter_template %}
+        {% block content %}
+
+
+        <style>
+label{
+    color:#595534 !important
+}
+
+@media (max-width:600px) {
+    .mobile-phone-filter-btn{
+    display: flex;
+    justify-content: center;
+    position: absolute;
+    right: 0;
+    left: 0;
+    zoom:0.8
+    }
+}
+.mobile-phone-filter-btn > div{
+align-items: end;
+display: flex;
+justify-content: center
+}
+        </style>
+
+        <div class="page-head">
+      
+          <video src="{% static 'assets/dubai.mp4' %}" autoplay muted loop style="position: absolute;
+              top: 0;
+              left: 0;
+              width: 100%;
+              object-fit: cover;
+              z-index: -1;">
+          </video>
+        
+          <div class="container">
+              <div class="row">
+                  <div class="page-head-content">
+                      <div class="col-md-12 padding-bottom-40 large-search" style="zoom: 1.2;position: absolute;bottom: 0;width: 50%;left: 25%;right: 25%;">
+                          <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;">
+                              <div class="row mobile-phone-filter-btn">
+                                <div class="col-md-4">
+                                  <button type="button" class="btn btn-default filter-button" data-status="all" style="margin-top: 20px;">All</button>
+                              </div>
+                              <div class="col-md-4">
+                                  <button type="button" class="btn btn-default filter-button" data-status="offplan" style="margin-top: 20px;">Offplan</button>
+                              </div>
+                              <div class="col-md-4">
+                                  <button type="button" class="btn btn-default filter-button" data-status="ready" style="margin-top: 20px;">Ready</button>
+                              </div>
+                              
+                              </div>
+                          </div>
+                      </div>
+                  </div>
+              </div>
+          </div>
+      </div>
+      
+        <div class="content-area home-area-1 recent-property" style="background-color:#381107 ; padding-bottom: 55px;">
+            <div class="container-fluid">  
+                    <div class=" clear"> 
+                        <div id="list-type" class="proerty-th" style='margin-top:50px' >
+                          {% include "./grid.html" %}
+                        </div>
+                </div>     
+            </div>
+        </div>
+    </body>
+
+    {% endblock %}

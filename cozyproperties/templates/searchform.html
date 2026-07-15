@@ -1,0 +1,59 @@
+{% load static %}
+<div class="col-md-12 padding-bottom-40 large-search" style='zoom:1.2'> 
+    <div class="search-form wow pulse animated" style="visibility: visible; animation-name: pulse;">
+        <form action=" {% url 'core:search' %}"   class=" form-inline"  method="get">
+            {% comment %} {% csrf_token %} {% endcomment %}
+            <div class="col-md-12">
+                <div class="col-md-4">
+                    <div class="btn-group bootstrap-select">
+                        <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Property Type" name='property_type' >
+                            {% if p_type %}
+                                <option selected  disabled>{{p_type}}</option>
+                            {% endif %}
+                        
+                            {% for p_types in properties_type  %}
+                            
+                                <option>{{p_types}}</option>
+                            {% endfor %}
+                        </select>
+                    </div>
+                </div>
+                <div class="col-md-4">                                   
+                    <div class="btn-group bootstrap-select">
+                    
+                                    <select id="lunchBegins" class="selectpicker" data-live-search="true" data-live-search-style="begins" title="Location" name='selected_city'>
+                                        {% if city %}
+                                            <option selected disabled>{{city}}</option>
+                                     
+                                        {% endif %}
+                                        {% for city in cities  %}
+                                        <option>{{city.name}}</option>
+                                        {% endfor %}
+                                    </select>
+                                </div>
+                                </div>
+                                <div class="col-md-4">      
+                                    <div class="btn-group bootstrap-select show-tick form-control">
+                                    <div class="dropdown-menu open"><ul class="dropdown-menu inner" role="menu"><li data-original-index="0" class="selected"><a tabindex="0" class="" style="" data-tokens="null"><span class="text"> -Status- </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="1"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Rent </span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="2"><a tabindex="0" class="" style="" data-tokens="null"><span class="text">Buy</span><span class="glyphicon glyphicon-ok check-mark"></span></a></li><li data-original-index="3"><a tabindex="0" class="" style="" data-tokens="null"><span class="glyphicon glyphicon-ok check-mark"></span></a></li></ul></div>
+                                    <select id="basic" name='property_status' class="selectpicker show-tick form-control" tabindex="-98"  title="Status">
+                                        {% if p_status %}
+                                        <option selected disabled>{{p_status}}</option>
+                                 
+                                            {% endif %}
+                                                <option>Rent </option>
+                                                <option value='Sale'>Buy</option>
+                                            </select></div>
+                                        </div>
+                                        
+                                    </div>
+                                    <div class="text-center" >
+                                        <button type="submit" class="btn btn-default"style='margin-top:20px'> Search</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                            
+
+
+            
+

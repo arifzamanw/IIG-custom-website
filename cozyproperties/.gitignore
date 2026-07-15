@@ -1,0 +1,38 @@
+# Editor directories and files
+.vscode
+# Byte-compiled / optimized / DLL files
+__pycache__/
+*.pyc
+
+# Databases:
+*.sqlite3
+*.sqlite3-journal
+
+# Local Config
+access.py
+
+.DS_Store
+node_modules
+frontend/node_modules
+frontendV1/node_modules
+
+dist
+webpack-stats.json
+package-lock.json
+
+# local env files
+.env.local
+.env.*.local
+
+# Log files
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+
+
+
+# Editor directories and files
+.vscode
+
+

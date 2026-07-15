@@ -1,0 +1,814 @@
+
+
+
+{% load static %}
+
+<script src="{% static 'assets/js/jquery-1.10.2.min.js' %}" ></script>
+<style scoped>
+    /* GENERAL */
+
+  
+  /* TITLE */
+  #title-container {
+    min-height: 460px;
+    height: 100%;
+    color: #fff;
+   
+    text-align: center;
+    padding: 105px 28px 28px 28px;
+    box-sizing: border-box;
+    position: relative;
+    box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
+    -webkit-box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
+    -moz-box-shadow: 10px 8px 21px 0px rgba(204, 204, 204, 0.75);
+  }
+  #title-container h2 {
+    font-size: 45px;
+    font-weight: 800;
+    color: #fff;
+    padding: 0;
+    margin-bottom: 0px;
+  }
+  #title-container h3 {
+    font-size: 25px;
+    font-weight: 600;
+    color: #82000a;
+    padding: 0;
+  }
+  #title-container p {
+    font-size: 13px;
+    padding: 0 25px;
+    line-height: 20px;
+  }
+
+  
+  /* FORMS */
+  #qbox-container {
+
+    background-repeat: repeat;
+    position: relative;
+    padding: 62px;
+    min-height: 630px;
+    box-shadow: 10px 8px 21px 0px #f4f4f4;
+    -webkit-box-shadow: 10px 8px 21px 0px #f4f4f4;
+    -moz-box-shadow: 10px 8px 21px 0px #f4f4f4;
+
+    background:#f4f4f4;
+  }
+  #steps-container {
+    margin: auto;
+    width: 500px;
+    min-height: 420px;
+    display: flex;
+    vertical-align: middle;
+    align-items: center;
+  }
+  .step {
+    display: none;
+  }
+  .step h4 {
+    text-align: center;
+    margin: 0 0 26px 0;
+    padding: 0;
+    position: relative;
+    font-weight: 500;
+    font-size: 2.4375rem;
+    line-height: 1.6;
+  }
+  button#prev-btn, button#next-btn, button#submit-btn {
+    font-size: 17px;
+    font-weight: bold;
+    position: relative;
+    width: 130px;
+    height: 50px;
+    background: #595534 ;
+    margin: 0 auto;
+    margin-top: 40px;
+    overflow: hidden;
+    z-index: 1;
+    cursor: pointer;
+    transition: color .3s;
+    text-align: center;
+    color: #fff;
+    border: 0;
+    -webkit-border-bottom-right-radius: 5px;
+    -webkit-border-bottom-left-radius: 5px;
+    -moz-border-radius-bottomright: 5px;
+    -moz-border-radius-bottomleft: 5px;
+    border-bottom-right-radius: 5px;
+    border-bottom-left-radius: 5px;
+  }
+  button#prev-btn:after, button#next-btn:after, button#submit-btn:after {
+    position: absolute;
+    top: 90%;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: #381107;
+    content: "";
+    z-index: -2;
+    transition: transform .3s;
+  }
+  button#prev-btn:hover::after, button#next-btn:hover::after, button#submit-btn:hover::after {
+    transform: translateY(-80%);
+    transition: transform .3s;
+  }
+  .progress {
+    border-radius: 0px !important;
+  }
+  .q__question {
+    position: relative;
+  }
+  .q__question:not(:last-child) {
+    margin-bottom: 10px;
+  }
+  .question__input {
+    position: absolute;
+    left: -9999px;
+  }
+  .question__label {
+    position: relative;
+    display: block;
+    line-height: 40px;
+    border: 1px solid #ced4da;
+    border-radius: 5px;
+    background-color: #fff;
+    padding: 5px 20px 5px 50px;
+    cursor: pointer;
+    transition: all 0.15s ease-in-out;
+  }
+  .question__label:hover {
+    border-color: #595534 ;
+  }
+  .question__label:before, .question__label:after {
+    position: absolute;
+    content: "";
+  }
+  .d-none{
+    display:none
+  }
+
+  .question__label:before {
+    top: 12px;
+    left: 10px;
+    width: 26px;
+    height: 26px;
+    border-radius: 50%;
+    background-color: #fff;
+    box-shadow: inset 0 0 0 1px #ced4da;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+  }
+  .question__input:checked+.question__label:before {
+    background-color: #595534 ;
+    box-shadow: 0 0 0 0;
+    background-color: #595534;
+
+  }
+  .question__input:checked+.question__label:after {
+    top: 22px;
+    left: 18px;
+    width: 10px;
+    height: 5px;
+    border-left: 2px solid #fff;
+    border-bottom: 2px solid #fff;
+    transform: rotate(-45deg);
+    
+
+  }
+  .form-check-input:checked, .form-check-input:focus {
+    background-color: #595534  !important;
+    outline: none !important;
+    border: none !important;
+  }
+  input:focus {
+    outline: none;
+  }
+  #input-container {
+    display: inline-block;
+    box-shadow: none !important;
+    margin-top: 36px !important;
+  }
+  label.form-check-label.radio-lb {
+    margin-right: 15px;
+  }
+  #q-box__buttons {
+    text-align: center;
+  }
+  input[type="text"], input[type="email"] {
+    padding: 8px 14px;
+  }
+  input[type="text"]:focus, input[type="email"]:focus {
+    border: 1px solid #595534 ;
+    border-radius: 5px;
+    outline: 0px !important;
+    -webkit-appearance: none;
+    box-shadow: none !important;
+    -webkit-transition: all 0.15s ease-in-out;
+    -moz-transition: all 0.15s ease-in-out;
+    -o-transition: all 0.15s ease-in-out;
+    transition: all 0.15s ease-in-out;
+  }
+  .form-check-input:checked[type=radio], .form-check-input:checked[type=radio]:hover, .form-check-input:checked[type=radio]:focus, .form-check-input:checked[type=radio]:active {
+    border: none !important;
+    -webkit-outline: 0px !important;
+    box-shadow: none !important;
+  }
+
+ .iradio_square-yellow{
+    display:none;
+  }
+  .form-check-input:focus, input[type="radio"]:hover {
+    box-shadow: none;
+    cursor: pointer !important;
+  }
+  #success {
+    display: none;
+  }
+  #success h4 {
+    color: #595534 ;
+  }
+
+  .back-link {
+    font-weight: 700;
+    color: #595534 ;
+    text-decoration: none;
+    font-size: 18px;
+  }
+  .back-link:hover {
+    color: #595534 ;
+  }
+  
+  /* PRELOADER */
+  #preloader-wrapper {
+    width: 100%;
+    height: 100%;
+    z-index: 1000;
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+  }
+  #preloader {
+    background-image: url('../img/preloader.png');
+    width: 120px;
+    height: 119px;
+    border-top-color: #fff;
+    border-radius: 100%;
+    display: block;
+    position: relative;
+    top: 50%;
+    left: 50%;
+    margin: -75px 0 0 -75px;
+    -webkit-animation: spin 2s linear infinite;
+    animation: spin 2s linear infinite;
+    z-index: 1001;
+  }
+
+.close {
+  .    position: absolute;
+  right: 10px;
+  top: 23px;
+   
+    font-size: 34px;
+    font-weight: 700;
+    line-height: 1;
+    color: #000;
+    text-shadow: 0 1px 0 #fff;
+    filter: alpha(opacity=20);
+    opacity: .8;
+}
+  @-webkit-keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  @keyframes spin {
+    0% {
+      -webkit-transform: rotate(0deg);
+      -ms-transform: rotate(0deg);
+      transform: rotate(0deg);
+    }
+    100% {
+      -webkit-transform: rotate(360deg);
+      -ms-transform: rotate(360deg);
+      transform: rotate(360deg);
+    }
+  }
+  #preloader-wrapper .preloader-section {
+    width: 51%;
+    height: 100%;
+    position: fixed;
+    top: 0;
+    background: #F7F9FF;
+    z-index: 1000;
+  }
+  #preloader-wrapper .preloader-section.section-left {
+    left: 0
+  }
+  #preloader-wrapper .preloader-section.section-right {
+    right: 0;
+  }
+  .loaded #preloader-wrapper .preloader-section.section-left {
+    transform: translateX(-100%);
+    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  }
+  .loaded #preloader-wrapper .preloader-section.section-right {
+    transform: translateX(100%);
+    transition: all 0.7s 0.3s cubic-bezier(0.645, 0.045, 0.355, 1.000);
+  }
+  .loaded #preloader {
+    opacity: 0;
+    transition: all 0.3s ease-out;
+  }
+  .loaded #preloader-wrapper {
+    visibility: hidden;
+    transform: translateY(-100%);
+    transition: all 0.3s 1s ease-out;
+  }
+
+
+  .q-box__question .checked + .question__label::before {
+    background-color: #FDC600;  /* Replace with your desired background color */
+  }
+  
+  /* MEDIA QUERIES */
+  @media (min-width: 990px) and (max-width: 1199px) {
+    #title-container {
+      padding: 80px 28px 28px 28px;
+    }
+    #steps-container {
+      width: 85%;
+    }
+  }
+  @media (max-width: 991px) {
+    #title-container {
+      padding: 30px;
+      min-height: inherit;
+    }
+  }
+  @media (max-width: 767px) {
+    #qbox-container {
+      padding: 30px;
+    }
+    #steps-container {
+      width: 100%;
+      min-height: 400px;
+    }
+    #title-container {
+      padding-top: 50px;
+    }
+  }
+  @media (max-width: 560px) {
+    #qbox-container {
+      padding: 40px;
+    }
+    #title-container {
+      padding-top: 45px;
+    }
+  }
+  .d-block {
+    display: block!important; 
+        width: 100%;
+}
+
+
+
+  </style>
+<link rel="stylesheet" href="{% static 'assets/css/wizard.css' %}" />
+
+
+<button style='display:none;' type="button" class="btn btn-primary" id='modal_hidden_button' data-toggle="modal" data-target="#myModal">Open Modal</button>
+
+
+<div class="modal fade" id="myModal">
+    <div class="modal-dialog" >
+      <div class="" > 
+  
+  
+{% comment %} <form id="multistepsform" method="post">
+    {% csrf_token %}
+    <!-- progressbar -->
+    <ul id="progressbar">
+      <li class="active">Property Type</li>
+      <li>Infos</li>
+      <li>Details</li>
+    </ul>
+    <!-- fieldsets -->
+    <fieldset>
+      <h2 class="fs-title">Choose your Property Type </h2>
+      <h3 class="fs-subtitle"></h3>
+      <div class="radio-button">
+  
+        <input type="radio" id="radio1" name="radios"   value="Apartment">
+        <label for="radio1">Apartment</label
+        <input type="radio" id="radio2" name="radios" value="Villa">
+        <label for="radio2">Villa</label><br>
+        <input  type="radio" id="radio3" name="radios"  value="Other">
+        <label for="radio3">Other (plot, building, etc.)</label><br><br>
+      </div>
+    
+      <input type="button" name="next" class="next action-button" value="Next" />
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Choose your expected arrival date</h2>
+      <h3 class="fs-subtitle"></h3>
+      <div class="radio-button">
+        <input type="radio" id="now" name="arrivalDate" value="I am in Dubai">
+        <label for="now">I am in Dubai</label><br>
+      
+        <input type="radio" id="twoMonths" name="arrivalDate" value="I will be in Dubai within two months">
+        <label for="twoMonths">I will be in Dubai within two months</label><br>
+      
+        <input type="radio" id="fourMonths" name="arrivalDate" value="I will be in Dubai within four months">
+        <label for="fourMonths">I will be in Dubai within four months</label><br>
+      
+        <input type="radio" id="oneYear" name="arrivalDate" value="I will be in Dubai within one year">
+        <label for="oneYear">I will be in Dubai within one year</label><br><br>
+      </div>
+      <input type="button" name="previous" class="previous action-button" value="Previous" />
+      <input type="button" name="next" class="next action-button" value="Next" />
+    
+    </fieldset>
+    <fieldset>
+      <h2 class="fs-title">Personal Details</h2>
+      <h3 class="fs-subtitle">We will never sell it</h3>
+      <input type="text" name="fname" placeholder="First Name" />
+      <input type="text" name="lname" placeholder="Last Name" />
+      <input type="email" name="email" placeholder="Email" />
+      <input type="text" name="phone" placeholder="Phone" />
+      <textarea name="message" placeholder="Message"></textarea>
+      <input type="button" name="previous" class="previous action-button" value="Previous" />
+      <input type="submit" name="submit" class="submit action-button" value="Submit" />
+    </fieldset>
+   
+</form> {% endcomment %}
+<div class="content-area submit-property" style="background-color: #FCFCFC;     width: fit-content;">&nbsp;
+    <div class="container" >
+      <span class='close' >&times;</span>
+        <div class="clearfix"> 
+            <div class="wizard-container"> 
+
+                <div class="container d-flex align-items-center min-vh-100">
+                    <div class="row g-0 justify-content-center">
+                        <div class="col mx-0 px-0">
+                            <div class="progress">
+                                <div aria-valuemax="100" aria-valuemin="0" aria-valuenow="50" class="progress-bar progress-bar-striped progress-bar-animated bg-danger" role="progressbar" style="width: 16.6667%;"></div>
+                            </div>
+                            <div id="qbox-container">
+                                <form class="needs-validation"  id="multistepsform"  method="post" name="form-wrapper" style='background-color:#f4f4f4;'>
+                                  {% csrf_token %}  
+                                  <div id="steps-container" class='arrivalDateGroup'>
+                                    
+                                        <div class="step d-none">
+                                            <h4>Choose your expected arrival date</h4>
+                                            
+                                            <div class="form-check ps-0 q-box">
+                                              <div class="q-box__question">
+                                                <input type="radio" id="indubai" class="form-check-input question__input" name="arrivalDate" value="I am in Dubai">
+                                                <label class="form-check-label question__label" for="indubai">I am in Dubai</label>
+                                            </div>
+
+                                                <div class="q-box__question">
+                                                    <input type="radio" id="twoMonths" class="form-check-input question__input" name="arrivalDate" value="I will be in Dubai within two months">
+                                                    <label class="form-check-label question__label" for="twoMonths">I will be in Dubai within two months</label>
+                                                </div>
+
+                                                <div class="q-box__question">
+                                                  <input type="radio" id="fourMonths" name="arrivalDate" class="form-check-input question__input" value="I will be in Dubai within four months">
+                                                  <label  class="form-check-label question__label" for="fourMonths">I will be in Dubai within four months</label>
+                                                </div>
+                                                <div class="q-box__question">
+                                                  <input type="radio" id="oneYear" name="arrivalDate" class="form-check-input question__input"  value="I will be in Dubai within one year">
+                                                  <label class="form-check-label question__label" for="oneYear">I will be in Dubai within one year</label>
+                                                </div>
+                                            </div>
+                                        </div>
+                                        <div class="step d-none">
+                                            <h4>Select a Property Type</h4>
+                                            <div class="form-check ps-0 q-box selectPropertyType">
+                                                <div class="q-box__question">
+                                                                                            
+                                                  <input type="radio" id="this.parentNode.classList.add" name="radios"  class="form-check-input question__input"  value="Plot">
+                                                  <label  class="form-check-label question__label" for="this.parentNode.classList.add">Plot</label>
+                                                </div>
+                                                  <div class="q-box__question">
+                                                  <input type="radio" id="penthouse" name="radios"  class="form-check-input question__input"  value="Penthouse">
+                                                  <label  class="form-check-label question__label" for="penthouse">Penthouse</label>
+                                                </div>
+                                                <div class="q-box__question">
+                                                  <input type="radio" id="townhouse" name="radios"  class="form-check-input question__input"  value="Townhouse">
+                                                  <label  class="form-check-label question__label" for="townhouse">Townhouse</label>
+                                                </div>
+                                                <div class="q-box__question">
+                                                  <input type="radio" id="app_flat" name="radios"  class="form-check-input question__input"  value="Apartment / Flat">
+                                                  <label  class="form-check-label question__label" for="app_flat">Apartment / Flat</label>
+                                                </div>
+                                                <div class="q-box__question">
+                                                  <input type="radio" id="villa_house" name="radios"  class="form-check-input question__input"  value="Villa / House">
+                                                  <label  class="form-check-label question__label" for="villa_house">Villa / House</label>
+                                          </div>
+                                                  
+        
+                                              
+                                            </div>
+                                        </div>
+                               
+                                        <div class="step d-none p_informations" >
+                                            <h4>Provide us with your personal information</h4>
+                                            <div class="mt-1">
+                                                <label class="form-label">First Name:</label> 
+                                                <input type="text" name="fname"   />
+                                            </div>
+                                            <div class="mt-2">
+                                                <label class="form-label">Last Name:</label> 
+                                                <input type="text" name="lname"   />
+                                            </div>
+                                            <div class="mt-2">
+                                                <label class="form-label">Email:</label> 
+                                                <input type="email" name="email"  />
+                                            </div>
+                                            <div class="mt-2">
+                                                <label class="form-label">Phone / Mobile Number:</label> 
+                                                <input type="text" name="phone"  />
+                                            </div>
+                                            <div class="mt-2">
+                                              <label class="form-label">Description</label> 
+                                           
+                                          </div>
+                                          <textarea name="message" style="height:143px;    width: -webkit-fill-available;" ></textarea>
+                                        </div>
+                                    </div>
+                                    <div id="q-box__buttons">
+                                        <button id="prev-btn" type="button" class="d-inline-block">Previous</button> 
+                                        <button id="next-btn" type="button" class="d-inline-block">Next</button> 
+                                        <button id="submit-btn" type="submit" class="d-none">Submit</button>
+                                    </div>
+                                </form>
+                            </div>
+                        </div>
+                    </div>
+                </div><!-- PRELOADER -->
+                <div id="preloader-wrapper">
+                    <div id="preloader"></div>
+                    <div class="preloader-section section-left"></div>
+                    <div class="preloader-section section-right"></div>
+                </div>
+            </div> 
+        </div>
+    </div>
+</div>
+ </div>
+</div>
+</div> 
+<script>
+
+
+    const progress = (value) => {
+        document.getElementsByClassName('progress-bar')[0].style.width = `${value}%`;
+     }
+     
+        let step = document.getElementsByClassName('step');
+        let prevBtn = document.getElementById('prev-btn');
+        let nextBtn = document.getElementById('next-btn');
+        let submitBtn = document.getElementById('submit-btn');
+        let form = document.getElementsByTagName('form')[0];
+        let bodyElement = document.querySelector('body');
+        let succcessDiv = document.getElementById('success');
+      
+        form.onsubmit = () => { return false }
+     
+        let current_step = 0;
+        let stepCount = 2
+        step[current_step].classList.add('d-block');
+        if(current_step == 0){
+           prevBtn.classList.add('d-none');
+           submitBtn.classList.add('d-none');
+           nextBtn.classList.add('d-inline-block');
+        }
+     
+     
+        nextBtn.addEventListener('click', () => {
+          if (current_step === 0) {
+            // Check if at least one radio button is selected in step one
+            const arrivalDateGroup = document.querySelector('.arrivalDateGroup');
+            console.log(arrivalDateGroup)
+            const selectedRadios = arrivalDateGroup.querySelectorAll('input[type="radio"]:checked');
+            
+            if (selectedRadios.length === 0) {
+              // Show an error message or perform any necessary actions
+            
+              alert('Please select an arrival date option.')
+           
+              return;
+            }
+          }
+          if (current_step === 1) {
+            // Check if at least one radio button is selected in step one
+            const ptype = document.querySelector('.selectPropertyType');
+            
+            const selectedRadios = ptype.querySelectorAll('input[type="radio"]:checked');
+            
+            if (selectedRadios.length === 0) {
+              // Show an error message or perform any necessary actions
+              alert('Please select an property type')
+      
+              return;
+            }
+          }
+    
+          
+           current_step++;
+
+           let previous_step = current_step - 1;
+           if(( current_step > 0) && (current_step <= stepCount)){
+             prevBtn.classList.remove('d-none');
+             prevBtn.classList.add('d-inline-block');
+             step[current_step].classList.remove('d-none');
+             step[current_step].classList.add('d-block');
+             step[previous_step].classList.remove('d-block');
+             step[previous_step].classList.add('d-none');
+            if (current_step == stepCount){
+               submitBtn.classList.remove('d-none');
+               submitBtn.classList.add('d-inline-block');
+               nextBtn.classList.remove('d-inline-block');
+               nextBtn.classList.add('d-none');
+             }
+           } else {
+             if(current_step > stepCount){
+                 form.onsubmit = () => { return true }
+             } 
+           }
+         progress((100 / stepCount) * current_step);
+         });
+     
+     
+        prevBtn.addEventListener('click', () => {
+          if(current_step > 0){
+             current_step--;
+             let previous_step = current_step + 1; 
+             prevBtn.classList.add('d-none');
+             prevBtn.classList.add('d-inline-block');
+             step[current_step].classList.remove('d-none');
+             step[current_step].classList.add('d-block')
+             step[previous_step].classList.remove('d-block');
+             step[previous_step].classList.add('d-none');
+             if(current_step < stepCount){
+                submitBtn.classList.remove('d-inline-block');
+                submitBtn.classList.add('d-none');
+                nextBtn.classList.remove('d-none');
+                nextBtn.classList.add('d-inline-block');  
+                prevBtn.classList.remove('d-none');
+                prevBtn.classList.add('d-inline-block');
+             } 
+          }
+     
+          if(current_step == 0){
+             prevBtn.classList.remove('d-inline-block');
+             prevBtn.classList.add('d-none');
+          }
+         progress((100 / stepCount) * current_step);
+        });
+     
+     
+     submitBtn.addEventListener('click', (e) => {
+      
+        // Check if at least one radio button is selected in step one
+        const ptype = document.querySelector('.p_informations');
+        
+        const selectedRadios = ptype.querySelectorAll('input');
+        const description = ptype.querySelector('textarea');
+
+         
+        for(let i= 0 ; i < selectedRadios.length; i++){
+
+          if (!selectedRadios[i].value || !description.value){
+            alert('')
+            $('.form-message')
+            .removeClass('success')
+            .addClass('error')
+            .text('Please fill all the input')
+            .fadeIn(500);
+            return;
+          } else{
+          preloader.classList.add('d-block');
+          const timer = ms => new Promise(res => setTimeout(res, ms));
+          timer(500)
+            .then(() => {
+                 bodyElement.classList.add('loaded');
+            }).then(() =>{
+                 document.querySelector('.modal').style.display ='none'
+                 document.querySelector('.modal-backdrop').classList.remove('fade in')
+            })
+              // Prevent the default form submission
+              event.preventDefault();
+          
+            
+          
+        }
+      }
+
+      var formData = $('form').serialize();
+      
+      // Send the form data via AJAX
+      $.ajax({
+        type: 'POST',
+        url: "{% url 'core:send_lead_email' %}",
+        data: formData,
+        headers: { "X-CSRFToken": '{{csrf_token}}' },
+        success: function(response) {
+          // Display the success message
+          $('.form-message')
+          .removeClass('error')
+          .addClass('success')
+          .text('Your email has been sent successfully.')
+          .fadeIn(500);
+        
+      setTimeout(function() {
+          $('.form-message').fadeOut(500);
+        $('.modal-backdrop').remove()
+
+          
+      }, 3000);
+      $('#multistepsform')[0].reset();
+   
+     
+        },
+        error: function(xhr, status, error) {
+          // Display the error message
+          $('.modal-backdrop').remove()
+          $('.form-message')
+        .removeClass('success')
+        .addClass('error')
+        .text('An error occurred while sending your email.')
+        .fadeIn(500);
+    setTimeout(function() {
+        $('.form-message').fadeOut(500);
+    }, 3000);
+        }
+      });
+
+
+      
+     });
+
+
+
+     // Get the radio button element
+var radioInput = document.getElementById('twoMonths');
+
+// Add an event listener to detect changes in the radio button state
+radioInput.addEventListener('change', function() {
+  // Check if the radio button is checked
+  if (this.checked) {
+    // Add a class to the parent element to apply CSS styles
+    this.parentNode.classList.add('checked');
+  } else {
+    // Remove the class if the radio button is not checked
+    this.parentNode.classList.remove('checked');
+  }
+});
+     
+
+$(document).ready(function() {
+
+
+
+
+
+  document.querySelector('.close').onclick = function (){
+      document.querySelector('.modal').classList.remove('in');
+      document.querySelector('.modal').style.display ='none';
+      document.querySelector('.modal-backdrop').remove()
+  }
+   
+
+
+
+  
+});
+document.addEventListener("DOMContentLoaded", function() {
+
+  if (!sessionStorage.getItem("modalShown")) {
+    // Wait for 5 seconds before showing the modal
+    setTimeout(function() {
+      document.getElementById('modal_hidden_button').click();
+      // Save in session storage to prevent automatic opening next time
+      sessionStorage.setItem("modalShown", true);
+    }, 5000);
+  }
+});
+
+
+</script>
+</body>
+</html>

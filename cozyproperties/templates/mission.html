@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block content %}
+
+
+<div class="page-head">
+    <video src="{% static 'assets/dubai.mp4' %}" autoplay muted loop style=" position: absolute;
+            top: 0; 
+            left: 0;
+            width: 100%;
+            object-fit: cover;z-index:-1">
+        <div class="container">
+            <div class="row">
+                <div class="page-head-content">
+                    <h1 class="page-title">Mission</h1>
+                </div>
+            </div>
+        </div>
+</div>
+<!-- End page header -->
+
+<div class="content-area blog-page padding-top-40" style="background-color: #FCFCFC; padding-bottom: 55px;">
+    <div class="container">
+        <div class="row">
+            <div class="blog-lst col-md-12 pl0">
+                <section class="post">
+                    <div class="text-center padding-b-50">
+                        <h1 class="wow fadeInLeft animated">Mission</h1>
+                        <div class="title-line wow fadeInRight animated"></div>
+                    </div>
+                    <br>
+                    <h3 class="intro">
+                        To help people create real estate assets that build generational wealth.
+                    </h3>
+                    <br>
+
+                </section>
+            </div>
+        </div>
+
+    </div>
+</div>
+{% endblock %}
