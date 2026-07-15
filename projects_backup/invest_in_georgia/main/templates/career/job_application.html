@@ -1,0 +1,78 @@
+{% extends 'global/base.html' %}
+{% block content %}
+  {% load humanize %}
+  {% load i18n %}
+  {% load custom_filters %}
+  {% load static %}
+  <!--                                    page proeprty header
+==================================================                                    -->
+  <style>
+    @media (max-width: 768px) {
+      .estate_single_area .estate_apartment_amities .amities_lists > li {
+        display: grid;
+        justify-items: center;
+      }
+    }
+  </style>
+  <div class="page_header bg_image bg_overlay bg_white" data-bg-image="images/pattern/3.png">
+    <div class="container">
+      <!-- Property Title -->
+      <h2 class="page_title">{{ job.title }}</h2>
+
+      <!-- Breadcrumb -->
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">Careers</a>
+        </li>
+        <li class="breadcrumb-item active">{{ job.title }}</li>
+      </ol>
+    </div>
+  </div>
+
+  <!--                                    Site Content
+==================================================                                    -->
+  <div class="site_content">
+    <div class="page_content pd-t-90 pd-b-120">
+      <div class="container">
+        <div class="row">
+          <div class="col-lg-8">
+            <div class="page_main estate_single_area">
+              <h2 class="single-estate-title">{{ job.title }}</h2><!-- /.single-estate-title -->
+              <div class="estate_meta">
+                {% if job.location %}
+                  <span class="meta_location"><i class="fa fa-map-marker"></i> {{ job.location }}</span>
+                {% endif %}
+                <span class="meta_date"><i class="fa fa-calendar-o"></i>{{ job.created_at }}</span>
+              </div>
+              <div class="estate_property_details wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                <h3 class="section-min-title">{% trans 'Job Description' %}</h3>
+                <div class="col-lg-16">
+                  <div class="estate_content">{{ job.description }}</div>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-lg-4 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+            <div class="page_sidebar estate_sidebara_area sidebar">
+              <div class="widget widget_find_search">
+                <h2 class="widget_title">{% trans 'Apply' %}</h2>
+                <form method="POST" enctype="multipart/form-data">
+                  <div class="tab-content search_bar_content">
+                    <div class="tab-pane active" id="bar_tab_one">
+                      {% csrf_token %}
+                      {{ form.as_p }}
+                      <button type="submit">{% trans 'Submit Application' %}</button>
+                    </div>
+                  </div>
+                </form>
+              </div>
+              <!-- ~./ end widget find search ~ -->
+            </div>
+          </div>
+          <!-- /.col-lg-4 -->
+        </div>
+      </div>
+    </div>
+    <!-- /.page_content -->
+  </div>
+{% endblock %}

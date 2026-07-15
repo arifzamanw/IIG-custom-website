@@ -1,0 +1,26 @@
+# Ignore Python compiled files
+__pycache__/
+*.py[cod]
+*$py.class
+
+# Ignore static files
+staticfiles/
+
+# Ignore media uploads
+media/
+
+# Ignore environment variables and virtual environments
+.env
+venv/
+*.env
+
+# Ignore database files
+# db.sqlite3
+
+# Ignore Heroku files (if not needed)
+*.log
+.DS_Store
+
+# Ignore VSCode and JetBrains IDE files
+.vscode/
+.idea/

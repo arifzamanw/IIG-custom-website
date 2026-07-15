@@ -1,0 +1,144 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+{% block title %}
+  {{ seo.meta_title|default:"Georgia Real Estate News & Market Insights | Invest In Georgia" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo.meta_description|default:"Latest news, market trends and investment insights on Georgian real estate for UAE and international investors." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo.meta_keywords|default:"georgia real estate news, property market georgia, tbilisi property insights, georgia investment news" }}
+{% endblock %}
+{% block extra_meta %} {% endblock %}
+{% block content %}
+  <!--                               Site Content
+    ==================================================                               -->
+  <div class="site_content">
+    <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+      <div class="container">
+        <h2 class="page_title">{% trans 'News ' %}</h2>
+        <ol class="breadcrumb">
+          <li class="breadcrumb-item">
+            <a href="#">{% trans "Home" %} </a>
+          </li>
+          <li class="breadcrumb-item active">
+            {% trans 'News' %}
+          </li>
+        </ol>
+      </div>
+    </div>
+
+    {% if overview_services %}
+              
+          <section class="listing-website bg-ash    pd-b-100 pd-t-100" style='padding-top:100px !important'>
+                <div class="container">
+                    <div class="section_header section_header_two">
+                        <h2 class="section_title">{{ overview|translate_property:"title"}}</h2>
+                        <div class="section_lead">
+                          <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ overview|translate_property:"paragraph"}}</p>
+                        </div>
+                    </div>
+                  
+                    
+                    {% for overview in overview_services %}
+                    {% if overview.block_position %}
+                    <div class="row overview-block{% if overview.block_position|divisibleby:2 %} reverse-order{% endif %}">
+                        {% if overview.block_position|divisibleby:2 %}
+                            <!-- Left-side content -->
+                            <div class="col-md-6">
+                                <div class="section-header side wow fadeIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                                    <a class="section-title">
+                                        <span style="word-break: auto-phrase;">{{ overview|translate_property:"title"}}</span>
+                                    </a>
+                                    <div class="section-lead">
+                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ overview|translate_property:"paragraph1"}}</p>
+                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ overview|translate_property:"paragraph2"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                            <!-- Right-side image -->
+                            <div class="col-md-6">
+                                <div class="website-image wow fadeIn mobile-pd-remove" data-wow-duration="1000ms" data-wow-delay="">
+                                    {% if overview.image %}
+                                        <img src="{{overview.image.url}}" alt="{{ overview.image_alt }}" loading="lazy" />
+                                    {% else %}
+                                        <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                                    {% endif %}
+                                </div>
+                            </div>
+                        {% else %}
+                            <!-- Right-side content -->
+                            <div class="col-md-6">
+                                <div class="website-image wow fadeIn  mobile-pd-remove" data-wow-duration="1000ms" data-wow-delay="">
+                                    {% if overview.image %}
+                                        <img src="{{overview.image.url}}" alt="{{ overview.image_alt }}" loading="lazy" />
+                                    {% else %}
+                                        <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                                    {% endif %}
+                                </div>
+                            </div>
+                            <!-- Left-side content -->
+                            <div class="col-md-6">
+                                <div class="section-header side wow fadeIn" data-wow-duration="1000ms" data-wow-delay="100ms">
+                                    <a class="section-title">
+                                        <span style="word-break: auto-phrase;">{{ overview|translate_property:"title"}}</span>
+                                    </a>
+                                    <div class="section-lead">
+                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ overview|translate_property:"paragraph1"}}</p>
+                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ overview|translate_property:"paragraph2"}}</p>
+                                    </div>
+                                </div>
+                            </div>
+                        {% endif %}
+                    </div>
+                    {% endif %}
+                {% endfor %}
+                </div>
+            </section>
+    {% else %}
+      <section class="page-blog">
+        <div class="container">
+          <div class="container">
+            <div class="col-md-100">
+              <!-- ~~~~~ Start Section Header ~~~~~ -->
+              <div class="section_header center_section_header">
+                <h2 class="section_title">{% trans 'No Post Available At This Moment' %}</h2>
+                {}
+              </div>
+              <!-- ~./ end section header ~ -->
+            </div>
+          </div>
+        </div>
+      </section>
+    {% endif %}
+  </div>
+  <br>
+  <!-- /.site_content -->
+
+  <!--                               Newsletter
+    ==================================================                               -->
+  <section class="newsletter">
+    <div class="container">
+      <div class="row">
+        <div class="col-xl-4">
+          <div class="section_header">
+            <i class="lp lp-bell"></i>
+            <h2 class="headline">{% trans 'Subscribe to Our List' %}</h2>
+          </div>
+        </div>
+        <div class="col-xl-8">
+          <div class="input_group">
+            <input class="form-control" id="emailInput" placeholder="{% trans 'Type your Email Address' %}" type="text" />
+            <button onclick="subscribe()" id="subscribeButton" class="btn btn-default"><i class="fa fa-paper-plane"></i>{% trans 'Subscribe' %}</button>
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <!-- ~~./ end newsletter~~ -->
+{% endblock %}
+

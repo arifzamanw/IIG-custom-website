@@ -1,0 +1,200 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block title %}
+  {{ seo.meta_title|default:"Georgia Property Investment Services for UAE Investors | Dubai-Based Advisory" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo.meta_description|default:"Property selection, due diligence, transaction support, ownership registration, and property management for UAE investors in Georgia real estate." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo.meta_keywords|default:"georgia property services uae, real estate advisory dubai, property ownership registration georgia, property management tbilisi batumi" }}
+{% endblock %}
+
+{% block extra_meta %}
+  <meta property="og:title" content="Contact Invest in Georgia UAE | Dubai Office" />
+  <meta property="og:description" content="Start your Georgia property investment journey. Contact our Dubai team via phone, WhatsApp, or visit our Business Bay office." />
+  <meta property="og:url" content="https://investingeorgia.ae/en/contact-us/" />
+  <meta property="og:type" content="website" />
+  <script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "ContactPage",
+  "name": "Contact Invest in Georgia UAE",
+  "description": "Contact our Dubai-based Georgia property investment advisory team",
+  "url": "https://investingeorgia.ae/en/contact-us/",
+  "mainEntity": {
+    "@type": "RealEstateAgent",
+    "name": "Invest in Georgia LLC",
+    "telephone": "+97145477804",
+    "email": "info@investingeorgia.ae",
+    "address": {
+      "@type": "PostalAddress",
+      "streetAddress": "Court Tower, Office 804 & Showroom G01",
+      "addressLocality": "Business Bay",
+      "addressRegion": "Dubai",
+      "addressCountry": "AE"
+    }
+  }
+}
+</script>
+{% endblock %}
+
+{% block content %}
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+      <h2 class="page_title">
+          {{ services_page|translate_property:"hero_title" }}</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">{% trans 'Home' %}</a>
+        </li>
+        <li class="breadcrumb-item active">{% trans "Our Services" %}</li>
+      </ol>
+    </div>
+  </div>
+  <style>
+.service_items {
+  display: grid;
+    grid-template-columns: repeat(auto-fill, minmax(min(440px, 100%), 1fr));
+  gap: 24px;
+  align-items: start;
+}
+
+.service_item_card {
+  display: flex;
+  flex-direction: column;
+  background: #fff;
+  border-radius: 16px;
+  padding: 36px 28px 28px;
+  box-shadow: 0 2px 16px rgba(0,0,0,0.07);
+  border: 1.5px solid #f0f0f0;
+  transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s;
+}
+
+.service_item_card:hover {
+  box-shadow: 0 12px 40px rgba(231,76,60,0.12);
+  transform: translateY(-4px);
+  border-color: rgba(231,76,60,0.25);
+}
+
+.service_item_number {
+  font-size: 64px;
+  font-weight: 900;
+  line-height: 1;
+  color: #e74c3c;
+  opacity: 0.10;
+  margin-bottom: 20px;
+  letter-spacing: -2px;
+}
+
+.service_title {
+  margin-bottom: 14px;
+}
+
+.service_title span {
+  font-size: 17px;
+  font-weight: 700;
+  color: #111;
+  line-height: 1.35;
+}
+
+.service_divider {
+  width: 36px;
+  height: 3px;
+  background: #e74c3c;
+  border-radius: 2px;
+  margin-bottom: 16px;
+  flex-shrink: 0;
+}
+
+/* No wrapper — info is a direct flex child */
+.service_info {
+  font-size: 14.5px;
+  line-height: 1.75;
+  color: #666;
+  max-height: calc(1.75em * 4);
+  overflow: hidden;
+  transition: max-height 0.4s ease;
+}
+
+.service_info.expanded {
+  max-height: 1000px;
+}
+
+.service_read_more {
+  display: none;
+  margin-top: 12px;
+  background: none;
+  border: none;
+  padding: 0;
+  font-size: 13px;
+  font-weight: 600;
+  color: #e74c3c;
+  cursor: pointer;
+  text-align: left;
+}
+
+.service_read_more:hover { opacity: 0.7; }
+
+
+</style>
+
+  <section class="services_area services_style_two bg_gray pd-t-100">
+    <div class="container">
+      <div class="section_header">
+        <h4 class="title_script">
+            {{ services_page|translate_property:"hero_script_title" }}</h4>
+        <h2 class="section_title">  {{ services_page|translate_property:"hero_script_title" }}</h2>
+        <div class="section_lead">  {{ services_page|translate_property:"hero_paragraph"|safe }}</div>
+      </div>
+
+      <div class="service_items wow fadeIn" data-wow-duration="1000ms">
+        {% for block in services_blocks %}
+          <div class="service_item_card">
+            <div class="service_title">
+              <span>{{ block|translate_property:"title" }}</span>
+            </div>
+            <div class="service_divider"></div>
+            <div class="service_info">{{ block|translate_property:"paragraph"|safe }}</div>
+            <button class="service_read_more" onclick="toggleInfo(this)">{% trans "Read more ↓" %} </button>
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </section>
+
+  <script>
+document.addEventListener('DOMContentLoaded', function () {
+  setTimeout(function () {
+    document.querySelectorAll('.service_item_card').forEach(function (card) {
+      var info = card.querySelector('.service_info');
+      var btn  = card.querySelector('.service_read_more');
+
+      // measure real height with no clamp
+      var maxH = parseFloat(getComputedStyle(info).lineHeight) * 4;
+      info.style.maxHeight = 'none';
+      var fullH = info.scrollHeight;
+      info.style.maxHeight = ''; // restore CSS value
+
+      if (fullH > maxH + 4) {
+        btn.style.display = 'inline-block';
+      }
+    });
+  }, 300);
+});
+
+function toggleInfo(btn) {
+  var info = btn.previousElementSibling;
+  info.classList.toggle('expanded');
+  btn.textContent = info.classList.contains('expanded') ? 'Read less ↑' : 'Read more ↓';
+}
+</script>
+  <br /><br /><br />
+  {% include 'parts/subscribe.html' %}
+{% endblock %}
+

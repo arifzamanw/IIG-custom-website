@@ -1,0 +1,1063 @@
+{% extends "global/base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load custom_filters %}
+{% load static %}
+{% block title %}
+  {{ property.title }} | Invest In Georgia
+{% endblock %}
+
+{% block meta_description %}
+  {{ property.description|truncatewords:25 }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ property.keywords }}
+{% endblock %}
+
+{% block extra_meta %}
+{% if property.image.image %}
+<meta property="og:title" content="{{ property.title }}">
+<meta property="og:description" content="{{ property.description|truncatewords:25 }}">
+<meta property="og:url" content="{{ request.build_absolute_uri }}">
+<meta property="og:type" content="website">
+<meta property="og:image" content="{{ request.scheme }}://{{ request.get_host }}{{ property.image.url }}">
+{% endif %}
+{% endblock %}
+{% block content %}
+<link href="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.css" rel="stylesheet" />
+<script src="https://cdnjs.cloudflare.com/ajax/libs/fancybox/3.5.7/jquery.fancybox.min.js"></script>
+
+<style>
+    @media (max-width: 768px) {
+        .estate_single_area .estate_apartment_amities .amities_lists>li{
+            display: grid;
+            justify-items: center;
+        }
+        .share_cont{
+            margin-top: 60px;
+        }
+        
+    }
+    .main-image {
+        transition: opacity 0.5s ease-in-out;
+      }
+      .main-image.fade {
+        opacity: 0;
+      }
+      .side-image.active {
+        border: 2px solid #007bff;
+        opacity: 1;
+      }
+      .side-image {
+        opacity: 0.7;
+        transition: opacity 0.3s;
+      }
+    .modif_price > h3{
+        font-size: 0.9em;
+    }
+    
+    .gallery-container {
+        position: relative;
+        border-radius: 12px;
+        overflow: hidden;
+    }
+
+    .main-image {
+        height: 500px;
+        object-fit: cover;
+        width: 100%;
+    }
+
+    .side-image {
+        height: 245px;
+        object-fit: cover;
+        width: 100%;
+        border-radius: 12px;
+    }
+
+    .badge-container {
+        position: absolute;
+        top: 15px;
+        left: 15px;
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+    }
+
+    .badge-verified {
+        background-color: #28a745;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .badge-superagent {
+        background-color: #6f42c1;
+        color: white;
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 12px;
+        font-weight: bold;
+    }
+
+    .photo-count {
+        position: absolute;
+        bottom: 15px;
+        right: 15px;
+        background-color: rgba(255, 255, 255, 0.8);
+        padding: 5px 10px;
+        border-radius: 4px;
+        font-size: 14px;
+    }
+
+    .price {
+        font-size: 32px;
+        font-weight: bold;
+        color: #212529;
+    }
+
+    .upfront-link {
+        color: #563d7c;
+        text-decoration: none;
+        font-weight: 500;
+    }
+
+    .property-info {
+        display: flex;
+        justify-content: space-between;
+        margin-top: 20px;
+        margin-bottom: 20px;
+    }
+
+    .info-item {
+        text-align: center;
+        flex: 1;
+    }
+
+    .info-icon {
+        font-size: 24px;
+        color: #6c757d;
+        margin-bottom: 8px;
+    }
+
+    .contact-btn {
+        padding: 12px;
+        border-radius: 6px;
+        font-weight: 500;
+        font-size: 18px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+    }
+
+    .call-btn {
+        background-color: #ec1c24;
+        color: white;
+        border: none;
+    }
+
+    .whatsapp-btn {
+        background-color: #4caf50;
+        color: white;
+        border: none;
+    }
+
+    .agent-container {
+        display: flex;
+        align-items: center;
+        margin-top: 20px;
+        padding: 15px;
+        border-radius: 8px;
+        background-color: #f8f9fa;
+    }
+
+    .agent-photo {
+        width: 60px;
+        height: 60px;
+        border-radius: 50%;
+        object-fit: cover;
+        border: 2px solid #563d7c;
+    }
+
+    .agent-info {
+        margin-left: 15px;
+    }
+
+    .agent-name {
+        font-weight: 600;
+        margin-bottom: 0;
+    }
+
+    .agent-rating {
+        display: flex;
+        align-items: center;
+        gap: 5px;
+    }
+
+    .star-icon {
+        color: #ffc107;
+    }
+
+    .agent-response {
+        font-size: 14px;
+        color: #6c757d;
+    }
+
+    .watermark {
+        position: absolute;
+        bottom: 20px;
+        right: 20px;
+        color: white;
+        font-size: 24px;
+        font-weight: bold;
+        opacity: 0.8;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .watermark-small {
+        position: absolute;
+        bottom: 10px;
+        right: 10px;
+        color: white;
+        font-size: 18px;
+        font-weight: bold;
+        opacity: 0.8;
+        text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    }
+
+    .verified-badge {
+        background-color: #563d7c;
+        color: white;
+        font-size: 12px;
+        padding: 2px 6px;
+        border-radius: 50%;
+        margin-right: 5px;
+    }
+
+    .feature-card {
+        transition: transform 0.2s ease-in-out;
+        height: 100%;
+    }
+
+    .feature-card:hover {
+        transform: translateY(-2px);
+        box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    }
+
+    .table-striped tbody tr:nth-of-type(odd) {
+        background-color: rgba(0, 0, 0, .02);
+    }
+
+    .list-unstyled li {
+        padding: 2px 0;
+    }
+
+    .site_content.property_detail{
+        margin-top: 10%;
+    }
+    .action-btn {
+        padding: 0.4rem 1rem;
+        border-radius: 1.5rem;
+        background: #f0f0f0;
+        color: #333;
+        text-decoration: none;
+        font-weight: 500;
+        transition: all 0.2s ease-in-out;
+      }
+      .action-btn:hover {
+        background: #ddd;
+      }
+      .action-btn.saved {
+        background: #ec1c24;
+        color: #fff;
+      }
+      .share-popup {
+        position: fixed;
+        top: 0; left: 0; right: 0; bottom: 0;
+        background: rgba(0,0,0,0.5);
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        z-index: 9999;
+      }
+      
+      .share-popup-content {
+        background: white;
+        padding: 20px;
+        border-radius: 8px;
+        width: 300px;
+        position: relative;
+        text-align: center;
+      }
+      
+      .close-btn {
+        position: absolute;
+        top: 10px; right: 10px;
+        background: transparent;
+        border: none;
+        font-size: 24px;
+        cursor: pointer;
+      }
+      
+</style>
+
+
+<!-- Site Content
+================================================== -->
+<div class="site_content property_detail">
+    <div class="gallery_content">
+         <div class="container">
+            <div class="d-flex justify-content-end mb-3 share_cont">
+                <a href="#" class="action-btn me-2 save-propery-btn">
+                  <i class="far fa-heart"></i> Save
+                </a>
+                <a href="#" class="action-btn me-2 share-propery-btn">
+                  <i class="fas fa-share-alt"></i> Share
+                </a>
+              </div>
+              
+   <!-- Share Popup -->
+<div id="sharePopup" class="share-popup" style="display:none;">
+    <div class="share-popup-content">
+      <button id="closeSharePopup" class="close-btn">&times;</button>
+      <h5>Share this property</h5>
+      <div class="share-options" style="line-height:35px">
+        <a href="#" id="shareEmail" class="btn btn-outline-danger btn-sm active">Email</a><br>
+        <a href="#" id="shareWhatsApp" class="btn btn-outline-danger btn-sm active">WhatsApp</a><br>
+        <button id="copyLinkBtn" class="btn btn-outline-danger btn-sm active">Copy Link</button>
+        <div id="copyMessage" style="color: green; margin-top: 10px; display:none;">Link copied!</div>
+      </div>
+    </div>
+  </div>
+  
+
+            <div class="row g-3 mb-4">
+                {% with images=property.images.all %}
+                {% if images %}
+                    <!-- Main image -->
+                    <div class="col-md-8">
+                        <div class="gallery-container position-relative">
+                            <!-- clicking on main image opens lightbox -->
+                            <a href="{{ images.0.image.url }}" data-fancybox="gallery">
+                                <img id="mainImage"
+                                     src="{{ images.0.image.url }}"
+                                     class="main-image"
+                                     alt="Main view"
+                                     style="cursor: pointer;" />
+                            </a>
+                        </div>
+                    </div>
+            
+                    <!-- Side images -->
+                    <div class="col-md-4">
+                        <div class="row g-3">
+                            {% for image in images|slice:"1:3" %}
+                            <div class="col-12">
+                                <a href="{{ image.image.url }}" data-fancybox="gallery">
+                                    <img src="{{ image.image.url }}"
+                                         class="side-image"
+                                         alt="Side view {{ forloop.counter }}"
+                                         style="cursor: pointer;" />
+                                </a>
+                            </div>
+                            {% endfor %}
+                        </div>
+                    </div>
+            
+                    <!-- Remaining hidden lightbox images -->
+                    {% for image in images|slice:"4:" %}
+                        <a href="{{ image.image.url }}" data-fancybox="gallery" style="display:none;"></a>
+                    {% endfor %}
+            
+                    <!-- JS list of all image URLs -->
+                    <script>
+                        const allImages = [
+                            {% for image in images %}
+                            "{{ image.image.url }}"{% if not forloop.last %},{% endif %}
+                            {% endfor %}
+                        ];
+                    </script>
+                {% endif %}
+                {% endwith %}
+            </div>
+            
+    </div>
+
+    </div><!--  /.gallery_content -->
+    
+    <div class="page_content pd-t-90 pd-b-120">
+        <div class="container">
+            <div class="row">
+                <div class="col-lg-8">
+                    <div class="page_main estate_single_area">
+                        <h2 class="single-estate-title">{{ property.title }}</h2><!--  /.single-estate-title -->
+                        <div class="estate_meta">
+                            {% if property.location %}
+                                <span class="meta_location"><i class="fa fa-map-marker"></i> {{ property.location }}</span>
+                            {% endif %}
+                            <span class="meta_date"><i class="fa fa-calendar-o"></i>{{ property.created_at }}</span>
+                        </div><!--  /.estate_meta -->
+
+                        <div class="estate_content">
+                           {{property.description}}
+                        </div><!--  /.estate_content -->
+
+                        <div class="estate_property_details  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                            <h3 class="section-min-title">{% trans 'Property Detail' %}</h3>
+            
+                            <div class="row">
+                                <div class="col-lg-6">                        
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                            <tr>
+                                                <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Type' %}</th>
+                                                <td style="text-transform: capitalize;">{{property.property_type}}</td>
+                                            </tr>
+                                            <tr>
+                                                <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Status' %}</th>
+                                                <td style="text-transform: capitalize;">{{property.status}}</td>
+                                            </tr>
+                                            {% if  property.completion_date %}
+                                            <tr>
+                                                <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Completion Date' %}</th>
+                                                <td>{{ property.completion_date}}</td>
+                                            </tr>
+                                        {% endif %}
+                                        {% if property.formatted_price %}      
+                                        <tr>
+                                            <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Price' %}</th>
+                                            <td>
+                                                <div data-price-aed="{{ property.formatted_price }}"  class="price modif_price">
+                                                    <h3 >{{ property.formatted_price }}</h3>  
+                                                </div>
+                                            </td>
+                                        </tr>  
+                                   {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div><!--  /.col-lg-6 -->
+                             <div class="col-lg-6">
+                                    <table class="table table-borderless">
+                                        <tbody>
+                                          
+                                            {% if property.size %}      
+                                            <tr> 
+                                                <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Area' %}</th>
+                                                <td>{{ property.size|floatformat:1|intcomma}}SqFt</td>
+                                            </tr>
+                                            {% endif %}
+                                            {% if  property.bathroom %}
+                                                <tr>
+                                                    <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Bathrooms' %}</th>
+                                                    <td>{{ property.bathroom}}</td>
+                                                </tr>
+                                            {% endif %}
+                                            
+                                            {% if  property.parking %}
+                                            <tr>
+                                                <th scope="row"><i class="fa fa-long-arrow-right"></i>&nbsp;&nbsp;{% trans 'Parking' %}</th>
+                                                <td>{{property.parking }}</td>
+                                            </tr>
+                                            {% endif %}
+                                        </tbody>
+                                    </table>
+                                </div><!--  /.col-lg-6 -->
+                            </div><!--  /.row -->                            
+                        </div><!--  /.property_details -->
+                        
+                        {%  if property.youtube_video %}
+                        <div class="estate_take_tour">
+                            <h3 class="section-min-title">{% trans 'Take A Tour' %}</h3>
+                            <iframe width="560" height="500" src="{{property.youtube_video}}" allowfullscreen='allowfullscreen'></iframe>
+                        </div><!--  /.estate_take_tour -->
+                        {% endif %}
+
+                        <div class="estate_apartment_amities  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                            <div class="apartment_amities_tab mrb-30">
+                                <h3 class="section-min-title float-left">{% trans 'Apartments Amities' %}</h3>
+                                <div class="clearfix w-100"></div><!--  /.w-100 -->
+                            </div>
+                            <div class="tab-content">
+                                <div class="tab-pane active" id="bar_tab_one">
+                                    {% if property.amenities_description %}
+                                        <p>{{property.amenities_description}}</p>
+                                    {% endif %}
+                                    <ul class="amities_lists">
+                                        {% if property.amenities %}
+                                            {% for amenity in property.amenities.all %}
+                                                <li class="amities_item">
+                                                    <div class="icon_thumb">
+                                                        
+                                                         {% if 'paddle' in amenity.name|lower %}
+                                                        <i class="material-icons">sports_tennis</i>
+                                                        {% elif 'swimming pool' in amenity.name|lower %}
+                                                        <i class="material-icons">pool</i>
+                                                        {% elif 'music' in amenity.name|lower %}
+                                                        <i class="material-icons">music_note</i>
+                                                        {% elif 'gym' in amenity.name|lower %}
+                                                        <i class="material-icons">fitness_center</i>
+                                                        {% elif 'bbq' in amenity.name|lower %}
+                                                        <i class="material-icons">local_fire_department</i>
+                                                        {% elif 'lounge' in amenity.name|lower %}
+                                                        <i class="material-icons">lounger</i>
+                                                        {% elif 'movie' in amenity.name|lower %}
+                                                        <i class="material-icons">movie</i>
+                                                        {% elif 'jogging' in amenity.name|lower %}
+                                                        <i class="material-icons">directions_run</i>
+                                                        {% elif 'deck' in amenity.name|lower %}
+                                                        <i class="material-icons">deck</i>
+                                                        {% elif 'clubhouse' in amenity.name|lower %}
+                                                        <i class="material-icons">home</i>
+                                                        {% elif 'event' in amenity.name|lower %}
+                                                        <i class="material-icons">event</i>
+                                                        {% elif 'retail' in amenity.name|lower %}
+                                                        <i class="material-icons">shopping_basket</i>
+                                                        {% elif 'adventure' in amenity.name|lower %}
+                                                        <i class="material-icons">adventure</i>
+                                                        {% elif 'garden' in amenity.name|lower %}
+                                                        <i class="material-icons">local_florist</i>
+                                                        {% elif 'elevator' in amenity.name|lower %}
+                                                        <i class="material-icons">elevator</i>
+                                                        {% elif 'media' in amenity.name|lower %}
+                                                        <i class="material-icons">tv</i>
+                                                        {% elif 'infinity pool' in amenity.name|lower %}
+                                                        <i class="material-icons">pool</i>
+                                                        {% elif 'private beach' in amenity.name|lower %}
+                                                        <i class="material-icons">beach_access</i>
+                                                        {% elif 'sports courts' in amenity.name|lower %}
+                                                        <i class="material-icons">sports_baseball</i>
+                                                        {% elif 'running track' in amenity.name|lower %}
+                                                        <i class="material-icons">directions_run</i>
+                                                        {% elif 'healthcare' in amenity.name|lower %}
+                                                        <i class="material-icons">local_hospital</i>
+                                                        {% elif 'restaurant' in amenity.name|lower %}
+                                                        <i class="material-icons">restaurant</i>
+                                                        {% elif 'spa' in amenity.name|lower %}
+                                                        <i class="material-icons">spa</i>
+                                                        {% elif 'sauna' in amenity.name|lower %}
+                                                        <i class="material-icons">hot_tub</i>
+                                                        {% elif 'schools' in amenity.name|lower %}
+                                                        <i class="material-icons">school</i>
+                                                        {% elif 'play area' in amenity.name|lower %}
+                                                        <i class="material-icons">child_care</i>
+                                                        {% elif 'tennis court' in amenity.name|lower %}
+                                                        <i class="material-icons">sports_tennis</i>
+                                                        {% elif 'squash' in amenity.name|lower %}
+                                                        <i class="material-icons">sports_handball</i>
+                                                        {% elif 'basketball' in amenity.name|lower %}
+                                                        <i class="material-icons">sports_basketball</i>
+                                                        {% elif 'cycling' in amenity.name|lower %}
+                                                        <i class="material-icons">directions_bike</i>
+                                                        {% elif 'parking' in amenity.name|lower %}
+                                                        <i class="material-icons">local_parking</i>
+                                                        {% elif 'gymnasium' in amenity.name|lower %}
+                                                        <i class="material-icons">fitness_center</i>
+                                                        {% elif 'lagoon' in amenity.name|lower %}
+                                                        <i class="material-icons">pool</i>
+                                                        {% elif 'gate house' in amenity.name|lower %}
+                                                        <i class="material-icons">house</i>
+                                                        {% elif 'private pool' in amenity.name|lower %}
+                                                        <i class="material-icons">pool</i>
+                                                        {% elif 'wellness center' in amenity.name|lower %}
+                                                        <i class="material-icons">spa</i>
+                                                        {% elif 'jacuzzi' in amenity.name|lower %}
+                                                        <i class="material-icons">hot_tub</i>
+                                                        {% elif 'private garden' in amenity.name|lower %}
+                                                        <i class="material-icons">local_florist</i>
+                                                        {% elif 'pets allowed' in amenity.name|lower %}
+                                                        <i class="material-icons">pets</i>
+                                                        {% elif 'maids room' in amenity.name|lower %}
+                                                        <i class="material-icons">single_bed</i>
+                                                        {% elif 'concierge' in amenity.name|lower %}
+                                                        <i class="material-icons">business_center</i>
+                                                        {% elif 'balcony' in amenity.name|lower %}
+                                                        <i class="material-icons">balcony</i>
+                                                        {% elif 'wood flooring' in amenity.name|lower %}
+                                                        <i class="material-icons">flooring</i>
+                                                        {% elif 'terrace' in amenity.name|lower %}
+                                                        <i class="material-icons">deck</i>
+                                                        {% elif 'storage room' in amenity.name|lower %}
+                                                        <i class="material-icons">storage</i>
+                                                        {% elif 'steam room' in amenity.name|lower %}
+                                                        <i class="material-icons">steam</i>
+                                                        {% elif 'public parks' in amenity.name|lower %}
+                                                        <i class="material-icons">local_park</i>
+                                                        {% elif 'private garage' in amenity.name|lower %}
+                                                        <i class="material-icons">garage</i>
+                                                        {% elif 'on high floor' in amenity.name|lower %}
+                                                        <i class="material-icons">arrow_upward</i>
+                                                        {% elif 'on low floor' in amenity.name|lower %}
+                                                        <i class="material-icons">arrow_downward</i>
+                                                        {% elif 'city view' in amenity.name|lower %}
+                                                        <i class="material-icons">location_city</i>
+                                                        {% elif 'beach access' in amenity.name|lower %}
+                                                        <i class="material-icons">beach_access</i>
+                                                        {% elif 'basement parking' in amenity.name|lower %}
+                                                        <i class="material-icons">basement</i>
+                                                        {% else %}
+                                                        <i class="material-icons">help</i> <!-- Default icon -->
+                                                        {% endif %}
+                                                    </div>
+                                                    <span>{{ amenity.name }}</span>
+                                                </li>
+                                            {% endfor %}
+                                        {% endif %}
+                                    </ul>
+                                </div>
+                            </div>
+                        </div><!--  /.estate_apartment_amities -->
+                        {% if property.floor_plans.first %}
+                            <div class="estate_floor_plan  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                                <h3 class="section-min-title">{% trans 'Floor Plans' %}</h3> 
+                                {% for f_plan in  property.floor_plans.all %}
+                                {% if f_plan.image %}
+                                    <div class="accordion" id="{{f_plan.id}}-accordion">
+                                        <div class="card">
+                                            <div class="card-header" id="{{f_plan.id}}-floor_heading">
+                                                <h5 class="mb-0 accordian-title"><button class="btn btn-link" type="button" data-toggle="collapse" data-target="#{{f_plan.id}}-floor_plan_one" aria-expanded="true" aria-controls="{{f_plan.id}}-floor_plan_one">{{f_plan.title}} <i class="fa fa-minus float-right mrt-5"></i></button></h5>
+                                            </div>
+
+                                            <div id="{{f_plan.id}}-floor_plan_one" class="collapse show" aria-labelledby="{{f_plan.id}}-floor_heading" data-parent="#{{f_plan.id}}-accordion">
+                                                <div class="card-body">
+                                                    <img src="{{ f_plan.image.url }}"alt="f_plan" loading="lazy" />
+                                                </div>
+                                            </div>
+                                        </div>
+                                    </div>
+                                {% endif %}
+                                {% endfor %}
+                            </div><!--  /.estate_floor_plan -->
+                        {% endif %}
+                        <div class="estate_property_location  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                            <h3 class="section-min-title">{% trans 'Location On Map' %}</h3>
+                            <div style="height: 450px; width: 100%;">
+                              <iframe src="https://www.google.com/maps?q={{property.location_latitude}},{{property.location_longitude}}&amp;z=13&amp;ie=UTF8&amp;iwloc=&amp;layer=c&amp;output=embed"    loading="lazy" 
+                              allowfullscreen 
+                              referrerpolicy="no-referrer-when-downgrade"frameborder="0" style="border:0;" allowfullscreen="" aria-hidden="false" tabindex="0"></iframe>
+                            </div><!-- /#map  -->
+                        </div><!--  /.estate_property_location -->
+
+                        <div class="estate_ratings_review mrt-45 mrb-45  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                            <div class="row">
+                                <div class="col-lg-6">
+                                    <h3 class="section-min-title">{% trans 'Ratings' %}</h3>
+                                    <div class="estate_avarage_rating">
+                                        <span>4.5</span>
+                                    </div><!--  /.estate_avarage_rating -->
+                                    <div class="estate_rating_text">
+                                        <h4>{% trans 'Overall Rating of 251 guest rating' %}</h4>
+                                    </div><!--  /.estate_rating_text -->
+
+                                    <div class="clearfix w-100"></div><!--  /.clear -->
+
+                                    <div class="average_estate_rating_wrap mrt-45">
+                                        <div class="rating_status">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                        </div><!--  /.rating_status -->
+                                        <div class="rating_progress_bar">
+                                            <div class="progress_bar_bg">
+                                                <div class="progress_status" style="width: 85%"></div><!--  /.progress_status -->
+                                            </div><!--  /.progress_bar_bg -->
+                                        </div><!--  /.rating_progress_bar -->
+                                        <div class="rating_count">03</div><!--  /.rating_count -->
+                                    </div><!--  /.average_estate_rating_wrap -->
+
+                                    <div class="average_estate_rating_wrap mrt-20">
+                                        <div class="rating_status">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div><!--  /.rating_status -->
+                                        <div class="rating_progress_bar">
+                                            <div class="progress_bar_bg">
+                                                <div class="progress_status" style="width: 85%"></div><!--  /.progress_status -->
+                                            </div><!--  /.progress_bar_bg -->
+                                        </div><!--  /.rating_progress_bar -->
+                                        <div class="rating_count">05</div><!--  /.rating_count -->
+                                    </div><!--  /.average_estate_rating_wrap -->
+
+                                    <div class="average_estate_rating_wrap mrt-20">
+                                        <div class="rating_status">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div><!--  /.rating_status -->
+                                        <div class="rating_progress_bar">
+                                            <div class="progress_bar_bg">
+                                                <div class="progress_status" style="width: 95%"></div><!--  /.progress_status -->
+                                            </div><!--  /.progress_bar_bg -->
+                                        </div><!--  /.rating_progress_bar -->
+                                        <div class="rating_count">02</div><!--  /.rating_count -->
+                                    </div><!--  /.average_estate_rating_wrap -->
+
+                                    <div class="average_estate_rating_wrap mrt-20">
+                                        <div class="rating_status">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div><!--  /.rating_status -->
+                                        <div class="rating_progress_bar">
+                                            <div class="progress_bar_bg">
+                                                <div class="progress_status" style="width: 75%"></div><!--  /.progress_status -->
+                                            </div><!--  /.progress_bar_bg -->
+                                        </div><!--  /.rating_progress_bar -->
+                                        <div class="rating_count">01</div><!--  /.rating_count -->
+                                    </div><!--  /.average_estate_rating_wrap -->
+
+                                    <div class="average_estate_rating_wrap mrt-20">
+                                        <div class="rating_status">
+                                            <i class="fa fa-star"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                            <i class="fa fa-star-o"></i>
+                                        </div><!--  /.rating_status -->
+                                        <div class="rating_progress_bar">
+                                            <div class="progress_bar_bg">
+                                                <div class="progress_status" style="width: 65%"></div><!--  /.progress_status -->
+                                            </div><!--  /.progress_bar_bg -->
+                                        </div><!--  /.rating_progress_bar -->
+                                        <div class="rating_count">03</div><!--  /.rating_count -->
+                                    </div><!--  /.average_estate_rating_wrap -->
+
+                                </div><!--  /.col-lg-6 -->
+                            
+                            </div><!--  /.row -->
+                        </div><!--  /.estate_ratings_review -->
+                    </div>
+                </div><!--  /.col-lg-8 -->    
+
+                <div class="col-lg-4  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+                    <div class="page_sidebar estate_sidebara_area sidebar">
+                        {% if property.agent %}
+                            <div class="widget widget_agent_contact_form">
+                                <div class="widget_estate_agent_contact">
+                                    <div class="row">
+                                        {% if property.agent.picture %}
+                                            <div class="col-4">
+                                                <img src="{{ property.agent.picture.url }}"  loading="lazy" />
+                                            </div><!--  /.col-4 -->
+                                            {% else %}
+                                            <div class="col-4">
+                                                <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                                            </div>
+                                        {% endif %}
+                                        <div class="col-8">
+                                            <h4 class="contact_title">( {{property.agent.position}} )</h4><!--  /.contact_title -->
+                                            <h3 class="agent_name">{{property.agent.name}}</h3><!--  /.contact_title -->
+                                            <p class="agent_phone"><i class="fa fa-phone"></i> {{property.agent.phone}}</p>
+                                        </div><!--  /.col-8 -->
+                                    </div><!--  /.row -->
+                                    <div class="row">
+                                        <div class="col-lg-12">                             
+                                            <form method="POST" class="agent_contact_form">
+                                                {% csrf_token %}
+                                                <input type="text" name="full_name" id="property_name" class="form-control" placeholder="{% trans 'Name' %}" required>
+                                                <input type="email" name="email" id="property_email" class="form-control" placeholder="{% trans 'Email' %}" required>
+                                                <input type="tel" name="phone" id="property_phone" class="form-control" placeholder="{% trans 'Phone' %}" required>
+                                                <textarea name="message" id="property_message" class="form-control" placeholder="{% trans 'Message' %}"></textarea>
+                                            
+                                                <input type="hidden" id="property_title" value="{{ property.title }}">
+                                                <input type="hidden" id="agent_bitrix_id" value="{{ property.agent.bitrix_id }}">
+                                                <input type="hidden" id="property_url" value="{{ request.build_absolute_uri }}">
+                                            
+                                                <button type="button" id="propertySubmit" class="btn btn-default btn-red w-100 d-block">
+                                                    {% trans 'Send Message' %}
+                                                </button>
+                                            </form>
+                                        </div><!--  /.col-lg-12 -->
+                                    </div><!--  /.row -->
+                                </div><!--  /.widget_estate_agent_contact -->
+                            </div><!--  /.widget -->
+                        {% endif %}
+                        <!--~~~~~ Start Widget Find Search ~~~~~-->
+                        <div class="widget widget_find_search">
+                            <h2 class="widget_title">Find Us</h2>
+                            <form method="GET" action="{% url 'property_search' %}">
+                                <div class="tab-content search_bar_content">
+                                    <div class="tab-pane active" id="bar_tab_one">
+                                        <div class="search_input_group">
+                                            <!-- Search by Title/Destination -->
+                                            {% comment %} <div class="search_filter destination">
+                                                <input type="text" name="query" class="form-control" placeholder="Title, Destination,"
+                                                    value="{{ request.GET.query }}">
+                                            </div>
+                             {% endcomment %}
+                                            <!-- Search by City -->
+                                            <div class="search_filter city location location2 select-fields second_search">
+                                                <select name="city_selector" id="city_selector" class="form-control city_selector tail" data-placeholder="{% trans 'Select City' %}" >
+                                                    {% for city in property_cities %}
+                                                        {% if city %}
+                                                            <option value="{{ city.id }}" style="text-transform: capitalize;" 
+                                                                {% if request.GET.city_selector == city.id|stringformat:"s" %}selected{% endif %}>
+                                                                {{ city }}
+                                                            </option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                            
+                                            <!-- Search by Category -->
+                                            <div class="search_filter location location2 select-fields second_search">
+                                                <select name="category_selector" class="form-control" data-placeholder="{% trans 'Property Type' %}" >
+                                                    {% for property_type in property_types %}
+                                                        {% if property_type %}
+                                                            <option value="{{ property_type }}" 
+                                                                {% if request.GET.category_selector == property_type %}selected{% endif %}>
+                                                                {{ property_type }}
+                                                            </option>
+                                                        {% endif %}
+                                                    {% endfor %}
+                                                </select>
+                                            </div>
+                            
+                                            <!-- Search by Max Price -->
+                                            <div class="search_filter city location location2 select-fields">
+                                                <select name="max_price_selector" id="max_price_selector" class="form-control" placeholder="{% trans 'Max Price' %}(USD)">
+                                                    <option value="10000" {% if request.GET.max_price_selector == '10000' %}selected{% endif %}>USD 10,000</option>
+                                                    <option value="100000" {% if request.GET.max_price_selector == '100000' %}selected{% endif %}>USD 100,000</option>
+                                                    <option value="1000000" {% if request.GET.max_price_selector == '1000000' %}selected{% endif %}>USD 1,000,000</option>
+                                                    <option value="100000000" {% if request.GET.max_price_selector == '100000000' %}selected{% endif %}>USD 100,000,000</option>
+                                                    <option value="1000000000" {% if request.GET.max_price_selector == '1000000000' %}selected{% endif %}>USD 1,000,000,000</option>
+                                                </select>
+                                            </div>
+                                        </div>
+                            
+                                        <!-- Submit Button -->
+                                        <button type="submit" class="btn btn-default btn-red"><i class="fa fa-search"></i></button>
+                                    </div>
+                                </div>
+                            </form>
+                            
+                           
+                        </div><!--~./ end widget find search ~-->
+
+                        <!--~~~~~ Start Widget Featured Property ~~~~~-->
+                        <div class="widget widget_featured_property">
+                              {% include "parts/subscribe.html" with widget=True%}
+
+                        </div><!--~./ end widget featured property ~-->
+                       
+</div><!--  /.site_content -->
+
+
+<script>
+    document.addEventListener("DOMContentLoaded", function () {
+        const propertyId = "{{ property.id }}";
+        const saveBtn = document.querySelector('.save-propery-btn');
+        
+        let savedProperties;
+        try {
+          savedProperties = JSON.parse(localStorage.getItem('likedProperties'));
+          if (!Array.isArray(savedProperties)) {
+            savedProperties = [];
+          }
+        } catch (e) {
+          savedProperties = [];
+        }
+        
+        // On load, if this property is saved, update button style & text
+        if (savedProperties.includes(propertyId)) {
+          saveBtn.classList.add('saved');
+          saveBtn.innerHTML = '<i class="fas fa-heart"></i> Saved';
+        }
+        
+        // Toggle save state on click
+        saveBtn.addEventListener('click', function(e) {
+          e.preventDefault();
+        
+          if (savedProperties.includes(propertyId)) {
+            // Remove from saved
+            savedProperties = savedProperties.filter(id => id !== propertyId);
+            saveBtn.classList.remove('saved');
+            saveBtn.innerHTML = '<i class="far fa-heart"></i> Save';
+          } else {
+            // Add to saved
+            savedProperties.push(propertyId);
+            saveBtn.classList.add('saved');
+            saveBtn.innerHTML = '<i class="fas fa-heart"></i> Saved';
+          }
+        
+          // Save updated array back to localStorage
+          localStorage.setItem('likedProperties', JSON.stringify(savedProperties));
+        });
+        
+        const shareBtn = document.querySelector('.action-btn[href="#"]:not(.save-propery-btn)');
+const sharePopup = document.getElementById('sharePopup');
+const closeSharePopup = document.getElementById('closeSharePopup');
+const shareEmail = document.getElementById('shareEmail');
+const shareWhatsApp = document.getElementById('shareWhatsApp');
+const copyLinkBtn = document.getElementById('copyLinkBtn');
+const copyMessage = document.getElementById('copyMessage');
+
+// Get current page URL (you can customize with property URL if needed)
+const propertyUrl = window.location.href;
+const propertyTitle = document.title || 'Check this property';
+
+// Open popup when Share button clicked
+shareBtn.addEventListener('click', function(e) {
+  e.preventDefault();
+  copyMessage.style.display = 'none'; // hide copy message
+  sharePopup.style.display = 'flex';
+
+  // Set mailto link
+  shareEmail.href = `mailto:?subject=${encodeURIComponent(propertyTitle)}&body=${encodeURIComponent(propertyUrl)}`;
+  // Set WhatsApp link
+  shareWhatsApp.href = `https://wa.me/?text=${encodeURIComponent(propertyTitle + ' ' + propertyUrl)}`;
+});
+
+// Close popup on clicking close button
+closeSharePopup.addEventListener('click', () => {
+  sharePopup.style.display = 'none';
+});
+
+// Close popup when clicking outside content box
+sharePopup.addEventListener('click', (e) => {
+  if (e.target === sharePopup) {
+    sharePopup.style.display = 'none';
+  }
+});
+
+// Copy URL to clipboard
+copyLinkBtn.addEventListener('click', () => {
+  navigator.clipboard.writeText(propertyUrl).then(() => {
+    copyMessage.style.display = 'block';
+    setTimeout(() => {
+      copyMessage.style.display = 'none';
+    }, 2000);
+  });
+});
+
+        $("#propertySubmit").click(function () {
+            var full_name = $("#property_name").val();
+            var email = $("#property_email").val();
+            var phone = $("#property_phone").val();
+            var message = $("#property_message").val();
+    
+            var property_name = $("#property_title").val();
+            var agent_bitrix_id = $("#agent_bitrix_id").val();
+            var property_url = $("#property_url").val();
+            var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
+    
+            if (!full_name || !email || !phone || !message) {
+                toastr.error("All fields are required!");
+                return;
+            }
+    
+            // Optional: add loading state
+            $("#propertySubmit").prop("disabled", true).text("Sending...");
+    
+            $.ajax({
+                url: "{% url 'consultation_booking' %}",
+                type: "POST",
+                data: {
+                    full_name: full_name,
+                    email: email,
+                    phone: phone,
+                    message: message,
+                    property_name: property_name,
+                    agent_bitrix_id: agent_bitrix_id,
+                    property_url: property_url,
+                    csrfmiddlewaretoken: csrf_token
+                },
+                success: function (response) {
+                    if (response.status === "success") {
+                        toastr.success(response.message);
+                        $(".agent_contact_form")[0].reset(); // Clear form
+                    } else {
+                        toastr.info(response.message);
+                    }
+                },
+                error: function () {
+                    toastr.error("There was an error. Please try again.");
+                },
+                complete: function () {
+                    $("#propertySubmit").prop("disabled", false).text("{{ _('Send Message') }}");
+                }
+            });
+        });
+        
+       
+        const citySelector = document.querySelector("select[name='city_selector']");
+    
+        // Initialize Tail Select
+        let cityTailSelect = tail.select(citySelector, {
+            search: true,
+            placeholder: "Select City"
+        });
+
+        const saleTypeLinks = document.querySelectorAll(".nav-link[data-sale-type]");
+        const hiddenInput = document.getElementById("chosen_sale_type_input");
+    
+        saleTypeLinks.forEach(link => {
+            link.addEventListener("click", function () {
+                // Update the hidden input with the selected sale type
+                hiddenInput.value = this.getAttribute("data-sale-type");
+    
+                // Remove 'active' class from all tabs and add to the clicked one
+                saleTypeLinks.forEach(el => el.classList.remove("active", "show"));
+                this.classList.add("active", "show");
+            });
+        });
+
+     
+        });
+        const mainImage = document.getElementById('mainImage');
+        const lightboxLink = mainImage.parentElement;
+        const sideImages = document.querySelectorAll('.side-image');
+        
+        let currentIndex = 0;
+        const totalImages = allImages.length;
+        
+        // helper to highlight active thumbnail
+        function highlightThumbnail(idx) {
+            sideImages.forEach((img, i) => {
+                img.classList.toggle('active', i === idx - 1); // thumbnails start at index 1
+            });
+        }
+        
+        // helper to switch image with fade
+        function switchImage(newIndex) {
+            mainImage.classList.add('fade');  // fade-out
+            setTimeout(() => {
+                currentIndex = newIndex;
+                mainImage.src = allImages[currentIndex];
+                lightboxLink.href = allImages[currentIndex];
+                highlightThumbnail(currentIndex);
+                mainImage.classList.remove('fade'); // fade-in
+            }, 500); // matches CSS transition
+        }
+        
+        // Click on thumbnail
+        sideImages.forEach((img, index) => {
+            img.addEventListener('click', (e) => {
+                e.preventDefault();
+                switchImage(index + 1); // +1 because main is index 0
+            });
+        });
+        
+        // Auto-rotate
+        setInterval(() => {
+            let nextIndex = (currentIndex + 1) % totalImages;
+            switchImage(nextIndex);
+        }, 5000);
+        
+        // Initial highlight
+        highlightThumbnail(0); 
+        
+    </script>
+{% endblock %}

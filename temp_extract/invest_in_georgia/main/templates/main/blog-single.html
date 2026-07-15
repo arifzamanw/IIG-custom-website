@@ -1,0 +1,236 @@
+{% extends 'global/base.html' %}
+{% load static %}
+{% load i18n %}
+{% load custom_filters %}
+
+{% block content %}
+<div class="site_content">
+
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+      <h2 class="page_title">{% trans 'Blog Categories' %}</h2>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">{% trans 'Home' %}</a>
+        </li>
+        <li class="breadcrumb-item active">{% trans 'Blog' %}</li>
+      </ol>
+    </div>
+  </div>
+
+  <section class="page-blog">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-9">
+          <div class="blog-page-content blog-content">
+
+            <article class="post post-item">
+
+              <div class="post-thumbnail">
+                {% if blog.image %}
+                  <a href="#">
+                    <img src="{{ blog.image.url }}?f_webp"
+                         alt="{{ blog|translate_property:'title' }}">
+                  </a>
+                {% endif %}
+              </div>
+
+              <div class="entry-meta">
+                <div class="tag meta-date">
+                  <i class="tag-icon fa fa-calendar-o"></i>
+                  {{ blog.created_at|date:'F d, Y' }}
+                </div>
+              </div>
+
+              <div class="entry-content">
+
+                <h2 class="entry-title">
+                  {{ blog|translate_property:"title" }}
+                </h2>
+
+                <p>
+                  {{ blog|translate_property:"content"|safe }}
+                </p>
+
+                {% if blog.quote %}
+                  <div class="quote">
+                    <div class="quote-text">
+                      "{{ blog|translate_property:"quote" }}"
+                    </div>
+                    <div class="author">
+                      - {% trans "by" %} {{ blog|translate_property:"quote_author" }}
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if blog.additional_text %}
+                  <p>
+                    {{ blog|translate_property:"additional_text" }}
+                  </p>
+                {% endif %}
+
+                {% if blog.image_2 %}
+                  <div class="image-text wow fadeIn" data-wow-duration="1000ms">
+                    <div class="post-image">
+                      <img src="{{ blog.image_2.url }}?f_webp" alt="">
+                    </div>
+
+                    <div class="text-link">
+                      <div class="post-text">
+                        {{ blog|translate_property:"extra_content_1" }}
+                      </div>
+
+                      <div class="links">
+                        {% for link in blog.extra_links_1.all %}
+                          <div class="link-item">
+                            {{ link|translate_property:"text" }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+                  </div>
+                {% endif %}
+
+                {% if blog.image_3 %}
+                  <div class="image-text wow fadeIn" data-wow-duration="1000ms">
+                    <div class="text-link">
+                      <div class="post-text">
+                        {{ blog|translate_property:"extra_content_2" }}
+                      </div>
+
+                      <div class="links">
+                        {% for link in blog.extra_links_2.all %}
+                          <div class="link-item">
+                            {{ link|translate_property:"text" }}
+                          </div>
+                        {% endfor %}
+                      </div>
+                    </div>
+
+                    <div class="post-image">
+                      <img src="{{ blog.image_3.url }}?f_webp" alt="">
+                    </div>
+                  </div>
+                {% endif %}
+
+              </div>
+
+              <p>
+                {{ blog|translate_property:"conclusion" }}
+              </p>
+
+              <div class="footer wow fadeIn" data-wow-duration="1000ms">
+
+                <div class="tags">
+                  {% for tag in blog.tags|split:',' %}
+                    <a href="#">{{ tag }}</a>
+                  {% endfor %}
+                </div>
+
+              </div>
+
+            </article>
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {% if related_posts %}
+  <section class="related-post">
+    <div class="container">
+
+      <div class="section-header side with-links mrb-30 wow fadeIn">
+        <div class="title float-left">
+          <div class="section-titlesed">{% trans "Related Post" %}</div>
+        </div>
+
+        <div class="btn_links float-right">
+          <button class="btn btn-prev btn-large">
+            <i class="lp lp-arrow-left"></i>
+          </button>
+          <button class="mrl-30 btn btn-next btn-large">
+            <i class="lp lp-arrow-right"></i>
+          </button>
+        </div>
+
+        <div class="w-100 clearfix"></div>
+      </div>
+
+      <div class="owl-carousel" data-owl-items="3" data-owl-margin="30" data-owl-extranav="1" data-owl-loop="1">
+
+        {% for post in related_posts %}
+        <div class="card card-post wow fadeIn">
+
+          <div class="card-image">
+            {% if post.image %}
+              <img src="{{ post.image.url }}" alt="">
+            {% else %}
+              <img src="{% static 'images/georgiaestatelogo.png' %}" alt="logo">
+            {% endif %}
+          </div>
+
+          <div class="card-body">
+
+            <div class="card-title">
+              <a href="{% url 'blog_detail' post.slug %}">
+                {{ post|translate_property:"title" }}
+              </a>
+            </div>
+
+            <div class="card-text">
+              {{ post|translate_property:"content"|striptags|slice:':50' }}
+            </div>
+
+            <a href="{% url 'blog_detail' post.slug %}">
+              <button class="btn btn-red btn-large">
+                {% trans "Read more" %}
+              </button>
+            </a>
+
+          </div>
+        </div>
+        {% endfor %}
+
+      </div>
+    </div>
+  </section>
+  {% endif %}
+
+</div>
+
+<section class="newsletter">
+  <div class="container">
+    <div class="row">
+
+      <div class="col-xl-4">
+        <div class="section_header">
+          <i class="lp lp-bell"></i>
+          <h2 class="headline">
+            {% trans "Subscribe to Our List" %}
+          </h2>
+        </div>
+      </div>
+
+      <div class="col-xl-8">
+        <div class="input_group">
+          <input class="form-control"
+                 placeholder="{% trans 'Type your Email Address' %}"
+                 type="text" />
+
+          <button class="btn btn-default">
+            <i class="fa fa-paper-plane"></i>
+            {% trans "Subscribe" %}
+          </button>
+        </div>
+      </div>
+
+    </div>
+  </div>
+</section>
+
+{% endblock %}

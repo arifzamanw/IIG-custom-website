@@ -1,0 +1,20 @@
+{% load i18n %}
+<form action="{% url 'set_language' %}" method="post">
+  {% csrf_token %}
+  <input type="hidden" name="next" value="{{ request.get_full_path }}">
+  {% get_current_language as LANGUAGE_CODE %}
+  <div class="flag-selector">
+    <button type="submit" name="language" value="en" class="flag-btn {% if LANGUAGE_CODE != 'en' %}inactive{% endif %}">
+      <img src="https://flagcdn.com/us.svg" alt="English"> {% if show_labels %}EN{% endif %}
+    </button>
+    <button type="submit" name="language" value="ar" class="flag-btn {% if LANGUAGE_CODE != 'ar' %}inactive{% endif %}">
+      <img src="https://flagcdn.com/ae.svg" alt="Arabic"> {% if show_labels %}AR{% endif %}
+    </button>
+    <button type="submit" name="language" value="ru" class="flag-btn {% if LANGUAGE_CODE != 'ru' %}inactive{% endif %}">
+      <img src="https://flagcdn.com/ru.svg" alt="Russian"> {% if show_labels %}RU{% endif %}
+    </button>
+    <button type="submit" name="language" value="ka" class="flag-btn {% if LANGUAGE_CODE != 'ka' %}inactive{% endif %}">
+      <img src="https://flagcdn.com/ge.svg" alt="Georgian"> {% if show_labels %}KA{% endif %}
+    </button>
+  </div>
+</form>

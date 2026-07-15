@@ -1,0 +1,222 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+  {{ seo.meta_title|default:"About Invest in Georgia UAE | Georgian Business Council Founding Member | Dubai Office" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo.meta_description|default:"UAE-based real estate advisory bridging Georgia and Dubai. Founding member Georgian Business Council." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo.meta_keywords|default:"invest in georgia uae, georgian business council dubai, cross-border real estate advisory" }}
+{% endblock %}
+{% block extra_meta %} {% endblock %}
+{% block content %}
+  {# ——— Page Header ——— #}
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+      <h2 class="page_title">{% trans 'Who We Are' %}</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">{% trans 'Home' %}</a>
+        </li>
+        <li class="breadcrumb-item active">
+          {% trans 'Who We Are' %}
+        </li>
+      </ol>
+    </div>
+  </div>
+
+  <style>
+    .service_items {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+      gap: 24px;
+      align-items: start;
+    }
+    
+    .service_item_card {
+      display: flex;
+      flex-direction: column;
+      background: #fff;
+      border-radius: 16px;
+      padding: 36px 28px 28px;
+      box-shadow: 0 2px 16px rgba(0, 0, 0, 0.07);
+      border: 1.5px solid #f0f0f0;
+      transition: box-shadow 0.25s ease, transform 0.25s ease, border-color 0.25s;
+      min-height: 320px;
+    }
+    
+    .service_item_card:hover {
+      box-shadow: 0 12px 40px rgba(231, 76, 60, 0.12);
+      transform: translateY(-4px);
+      border-color: rgba(231, 76, 60, 0.25);
+    }
+    
+    .service_title {
+      margin-bottom: 14px;
+    }
+    
+    .service_title span {
+      font-size: 17px;
+      font-weight: 700;
+      color: #111;
+      line-height: 1.35;
+    }
+    
+    .service_divider {
+      width: 36px;
+      height: 3px;
+      background: #e74c3c;
+      border-radius: 2px;
+      margin-bottom: 16px;
+      flex-shrink: 0;
+    }
+    
+    .service_info {
+      font-size: 14.5px;
+      line-height: 1.75;
+      color: #666;
+      flex: 1;
+    }
+    
+    .service_info.expanded {
+      max-height: 1000px;
+    }
+    
+    .service_read_more {
+      display: inline-block;
+      margin-top: 12px;
+      background: none;
+      border: none;
+      padding: 0;
+      font-size: 13px;
+      font-weight: 600;
+      color: #e74c3c;
+      cursor: pointer;
+      text-align: left;
+    }
+    
+    .service_read_more:hover {
+      opacity: 0.7;
+    }
+    
+    @media (max-width: 992px) {
+      .service_items {
+        grid-template-columns: repeat(2, 1fr);
+      }
+    }
+    
+    @media (max-width: 576px) {
+      .service_items {
+        grid-template-columns: 1fr;
+      }
+    }
+  </style>
+
+  {% if page %}
+    <section class="pd-t-100">
+      <div class="container">
+        <div class="section_header">
+          <h4 class="title_script">{{ page|translate_property:'hero_script_title' }}</h4>
+          <h2 class="section_title">{{ page|translate_property:'hero_title' }}</h2>
+          <div class="section_lead">{{ page|translate_property:'hero_paragraph'|safe }}</div>
+        </div>
+        <div class="service_items wow fadeIn" data-wow-duration="1000ms">
+          <div class="service_item_card">
+            <div class="service_title">
+              <span>{{ page|translate_property:'mission_script_title' }}</span>
+            </div>
+            <div class="service_divider"></div>
+            <h3>{{ page|translate_property:'mission_title' }}</h3>
+            <div class="service_info">{{ page|translate_property:'mission_paragraph'|safe }}</div>
+            {% comment %} <button class="service_read_more" onclick="toggleInfo(this)">Read more ↓</button> {% endcomment %}
+          </div>
+          <div class="service_item_card">
+            <div class="service_title">
+              <span>{{ page|translate_property:'vision_script_title' }}</span>
+            </div>
+            <div class="service_divider"></div>
+            <h3>{{ page|translate_property:'vision_title' }}</h3>
+            <div class="service_info">{{ page|translate_property:'vision_paragraph'|safe }}</div>
+            {% comment %} <button class="service_read_more" onclick="toggleInfo(this)">Read more ↓</button> {% endcomment %}
+          </div>
+        </div>
+        <br />
+        <br />
+        <br />
+        <div class="section_header">
+          <h4 class="title_script">{{ page|translate_property:'values_script_title' }}</h4>
+          <h2 class="section_title">{{ page|translate_property:'values_mission_title' }}</h2>
+          <div class="section_lead">{{ page|translate_property:'value_paragraph'|safe }}</div>
+        </div>
+      </div>
+    </section>
+  {% endif %}
+
+  {# ——— Team Members ——— #}
+  <section class="team_members pd-t-100 pd-b-100 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+    <div class="container">
+      <div class="row">
+        <div class="col-lg-12">
+          <div class="section_header section_header_two left_section_header short with-button">
+            <h2 class="section_title" style="margin-left: 10px">{% trans 'Our Best Agents' %}</h2>
+            <div class="btn_links">
+              <button class="btn btn-prev btn-large"><i class="lp lp-arrow-left"></i></button>
+              <button class="btn btn-next btn-large"><i class="lp lp-arrow-right"></i></button>
+            </div>
+          </div>
+
+          <div class="owl-carousel team_members_carousel" data-owl-items="3" data-owl-margin="30" data-owl-extranav="1" data-owl-loop="1">
+            {% for agent in agents %}
+              <div class="card card_team_member">
+                <div class="card_image" style="width: 50%; align-self: center;">
+                  {% if agent.picture %}
+                    <img src="{{ agent.picture.url }}" loading="lazy" />
+                  {% else %}
+                    <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Georgia Real Estate Logo" class="site-logo" />
+                  {% endif %}
+                  <div class="social_links"></div>
+                </div>
+                <div class="card_body">
+                  <h2 class="card_title">{{ agent|translate_property:'name' }}</h2>
+                  <p class="text-sm md:text-base text-gray-600 leading-relaxed">({{ agent|translate_property:'position' }})</p>
+                </div>
+              </div>
+            {% endfor %}
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+  <script>
+    document.addEventListener('DOMContentLoaded', function () {
+      document.querySelectorAll('.service_item_card').forEach((card) => {
+        const info = card.querySelector('.service_info')
+        const button = card.querySelector('.service_read_more')
+    
+        if (button && info.scrollHeight <= 150) {
+          button.style.display = 'none'
+        }
+      })
+    })
+    function toggleInfo(btn) {
+      const card = btn.closest('.service_item_card')
+      const info = card.querySelector('.service_info')
+    
+      if (info.classList.contains('expanded')) {
+        info.classList.remove('expanded')
+        btn.innerText = 'Read more ↓'
+      } else {
+        info.classList.add('expanded')
+        btn.innerText = 'Show less ↑'
+      }
+    }
+  </script>
+
+  {% include 'parts/subscribe.html' %}
+{% endblock %}

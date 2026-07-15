@@ -1,0 +1,55 @@
+{% load humanize %}
+{% load i18n %}
+{% load custom_filters %}
+{% load static %}
+
+{% if widget %}
+<style>
+
+.headline{
+padding-left:0px;
+}
+</style>
+<section class="newsletter">
+    <div class="container">
+        <div class="row">
+            <div class="col-12">
+                <div class="section_header text-center">
+                    <i class="lp lp-bell"></i>
+                    <h2 class="headline">{% trans 'Subscribe to Our List' %}</h2>
+                </div>
+                <br>
+                <div class="input_group" style="display: inline-table;">
+                    <input class="form-control" id="emailInput" placeholder="{% trans 'Type your Email Address' %}" type="text">
+                    <button onclick="subscribe()" id="subscribeButton" class="btn btn-default">
+                        <i class="fa fa-paper-plane"></i> {% trans 'Subscribe' %}
+                    </button>
+                </div>
+            </div>
+        </div>
+    </div>
+</section>
+
+{% else %}
+
+  <section class="newsletter">
+        <div class="container">
+            <div class="row">
+                <div class="col-xl-4 col-lg-4">
+                    <div class="section_header">
+                        <i class="lp lp-bell"></i>
+                        <h2 class="headline">{% trans 'Subscribe to Our List' %}</h2>
+                    </div>
+                </div>
+                <div class="col-xl-8 col-lg-8">
+                    <div class="input_group">
+                        <input class="form-control"  id="emailInput" placeholder="{% trans 'Type your Email Address' %}" type="text">
+                        <button onclick="subscribe()"  id="subscribeButton"class="btn btn-default">
+                            <i class="fa fa-paper-plane"></i>{% trans 'Subscribe' %}
+                        </button>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+{% endif %}

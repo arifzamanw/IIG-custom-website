@@ -1,0 +1,221 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+  {{ seo.meta_title|default:"Privacy Policy | Invest In Georgia LLC" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo.meta_description|default:"Privacy policy of Invest In Georgia LLC. Learn how we collect, use, and protect your personal information." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo.meta_keywords|default:"privacy policy, invest in georgia, data protection" }}
+{% endblock %}
+{% block extra_meta %} {% endblock %}
+{% block content %}
+<div class="site_content">
+
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+      <h2 class="page_title">{% trans "Privacy Policy" %}</h2>
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item"><a href="#">{% trans "Home" %}</a></li>
+        <li class="breadcrumb-item active">{% trans "Privacy Policy" %}</li>
+      </ol>
+    </div>
+  </div>
+
+  <section class="py-5">
+    <div class="container">
+      <div class="row justify-content-center">
+        <div class="col-lg-8">
+
+          <div class="pp-wrap">
+
+            <p class="pp-updated">{% trans "Last Updated" %}: January 2025</p>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">1. {% trans "Introduction" %}</h2>
+              <p>{% trans "INVEST IN GEORGIA L.L.C is a real estate investment advisory company based in Business Bay, Dubai, UAE. We help UAE & GCC and international investors discover and purchase premium properties across Georgia, including Tbilisi, Batumi, and Gudauri. Our website is investingeorgia.ae." %}</p>
+              <p>{% trans "This Privacy Policy explains what personal information we collect, how we use it, and how we protect it. By using our website or contacting us in any way, you agree to the practices described in this policy." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">2. {% trans "Information We Collect" %}</h2>
+              <p>{% trans "We collect personal information when you fill in a contact form, send us a WhatsApp message, call us, or interact with our website. This may include your name, email address, phone number, nationality or country of residence, budget range, and investment preferences." %}</p>
+              <p>{% trans "When you visit our website, we also automatically collect certain technical data such as your IP address, browser type, device information, pages visited, and how you found our website. This is collected through cookies and analytics tools." %}</p>
+              <p>{% trans "We do not intentionally collect sensitive data such as passport numbers or bank details through our website." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">3. {% trans "How We Use Your Information" %}</h2>
+              <p>{% trans "We use your information to respond to your enquiries and provide our advisory services, match you with suitable property opportunities in Georgia, coordinate property viewings, documentation, and ownership registration, send you relevant property listings, market updates, and investment insights (with your consent), improve our website based on how visitors use it, and comply with applicable UAE laws and regulations." %}</p>
+              <p>{% trans "You may opt out of marketing communications at any time by replying STOP to any message, clicking unsubscribe in any email, or contacting us directly." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">4. {% trans "Sharing of Information" %}</h2>
+              <p>{% trans "We do not sell, rent, or trade your personal data to any third party. We only share your information with members of our internal advisory team who need it to serve you, trusted service providers such as our website developers, CRM platforms, and marketing tools, Georgian legal and property partners who assist with transactions and ownership registration, and authorities or regulators when required by law." %}</p>
+              <p>{% trans "All third parties we work with are required to handle your data securely and only for the purpose we have shared it." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">5. {% trans "Data Storage & Security" %}</h2>
+              <p>{% trans "Your data is stored on secure digital systems, which may include cloud-based platforms hosted internationally. We protect your data using SSL encryption on our website, password-protected and access-controlled internal systems, and restricted access based on role and necessity." %}</p>
+              <p>{% trans "We retain enquiry records for up to 24 months, client and transaction records for up to 7 years as required by UAE commercial law, and marketing preferences until you opt out. After the relevant period, your data is securely deleted or anonymised." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">6. {% trans "Cookies & Tracking" %}</h2>
+              <p>{% trans "Our website uses cookies to improve your experience and help us understand how visitors use our site. We use essential cookies required for the website to function, analytics cookies through Google Analytics to measure traffic and behaviour, marketing and retargeting cookies through Meta Pixel to serve relevant ads on Facebook and Instagram, and preference cookies to remember your language and region settings." %}</p>
+              <p>{% trans "You can manage or disable cookies through your browser settings at any time. To opt out of Google Analytics, visit" %} <a href="https://tools.google.com/dlpage/gaoptout" target="_blank">tools.google.com/dlpage/gaoptout</a>. {% trans "To manage Meta ad preferences, visit your Facebook or Instagram account settings." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">7. {% trans "Your Rights" %}</h2>
+              <p>{% trans "You have the right to access the personal data we hold about you, correct any inaccurate or incomplete information, request deletion of your data, restrict or object to how we process your data, receive your data in a portable format, and withdraw your consent for marketing at any time." %}</p>
+              <p>{% trans "To exercise any of these rights, please email us at" %} <a href="mailto:info@investingeorgia.ae">info@investingeorgia.ae</a> {% trans "with the subject line 'Data Privacy Request.' We will respond within 30 days. If you are based in the EU or UK, you also have the right to contact your local data protection authority." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">8. {% trans "Third-Party Links" %}</h2>
+              <p>{% trans "Our website may contain links to external websites such as property developer pages or social media platforms. INVEST IN GEORGIA L.L.C is not responsible for the privacy practices of any third-party websites. We encourage you to read their privacy policies before sharing any personal information." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">9. {% trans "Updates to This Policy" %}</h2>
+              <p>{% trans "We may update this Privacy Policy from time to time to reflect changes in our services or applicable laws. When we do, we will update the 'Last Updated' date at the top of this page. We encourage you to check back periodically. Continued use of our website after any changes have been posted means you accept the updated policy." %}</p>
+            </div>
+
+            <div class="pp-block">
+              <h2 class="pp-heading">10. {% trans "Contact Information" %}</h2>
+              <p>{% trans "If you have any questions about this Privacy Policy or how we handle your data, please contact us:" %}</p>
+              <div class="pp-contact">
+                <p><strong>INVEST IN GEORGIA L.L.C</strong></p>
+                <p>Business Bay, Dubai, United Arab Emirates</p>
+                <p>{% trans "Email" %}: <a href="mailto:info@investingeorgia.ae">info@investingeorgia.ae</a></p>
+                <p>{% trans "Website" %}: <a href="https://investingeorgia.ae">investingeorgia.ae</a></p>
+              </div>
+            </div>
+
+
+          </div>
+        </div>
+      </div>
+    </div>
+  </section>
+
+</div>
+{% endblock %}
+
+{% block css %}
+{{ block.super }}
+<style>
+  .pp-wrap {
+    background: #fff;
+    padding: 50px 55px;
+    border: 1px solid #e8e8e8;
+  }
+
+  .pp-updated {
+    color: #999;
+    font-size: 13px;
+    margin-bottom: 35px;
+    padding-bottom: 18px;
+    border-bottom: 1px solid #eee;
+  }
+
+  .pp-block {
+    margin-bottom: 32px;
+    padding-bottom: 32px;
+    border-bottom: 1px solid #f0f0f0;
+  }
+
+  .pp-block:last-of-type {
+    border-bottom: none;
+  }
+
+  .pp-heading {
+    font-size: 15px;
+    font-weight: 700;
+    color: #222;
+    margin-bottom: 12px;
+    text-transform: uppercase;
+    letter-spacing: 0.4px;
+  }
+
+  .pp-block p {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 10px;
+  }
+
+  .pp-block p:last-child {
+    margin-bottom: 0;
+  }
+
+  .pp-block a {
+    color: #ec1c24;;
+    text-decoration: none;
+  }
+
+  .pp-block a:hover {
+    color: #ec1c24;
+    text-decoration: underline;
+  }
+
+  .pp-list {
+    padding-left: 18px;
+    margin: 8px 0 12px;
+  }
+
+  .pp-list li {
+    font-size: 14px;
+    color: #555;
+    line-height: 1.85;
+    margin-bottom: 4px;
+  }
+
+  .pp-contact {
+    background: #f8f8f8;
+    border-left: 3px solid #ec1c24;
+    padding: 16px 20px;
+    margin-top: 12px;
+  }
+
+  .pp-contact p {
+    margin-bottom: 5px !important;
+    font-size: 14px;
+    color: #555;
+  }
+
+  .pp-contact a {
+    color: #ec1c24;
+    text-decoration: none;
+  }
+
+  .pp-footer-note {
+    margin-top: 10px;
+    padding-top: 20px;
+    border-top: 1px solid #eee;
+  }
+
+  .pp-footer-note p {
+    font-size: 12px;
+    color: #aaa;
+    font-style: italic;
+    line-height: 1.7;
+    margin: 0;
+  }
+
+  @media (max-width: 768px) {
+    .pp-wrap {
+      padding: 25px 18px;
+    }
+  }
+</style>
+{% endblock %}

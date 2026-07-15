@@ -1,0 +1,62 @@
+version: "3.9"
+
+services:
+
+  investgeorgia_db:
+    image: postgres:17
+    container_name: investgeorgia_postgres
+    restart: always
+    environment:
+      POSTGRES_DB: investgeorgia_db
+      POSTGRES_USER: investingerogiauser
+      POSTGRES_PASSWORD: investingerogiapassword112233..
+    volumes:
+      - investgeorgia_postgres_data:/var/lib/postgresql/data
+    ports:
+      - "127.0.0.1:5472:5432"
+    networks:
+      - investgeorgia_net
+
+  investgeorgia_app:
+    build: ./invest_in_georgia
+    container_name: invest_in_georgia
+    restart: always
+    command: >
+      sh -c "python manage.py collectstatic --noinput &&
+             gunicorn real_estate.wsgi:application --bind 0.0.0.0:2200"
+    volumes:
+      - ./invest_in_georgia:/app
+      - static_volume:/app/staticfiles
+      - ./invest_in_georgia/media:/app/media
+    env_file:
+      - ./invest_in_georgia/.env
+    depends_on:
+      - investgeorgia_db
+    networks:
+      - investgeorgia_net
+
+  nginx:
+    image: nginx:latest
+    container_name: django_nginx
+    restart: always
+    ports:
+      - "80:80"
+      - "443:443"
+    volumes:
+      - ./nginx.conf:/etc/nginx/conf.d/default.conf:ro
+      - static_volume:/app/staticfiles:ro
+      - ./invest_in_georgia/media:/app/media:ro
+      - /etc/letsencrypt:/etc/letsencrypt:ro
+    depends_on:
+      - investgeorgia_app
+    networks:
+      - investgeorgia_net
+
+volumes:
+  investgeorgia_postgres_data:
+  static_volume:
+  media_volume:
+
+networks:
+  investgeorgia_net:
+    driver: bridge

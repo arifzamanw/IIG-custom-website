@@ -1,0 +1,414 @@
+# SOME DESCRIPTIVE TITLE.
+# Copyright (C) YEAR THE PACKAGE'S COPYRIGHT HOLDER
+# This file is distributed under the same license as the PACKAGE package.
+# FIRST AUTHOR <EMAIL@ADDRESS>, YEAR.
+#
+#, fuzzy
+msgid ""
+msgstr ""
+"Project-Id-Version: PACKAGE VERSION\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2025-05-03 19:48+0300\n"
+"PO-Revision-Date: YEAR-MO-DA HO:MI+ZONE\n"
+"Last-Translator: FULL NAME <EMAIL@ADDRESS>\n"
+"Language-Team: LANGUAGE <LL@li.org>\n"
+"Language: \n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: 8bit\n"
+"Plural-Forms: nplurals=6; plural=n==0 ? 0 : n==1 ? 1 : n==2 ? 2 : n%100>=3 && n%100<=10 ? 3 : n%100>=11 && n%100<=99 ? 4 : 5;\n"
+
+#: main/templates/career/career_page.html:7
+msgid "Careers"
+msgstr "الوظائف"
+
+msgid "Apply"
+msgstr "تقديم"
+
+msgid "No Position Available At This Moment"
+msgstr "لا توجد وظائف متاحة في الوقت الحالي"
+
+msgid "Job Description"
+msgstr "وصف الوظيفة"
+
+msgid "Submit Application"
+msgstr "إرسال الطلب"
+
+msgid "Home"
+msgstr "الصفحة الرئيسية"
+
+msgid "Who We Are"
+msgstr "من نحن"
+
+msgid "Services"
+msgstr "الخدمات"
+
+msgid "Contact Us"
+msgstr "اتصل بنا"
+
+msgid "News & Insights"
+msgstr "الأخبار والرؤى"
+
+msgid "Carrers"
+msgstr "الوظائف"
+
+msgid "Ask for a Call"
+msgstr "اطلب مكالمة"
+
+msgid "Name"
+msgstr "الاسم"
+
+msgid "Enter your phone number"
+msgstr "أدخل رقم هاتفك"
+
+msgid "Email"
+msgstr "البريد الإلكتروني"
+
+msgid "Way of Contact"
+msgstr "طريقة التواصل"
+
+msgid "Phone Call"
+msgstr "مكالمة هاتفية"
+
+msgid "Close"
+msgstr "إغلاق"
+
+msgid "Send message"
+msgstr "إرسال الرسالة"
+
+msgid "About Listing"
+msgstr "حول العقارات"
+
+msgid ""
+"Our listings feature high-quality homes, off-plan projects, and investment-"
+"ready properties in top locations."
+msgstr ""
+"قوائمنا تشمل منازل عالية الجودة، مشاريع تحت الإنشاء، وعقارات جاهزة للاستثمار"
+" في مواقع مميزة."
+
+msgid "Information"
+msgstr "المعلومات"
+
+msgid "About"
+msgstr "حول"
+
+msgid "Service"
+msgstr "الخدمة"
+
+msgid "Customer Support"
+msgstr "دعم العملاء"
+
+msgid "Who We Are ?"
+msgstr "من نحن؟"
+
+msgid " Contact Us"
+msgstr "اتصل بنا"
+
+msgid "Have Questions?"
+msgstr "هل لديك أسئلة؟"
+
+msgid "Toll Free calling in world"
+msgstr "مكالمات مجانية حول العالم"
+
+msgid "Email Us"
+msgstr "راسلنا عبر البريد الإلكتروني"
+
+msgid "View On Map"
+msgstr "عرض على الخريطة"
+
+msgid "Blog Categories"
+msgstr "فئات المدونة"
+
+msgid "Blog"
+msgstr "مدونة"
+
+msgid "Read more"
+msgstr "اقرأ المزيد"
+
+msgid "No Blog Available At This Moment"
+msgstr "لا توجد مدونات متاحة في الوقت الحالي"
+
+msgid "Subscribe to Our List"
+msgstr "اشترك في قائمتنا"
+
+msgid "Type your Email Address"
+msgstr "اكتب بريدك الإلكتروني"
+
+msgid "Subscribe"
+msgstr "اشترك"
+
+msgid "Address"
+msgstr "العنوان"
+
+msgid "Phone"
+msgstr "الهاتف"
+
+msgid "Web Address"
+msgstr "الموقع الإلكتروني"
+
+msgid "Have Questions"
+msgstr "لديك أسئلة"
+
+msgid "Get in Touch"
+msgstr "ابقَ على تواصل"
+
+msgid "Discover exceptional opportunities with us."
+msgstr "اكتشف فرصاً استثنائية معنا."
+
+msgid ""
+"Provide your contact details and an executive consultant will be in touch "
+"shortly."
+msgstr "قدم تفاصيل الاتصال الخاصة بك وسيتواصل معك مستشار تنفيذي قريبًا."
+
+msgid "Message"
+msgstr "الرسالة"
+
+msgid "Send"
+msgstr "إرسال"
+
+msgid "INVEST IN THE UAE"
+msgstr "استثمر في الإمارات العربية المتحدة"
+
+msgid "UNCOVER EXLUSIVE OPPORTUNITES"
+msgstr "اكتشف الفرص الحصرية"
+
+msgid "Browse Listings"
+msgstr "تصفح العقارات"
+
+msgid "Consultation Booking"
+msgstr "حجز استشارة"
+
+msgid "City"
+msgstr "المدينة"
+
+msgid "Sub City"
+msgstr "المنطقة الفرعية"
+
+msgid "Property Type"
+msgstr "نوع العقار"
+
+msgid "Max Price"
+msgstr "السعر الأقصى"
+
+msgid "Phone Number"
+msgstr "رقم الهاتف"
+
+msgid "INVEST IN GEORGIA"
+msgstr "استثمر في جورجيا"
+
+msgid "Select City"
+msgstr "اختر المدينة"
+
+msgid "Featured Property"
+msgstr "عقار مميز"
+
+msgid "All"
+msgstr "الكل"
+
+msgid "Details"
+msgstr "تفاصيل"
+
+msgid "Total Units"
+msgstr "إجمالي الوحدات"
+
+msgid "Partners"
+msgstr "الشركاء"
+
+msgid "Projected"
+msgstr "المشاريع"
+
+msgid "Clients"
+msgstr "العملاء"
+
+msgid "Our Best Agents"
+msgstr "أفضل وكلائنا"
+
+msgid "View All Posts"
+msgstr "عرض جميع المشاركات"
+
+msgid "Our Services Includes"
+msgstr "تشمل خدماتنا"
+
+msgid "Expert Cross-Border Investment Consultant"
+msgstr "استشاري استثمار دولي متخصص"
+
+msgid ""
+"Invest in Georgia LLC is a premier investment and real estate advisory "
+"company..."
+msgstr ""
+"شركة Invest in Georgia LLC هي شركة رائدة في مجال الاستثمار والاستشارات "
+"العقارية..."
+
+msgid "Vision & Mission"
+msgstr "الرؤية والرسالة"
+
+msgid "Our Mission"
+msgstr "مهمتنا"
+
+msgid ""
+"To provide transparent, profitable, and reliable investment solutions..."
+msgstr "توفير حلول استثمارية شفافة ومربحة وموثوقة..."
+
+msgid "Our Vision"
+msgstr "رؤيتنا"
+
+msgid ""
+"To be the leading investment gateway connecting Georgia with global "
+"investors..."
+msgstr ""
+"أن نكون بوابة الاستثمار الرائدة التي تربط جورجيا بالمستثمرين العالميين..."
+
+msgid "Values"
+msgstr "القيم"
+
+msgid "Our Core Values"
+msgstr "قيمنا الأساسية"
+
+msgid "Integrity and Transparency"
+msgstr "النزاهة والشفافية"
+
+msgid "Market Expertise"
+msgstr "الخبرة السوقية"
+
+msgid "Client-Centered Approach"
+msgstr "نهج يركز على العميل"
+
+msgid "Innovation and Efficiency"
+msgstr "الابتكار والكفاءة"
+
+msgid "Long-term Partnerships"
+msgstr "شراكات طويلة الأمد"
+
+msgid "Properties"
+msgstr "العقارات"
+
+msgid "Property Detail"
+msgstr "تفاصيل العقار"
+
+msgid "Type"
+msgstr "النوع"
+
+msgid "Status"
+msgstr "الحالة"
+
+msgid "Completion Date"
+msgstr "تاريخ الانتهاء"
+
+msgid "Price"
+msgstr "السعر"
+
+msgid "Area"
+msgstr "المساحة"
+
+msgid "Bathrooms"
+msgstr "الحمامات"
+
+msgid "Parking"
+msgstr "موقف سيارات"
+
+msgid "Take A Tour"
+msgstr "خذ جولة"
+
+msgid "Apartments Amities"
+msgstr "مرافق الشقة"
+
+msgid "Floor Plans"
+msgstr "مخططات الطوابق"
+
+msgid "Location On Map"
+msgstr "الموقع على الخريطة"
+
+msgid "Ratings"
+msgstr "التقييمات"
+
+msgid "Overall Rating of 251 guest rating"
+msgstr "التقييم العام من 251 ضيف"
+
+msgid "Send Message"
+msgstr "إرسال رسالة"
+
+msgid "Filter"
+msgstr "تصفية"
+
+msgid "Sort By"
+msgstr "ترتيب حسب"
+
+msgid "Featured"
+msgstr "مميز"
+
+msgid "Newest"
+msgstr "الأحدث"
+
+msgid "Price (Low)"
+msgstr "السعر (الأقل)"
+
+msgid "Price (High)"
+msgstr "السعر (الأعلى)"
+
+msgid "Beds (Least)"
+msgstr "غرف النوم (الأقل)"
+
+msgid "Beds (Most)"
+msgstr "غرف النوم (الأكثر)"
+
+msgid "Bathrooms (Least)"
+msgstr "الحمامات (الأقل)"
+
+msgid "Bathrooms (Most)"
+msgstr "الحمامات (الأكثر)"
+
+msgid "Bedrooms"
+msgstr "غرف النوم"
+
+msgid "Min Price"
+msgstr "السعر الأدنى"
+
+msgid "Reset Filters"
+msgstr "إعادة تعيين الفلاتر"
+
+msgid "Search by Word"
+msgstr "بحث بالكلمة"
+
+msgid "bedrooms"
+msgstr "غرف النوم"
+
+msgid "bathrooms"
+msgstr "الحمامات"
+
+msgid "No Properties Available"
+msgstr "لا توجد عقارات متاحة"
+
+msgid "Buy"
+msgstr "شراء"
+
+msgid "News"
+msgstr "الأخبار"
+
+msgid "Beds & Baths"
+msgstr "غرف نوم وحمامات"
+
+msgid "Beds:"
+msgstr "غرف النوم:"
+
+msgid "Baths:"
+msgstr "الحمامات:"
+
+msgid "Search"
+msgstr "بحث"
+
+msgid "Blogs"
+msgstr "مدونات"
+
+
+msgid "Property offers"
+msgstr "عروض العقارات"
+
+
+msgid "International Calling Available"
+msgstr "المكالمات الدولية متاحة"
+
+msgid "beds & baths"
+msgstr "غرف النوم والحمامات"
+
+msgid "Register Interest"
+msgstr "سجّل اهتمامك"

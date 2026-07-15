@@ -1,0 +1,1930 @@
+{% extends "global/base.html" %}
+{% load humanize %}
+{% load i18n %}
+{% load custom_filters %}
+{% load static %}
+
+{% block title %}
+  {{ seo.meta_title|default:"Invest in Georgia from Dubai | Premium Properties & High ROI | Business Bay Office" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo.meta_description|default:"UAE-based real estate advisory for Georgia investments. Founding member Georgian Business Council. Tbilisi, Batumi & resort properties. Office in Business Bay, Dubai." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo.meta_keywords|default:"invest in georgia from dubai, georgia property investment uae, buy property tbilisi, batumi apartments, georgia real estate dubai, gcc investors georgia" }}
+{% endblock %}
+
+{% block extra_meta %}
+<meta property="og:title" content="Invest in Georgia from Dubai | Premium Properties & High ROI">
+<meta property="og:description" content="Founding member Georgian Business Council. Curated Tbilisi, Batumi & resort investments. Dubai office in Business Bay.">
+<meta property="og:url" content="https://investingeorgia.ae/en/">
+<meta property="og:type" content="website">
+
+<script type="application/ld+json">
+{
+  "@context": "https://schema.org",
+  "@type": "RealEstateAgent",
+  "name": "Invest in Georgia LLC",
+  "description": "Dubai-based real estate advisory for Georgia properties. Founding member Georgian Business Council.",
+  "address": {
+    "@type": "PostalAddress",
+    "streetAddress": "Court Tower, Office 804 & Showroom G01",
+    "addressLocality": "Business Bay",
+    "addressRegion": "Dubai",
+    "addressCountry": "AE"
+  },
+  "telephone": "+97145477804",
+  "email": "info@investingeorgia.ae",
+  "url": "https://investingeorgia.ae",
+  "memberOf": {
+    "@type": "Organization",
+    "name": "Georgian Business Council, Dubai Chamber of Commerce"
+  }
+}
+</script>
+
+{% endblock %}
+
+
+
+{% block content %}
+<style>
+    .video-container {
+          padding-top: 200px;
+        margin-left: auto;
+        margin-right: auto;
+          display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+
+    .video-player {
+        width: 100%;
+        object-fit: contain;
+    }
+
+    .overlay {
+        position: absolute;
+        top: 0;
+        left: 0;
+        right: 0;
+        bottom: 0;
+        background: linear-gradient(
+            to bottom,
+            rgba(0,0,0,0.3) 0%,
+            rgba(0,0,0,0.1) 50%,
+            rgba(0,0,0,0.7) 100%
+        );
+        pointer-events: none;
+    }
+
+    .city-info {
+        position: absolute;
+          top: 30%;
+        left: 15%;
+        z-index: 10;
+    }
+
+    .city-name {
+        font-size: 3.5rem;
+        font-weight: 300;
+        margin-bottom: 10px;
+        text-shadow: 2px 2px 4px rgba(0,0,0,0.5);
+    }
+
+    .controls {
+        position: absolute;
+        top: 30%;
+        right: 15%;
+        z-index: 10;
+    }
+
+    .play-pause-btn {
+        background: rgba(255,255,255,0.2);
+        border: none;
+        color: white;
+        width: 50px;
+        height: 50px;
+        border-radius: 50%;
+        cursor: pointer;
+        font-size: 1.2rem;
+        backdrop-filter: blur(10px);
+        transition: all 0.3s ease;
+    }
+
+    .play-pause-btn:hover {
+        background: rgba(255,255,255,0.3);
+        transform: scale(1.1);
+    }
+.sp-progress-bar {
+    position: absolute;
+    bottom: 150px;
+    left: 50%;
+    transform: translateX(-50%);
+    display: flex;
+    gap: 8px;
+    z-index: 10;
+    align-items: center;
+    justify-content: center;
+}
+
+.sp-progress-dot {
+    width: 60px;
+    height: 4px;
+    background: rgba(255, 255, 255, 0.3);
+    border-radius: 2px;
+    overflow: hidden;
+    position: relative;
+    cursor: pointer;
+}
+
+.sp-progress-dot:focus {
+    outline: none; /* removes blue focus outline */
+}
+
+.sp-progress-dot .filler {
+    height: 100%;
+    width: 0%;
+    background: white;
+    transition: width 0.2s linear;
+}
+
+
+
+    @media (max-width: 768px) {
+        .city-name {
+            font-size: 2rem;
+        }
+        
+        .city-info, .controls {
+            top: 20px;
+            left: 20px;
+            right: 20px;
+        }
+    }
+    .fade{
+        display: none;
+    }
+    @media (max-width: 768px) {
+       
+        .overview-block.reverse-order {
+            display: flex;
+            flex-direction: column-reverse; /* Reverse the column order */
+        }
+    
+        .overview-block.reverse-order.col-md-6.section-header {
+            padding-left: 0 !important;
+        }
+
+        .overview-block .col-md-6 {
+            width: 100%;
+        }
+
+        .mobile-pd-remove{
+            padding-top: 0 !important;
+        }
+        #BrowseListings{
+            top:20px
+        }
+
+        
+    }
+    @media (min-width:769px){ 
+       
+       #BrowseListings{
+            top:20px
+        }
+    
+    }
+
+    @media (max-width: 490px) {
+               .form-container-abso {
+
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 999;
+  max-height: 250px;
+  overflow-y: auto;
+}
+
+.estate_meta{
+    margin-bottom:49px;
+}
+        .video-container {
+        padding-left: unset;
+        padding-right: unset;
+          display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+        width: 100%;
+        height: 100%;
+    }
+        #BrowseListings{
+            top:0px;
+        }
+
+        .filter_tab_area .nav-tabs{
+            display:flex;
+            width:100%;
+            flex-wrap:unset;
+        }
+    
+    }
+    
+    #BrowseListings{
+        position:relative!important;
+      
+    }
+    .btn-switch{
+        color: #ec1c24;
+        border: 1px solid #ec1c24;
+    }
+
+    .search-container {
+        max-width: 940px;
+        margin: 0 auto;
+        padding: 30px;
+        backdrop-filter: blur(14px);
+        -webkit-backdrop-filter: blur(14px);
+        border-radius: 50px;
+    }
+
+    /* Search Bar */
+    .search-bar {
+      zoom: 1.16;
+      background: white;
+      border-radius: 12px;
+      width: 94%;
+      display: flex;
+      align-items: center;
+      gap: 12px;
+      box-shadow: 0 8px 24px rgba(0, 0, 0, 0.15);
+    }
+    .search-icon {
+        margin-left: 10px;
+      width: 20px;
+      height: 20px;
+      color: #999;
+      flex-shrink: 0;
+    }
+
+    .search-input {
+      flex: 1;
+      border: none;
+      outline: none;
+      font-size: 15px;
+      color: #333;
+      min-width: 0;
+    }
+
+    .search-input::placeholder {
+      color: #999;
+    }
+
+    .divider {
+      width: 1px;
+      height: 32px;
+      background: #e0e0e0;
+      flex-shrink: 0;
+    }
+
+    .dropdown-btn {
+      padding: 8px 16px;
+      border: none;
+      background: transparent;
+      font-size: 15px;
+      color: #333;
+      cursor: pointer;
+      display: flex;
+      align-items: center;
+      gap: 8px;
+      white-space: nowrap;
+      transition: color 0.2s ease;
+    }
+
+    .dropdown-btn:hover {
+      color: #000;
+    }
+
+    .dropdown-icon {
+      width: 12px;
+      height: 12px;
+      border-left: 2px solid currentColor;
+      border-bottom: 2px solid currentColor;
+      transform: rotate(-45deg);
+      margin-top: -4px;
+    }
+
+     .search-button {
+             border-top-right-radius: 25px;
+    border-bottom-right-radius: 25px;
+      padding: 13px 32px;
+      background: #ec1c24;
+      color: white;
+      border: none;
+      font-size: 15px;
+      font-weight: 600;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+    .pplr_btn{
+    zoom:0.5;
+      padding: 12px 32px;
+      background: #ec1c24;
+      color: white;
+      border: none;
+      border-radius: 8px;
+      cursor: pointer;
+      transition: background 0.2s ease;
+      flex-shrink: 0;
+    }
+
+   .pplr_btn:hover, .search-button:hover {
+      background: #c53030;
+      color: white;
+    }
+ .search-container-mobile {
+      display: none;
+ }
+ .search-panel{
+    display: none;
+ }
+    /* Responsive Design */
+    @media (max-width: 768px) { 
+             .search-panel{
+    display: block;
+ }
+           .search-container-mobile {
+              display: block;
+            position: absolute;
+            bottom: 120px;
+            width: 100%;
+            max-width: 375px;
+            padding: 20px;
+        }
+
+        .tabs-container {
+            background: rgba(255, 255, 255, 0.95);
+            border-radius: 25px;
+            padding: 6px;
+            display: flex;
+            gap: 4px;
+            margin-bottom: 12px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+  .search-panel {
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: white;
+            z-index: 1000;
+            transform: translateY(100%);
+            transition: transform 0.3s ease-in-out;
+            overflow-y: auto;
+        }
+
+        .search-panel.active {
+            transform: translateY(0);
+        }
+
+        .panel-header {
+            display: flex;
+            align-items: center;
+            padding: 16px;
+            gap: 12px;
+            border-bottom: 1px solid #e0e0e0;
+            position: sticky;
+            top: 0;
+            background: white;
+            z-index: 10;
+        }
+
+        .back-btn {
+            width: 40px;
+            height: 40px;
+            border: none;
+            background: transparent;
+            cursor: pointer;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            border-radius: 50%;
+            transition: background 0.2s;
+            flex-shrink: 0;
+        }
+
+        .back-btn:hover {
+            background: #f5f5f5;
+        }
+
+        .back-icon {
+            width: 24px;
+            height: 24px;
+            stroke: #333;
+            stroke-width: 2;
+            fill: none;
+        }
+
+        .panel-search-box {
+            flex: 1;
+            background: #f5f5f5;
+            border-radius: 25px;
+            padding: 10px 20px;
+            border: 2px solid #6c63ff;
+        }
+
+        .panel-search-input {
+            width: 100%;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #333;
+            background: transparent;
+        }
+
+        .panel-search-input::placeholder {
+            color: #999;
+        }
+
+        .panel-content {
+            padding: 20px;
+        }
+
+        .section-title {
+            font-size: 16px;
+            font-weight: 600;
+             color: #ec1c24;
+            margin-bottom: 16px;
+        }
+
+        .location-list {
+            list-style: none;
+            padding: 0;
+            margin: 0;
+        }
+
+        .location-item {
+            display: flex;
+            align-items: flex-start;
+            gap: 12px;
+            padding: 16px 0;
+            border-bottom: 1px solid #f0f0f0;
+            cursor: pointer;
+            transition: background 0.2s;
+        }
+
+        .location-item:hover {
+            background: #f9f9f9;
+            margin: 0 -20px;
+            padding-left: 20px;
+            padding-right: 20px;
+        }
+
+        .location-icon {
+            width: 20px;
+            height: 20px;
+            stroke: #999;
+            stroke-width: 2;
+            fill: none;
+            flex-shrink: 0;
+            margin-top: 2px;
+        }
+
+        .location-info {
+            flex: 1;
+        }
+
+        .location-name {
+            font-size: 15px;
+            font-weight: 500;
+            color: #333;
+            margin-bottom: 4px;
+        }
+
+        .location-address {
+            font-size: 13px;
+            color: #666;
+        }
+        .tab-btn {
+            flex: 1;
+            padding: 10px 16px;
+            border: none;
+            background: transparent;
+            border-radius: 20px;
+            font-size: 15px;
+            font-weight: 500;
+            color: #666;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            white-space: nowrap;
+        }
+
+        .tab-btn.active {
+            background: white;
+            color: #333;
+            box-shadow: 0 2px 8px rgba(0,0,0,0.1);
+        }
+
+        .tab-btn:hover:not(.active) {
+            color: #333;
+        }
+
+        .search-box {
+            background: white;
+            border-radius: 25px;
+            padding: 8px 8px 8px 20px;
+            display: flex;
+            align-items: center;
+            gap: 10px;
+            box-shadow: 0 4px 12px rgba(0,0,0,0.15);
+        }
+
+        .search-input {
+            flex: 1;
+            border: none;
+            outline: none;
+            font-size: 15px;
+            color: #333;
+            background: transparent;
+        }
+
+        .search-input::placeholder {
+            color: #999;
+        }
+
+        .search-btn {
+            width: 44px;
+            height: 44px;
+            border-radius: 50%;
+            background: #ec1c24;
+            border: none;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            flex-shrink: 0;
+        }
+
+        .search-btn:hover {
+            background: #d62839;
+            transform: scale(1.05);
+        }
+
+        .search-btn:active {
+            transform: scale(0.95);
+        }
+
+        .search-btn i {
+            color: white;
+            font-size: 20px;
+        }
+
+         .desktop-search-container{
+            display: none;
+         }
+        
+      .search-bar {
+        flex-wrap: wrap;
+      }
+
+      .search-input {
+        flex-basis: 100%;
+      }
+
+      .dropdown-btn {
+        font-size: 14px;
+        padding: 6px 12px;
+      }
+
+      .search-button {
+        flex: 1;
+        width: 100%;
+      }
+
+
+      .video-container {
+         padding-left: 0px; 
+         padding-right: 0px;
+         padding-top: 0px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+        position: relative;
+           height: 40vh;
+    overflow: hidden
+    }
+        .video-player {
+           height: 100%;
+    object-fit: cover
+    }
+    }
+
+.suggestions-list {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+  background: #fff;
+  border: 1px solid #ddd;
+  border-top: none;
+  z-index: 999;
+  max-height: 250px;
+  overflow-y: auto;
+  display: none;
+}
+
+.suggestions-list li {
+  padding: 8px 12px;
+  cursor: pointer;
+  zoom:0.75;
+}
+
+.suggestions-list li:hover {
+  background: #f2f2f2;
+}
+
+.form-container-abso{
+    position: absolute;
+    left: 0;
+    right: 0;
+    bottom: 115px;
+    z-index: 10;
+}
+.search-container > .nav-tabs > .nav-tab
+{
+    padding: 12px 32px;
+    background: #ec1c24;
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 15px;
+    font-weight: 600;
+    cursor: pointer;
+    transition: background 0.2s ease;
+    flex-shrink: 0 ease;
+    text-align: center;
+    zoom:0.7;
+}
+    .main_slide_area .main_slide_block .slide_block_content{
+            height:380px;
+        }
+
+
+
+        @media (max-width: 375px) {
+            .search-container {
+                padding: 15px;
+            }
+            
+            .tab-btn {
+                font-size: 14px;
+                padding: 8px 12px;
+            }
+        }
+.option-item {
+  cursor: pointer;
+  border-radius: 8px;
+  padding: 8px 12px;
+}
+
+.option-item input {
+  display: none;
+}
+
+.option-item:hover {
+  background: rgba(0,0,0,0.05);
+}
+
+.option-item input:checked + span,
+.option-item:has(input:checked) {
+  background: rgba(0,0,0,0.08);
+  font-weight: 600;
+}
+
+.options-grid {
+  display: grid;
+  grid-template-columns: repeat(5, 1fr);
+  gap: 8px;
+  margin-top: 8px;
+}
+
+/* Hide default checkbox */
+.options-grid .form-check-input {
+  display: none;
+}
+
+/* Button look */
+.options-grid .form-check-label {
+  border: 1px solid #d0d0d0;
+  border-radius: 8px;
+  padding: 10px 10px;
+  text-align: center;
+  font-size: 14px;
+  cursor: pointer;
+  background: #fff;
+  transition: all 0.2s ease;
+  user-select: none;
+}
+
+/* Hover */
+.options-grid .form-check-label:hover {
+  background: #f2f2f2;
+}
+
+/* Checked = active */
+.options-grid .form-check-input:checked + .form-check-label {
+  background: #ec1c24;
+  color: #fff;
+  border-color: #ec1c24;
+}
+
+/* Dropdown polish */
+.dropdown-menu {
+    z-index: 50px;
+  border-radius: 12px;
+  box-shadow: 0 10px 30px rgba(0,0,0,.15);
+}
+
+
+  </style>
+
+
+<section>
+    <div class="container">
+        <div class="video-container">
+            <video id="mainVideo" class="video-player" autoplay muted playsinline preload="none" poster="{% static 'images/bg/preview.jpg' %}">
+                <source src="" type="video/mp4">
+            </video>
+            <div class="sp-progress-bar">
+                <div class="sp-progress-dot" data-city="0"><div class="filler"></div></div>
+                <div class="sp-progress-dot" data-city="1"><div class="filler"></div></div>
+                <div class="sp-progress-dot" data-city="2"><div class="filler"></div></div>
+                <div class="sp-progress-dot" data-city="3"><div class="filler"></div></div>
+            
+            </div>
+        </div>
+    </div>
+</section>
+
+<section class="main_slide_area slide_real_estate "  style="position: relative; place-items: center; margin-top: 100px;">
+        <div class="main_slide_block container desktop-search-container" style="position: relative;">
+                 <form class="form-container-abso" method="GET" action="{% url 'property_search' %}">
+                  <div class="search-container">
+                    <div class="search-bar">
+                          <div style="position: relative;display: flex; align-items: anchor-center;">
+                    <svg class="search-icon" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
+                    </svg>
+                  
+                    <input 
+                        type="text" 
+                         name="q" 
+                        class="search-input" 
+                        placeholder="City, community or building"
+                        id="searchBox">  
+                       <ul class="suggestions-list" id="suggestions"></ul> 
+                      </div>  
+                        <div class="divider"></div>
+                        <div style="width: 23%;" class="col-auto dropdown">
+                            <button
+                                class="btn dropdown-toggle filter-btn"
+                                type="button"
+                                data-bs-toggle="dropdown"
+                                id="propertyTypeBtn"
+                            >
+                                {% if request.GET.category_selector %}
+                                {{ request.GET.category_selector|title }}
+                                {% else %}
+                                {% trans 'Property Type' %}
+                                {% endif %}
+                            </button>
+
+                           <ul class="dropdown-menu p-2" style="max-height:200px; overflow:auto;">
+                                {% for property_type in property_types %}
+                                {% if property_type %}
+                                    <li>
+                                    <label
+                                        class="dropdown-item option-item"
+                                        data-label="{{ property_type.property_type|title }}"
+                                    >
+                                        <input
+                                        type="radio"
+                                        name="category_selector"
+                                        value="{{ property_type.property_type }}"
+                                        {% if request.GET.category_selector == property_type.property_type %}checked{% endif %}
+                                        >
+                                        {{ property_type.property_type|title }}
+                                    </label>
+                                    </li>
+                                {% endif %}
+                                {% endfor %}
+                            </ul>
+                                                        </div>
+
+                    <div class="divider"></div>
+                   <div style="width: 23%;" class="col-auto dropdown">
+  <button class="btn dropdown-toggle filter-btn"  id="bedsBathsBtn" data-bs-auto-close="outside"  type="button" data-bs-toggle="dropdown">
+      {% trans 'Beds & Baths' %}
+   
+  </button>
+
+  <div class="dropdown-menu p-3" style="min-width:320px;">
+
+    <!-- Beds -->
+    <div class="mb-3">
+      <strong>{% trans 'Bedrooms' %}</strong>
+      <div class="options-grid">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bed1" name="beds" value="1"
+          {% if request.GET.beds == '1' %}checked{% endif %}>
+          <label class="form-check-label" for="bed1">1</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bed2" name="beds" value="2"
+          {% if request.GET.beds == '2' %}checked{% endif %}>
+          <label class="form-check-label" for="bed2">2</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bed3" name="beds" value="3"
+          {% if request.GET.beds == '3' %}checked{% endif %}>
+          <label class="form-check-label" for="bed3">3</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bed4" name="beds" value="4"
+          {% if request.GET.beds == '4' %}checked{% endif %}>
+          <label class="form-check-label" for="bed4">4</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bed5" name="beds" value="5"
+          {% if request.GET.beds == '5' %}checked{% endif %}>
+          <label class="form-check-label" for="bed5">5+</label>
+        </div>
+
+      </div>
+    </div>
+
+    <hr class="my-2">
+
+    <!-- Baths -->
+    <div>
+      <strong>{% trans "Bathrooms" %}</strong>
+      <div class="options-grid">
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bath1" name="baths" value="1"
+          {% if request.GET.baths == '1' %}checked{% endif %}>
+          <label class="form-check-label" for="bath1">1</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bath2" name="baths" value="2"
+          {% if request.GET.baths == '2' %}checked{% endif %}>
+          <label class="form-check-label" for="bath2">2</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bath3" name="baths" value="3"
+          {% if request.GET.baths == '3' %}checked{% endif %}>
+          <label class="form-check-label" for="bath3">3</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bath4" name="baths" value="4"
+          {% if request.GET.baths == '4' %}checked{% endif %}>
+          <label class="form-check-label" for="bath4">4</label>
+        </div>
+
+        <div class="form-check">
+          <input class="form-check-input" type="checkbox" id="bath5" name="baths" value="5"
+          {% if request.GET.baths == '5' %}checked{% endif %}>
+          <label class="form-check-label" for="bath5">5+</label>
+        </div>
+
+      </div>
+    </div>
+
+  </div>
+</div>
+
+                    <button class="search-button"> {% trans "Search" %} </button>
+                    </div>
+                </div></form>
+        </div>
+
+
+
+                <div class="search-container-mobile">
+                        {% comment %} <!-- Tabs -->
+                        <div class="tabs-container">
+                            <button class="tab-btn active" onclick="setActiveTab(this)">Rent</button>
+                            <button class="tab-btn" onclick="setActiveTab(this)">Buy</button>
+                            <button class="tab-btn" onclick="setActiveTab(this)">New projects</button>
+                        </div> {% endcomment %}
+
+                        <form  method="GET" action="{% url 'property_search' %}">
+                        <div class="search-box ">
+                                    <input 
+                                type="text" 
+                                name="q" 
+                                class="search-input" 
+                                placeholder="City, community or building"
+                                id="mainSearchInput">  
+                                <ul class="suggestions-list" id="suggestions"></ul> 
+                                    <button class="search-btn" onclick="performSearch()">
+                                    <svg width="64px" height="64px" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg" transform="rotate(90)"><g id="SVGRepo_bgCarrier" stroke-width="0"></g><g id="SVGRepo_tracerCarrier" stroke-linecap="round" stroke-linejoin="round"></g><g id="SVGRepo_iconCarrier"><path d="M10 4a6 6 0 1 0 0 12 6 6 0 0 0 0-12zm-8 6a8 8 0 1 1 14.32 4.906l5.387 5.387a1 1 0 0 1-1.414 1.414l-5.387-5.387A8 8 0 0 1 2 10z" fill="#ffffff"></path></g></svg>
+                                    </button>
+
+                        </div>
+                        </form>
+                         <div class="search-panel" id="searchPanel">
+        <div class="panel-header">
+            <button class="back-btn" id="backBtn" aria-label="Go back">
+                <svg class="back-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M19 12H5M12 19l-7-7 7-7"/>
+                </svg>
+            </button>
+            <input type="text" class="panel-search-box panel-search-input" placeholder="City, community or building" id="panelSearchInput">
+        </div>
+
+        <div class="panel-content">
+            <h2 class="section-title">{% trans "Popular locations" %} </h2>
+            <ul class="location-list" id="locationList">
+                <li class="location-item">
+                    <svg class="location-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                        <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                        <circle cx="12" cy="10" r="3"/>
+                    </svg>
+                    <div class="location-info">
+                        <div class="location-name">Shekvetil</div>
+                        <div class="location-address">Shekvetil</div>
+                    </div>
+                </li>
+         
+            </ul>
+        </div>
+    </div>
+    </div>
+ 
+
+                </section>
+       <section class="featured_property_section rel-pos">
+  <div class="container">
+    <div class="col-md-12">
+      <div class="section_header center_section_header">
+        <h4 class="title_script">{{ inevestment_section|translate_property:"title" }}</h4>
+        <h2 class="section_title">{{ inevestment_section|translate_property:"subtitle"}}</h2>
+        <div class="section_lead">{{ inevestment_section|translate_property:"paragraph" }}</div>
+      </div>
+    </div>
+
+    <div class="row mt-5 text-center">
+      {% for feature in inevestment_section.features.all %}
+        <div class="col-md-4 col-sm-12 mb-5">
+          {% if feature.icon %}
+         <i class="{{ feature.icon }}" style="font-size: 48px; color: #ec1c24;"></i>
+        </br>
+          {% endif %}
+          <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">
+            {{ feature|translate_property:"title" }}
+          </h3>
+          <p style="font-size: 14.5px; color: #666; line-height: 1.75;">
+                {{ feature|translate_property:"description" }}
+          </p>
+        </div>
+      {% endfor %}
+    </div>
+  </div>
+</section>
+
+            <section>
+
+                 <div class="slide_block_content pd-t-50">
+                    <div class="slide_block_text">
+                    
+                        <div class="container">
+                        <form method="GET" >
+                                <div class="row justify-content-center">
+                                    <div class="col-lg-8">
+                                        <form id="contact_form" class="default_form contact_form" name="contactform">
+                                            <div class="row">
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="full_name" id="name" placeholder="{% trans 'Name' %}" class="form-control require" type="text">
+                                                    </div><!--/.form-group-->   
+                                                </div>
+                                                <div class="col-md-6 col-sm-6">
+                                                    <div class="form-group">
+                                                        <input name="email" id="email" placeholder="{% trans 'Email' %}" class="form-control require" type="email" data-valid="email" data-error="Email should be valid.">
+                                                    </div><!--/.form-group-->  
+                                                </div>
+                                                <div class="col-lg-12">
+                                                    <div class="form-group">
+                                                        <input type="tel" name="phone" pattern="[0-9]{10}" id='con_phone_number' class="form-control require" placeholder="{% trans 'Phone Number' %}">
+                                                    </div><!--/.form-group-->  
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form-group">
+                                                        <textarea name="message" id="message" class="form-control" placeholder="{% trans 'Message' %}"></textarea>
+                                                    </div><!--/.form-group-->
+                                                </div>
+                                                <div class="col-md-12">
+                                                    <div class="form_group_btn text-center">
+                                                        <div class="response"></div>
+                                                        <input type="hidden" name="form_type" value="contact">
+                                                        <button type="button" class="btn btn-default btn-red submitForm">  {% trans 'Consultation Booking' %}</button>
+                                                    </div><!--/.form-group-btn-->
+                                                </div>
+                                            </div>   
+                                        </form>
+                                    </div>
+                                </div>
+                            </form>
+                    </div></div>
+                   
+                    
+                    </div>
+                    
+            </div>
+        </div>
+    </div>
+</section>
+
+
+
+
+    <!--~~./ end newsletter~~-->
+     
+ <section class="featured_property_section rel-pos pd-t-100 ">
+        <div class="container">
+        <div class="col-md-100">
+          <!-- ~~~~~ Start Section Header ~~~~~ -->
+          <div class="section_header center_section_header">
+            <h4 class="title_script">    {{featured_section|translate_property:"title"}}</h4>
+            <h2 class="section_title">
+                  {% trans "Your property deserves the best possible price" %}
+
+                    </h2>
+            <div class="section_lead">
+              <p class="text-base md:text-lg text-gray-600 leading-relaxed max-w-4xl mx-auto px-4">
+                {{featured_section|translate_property:"paragraph"}}
+              </p>
+              {% comment %} <p class="text-sm md:text-base text-gray-600 leading-relaxed">This is Photoshop's version of Lorem Ipsum. Proin gravida n vel velit auctor aliquet. Aenean sollicitudin, lorem quis bibendum tor. This is Photoshop's version of Lorem Ipsum.</p> {% endcomment %}
+            </div>
+          </div>
+          <!-- ~./ end section header ~ -->
+        </div>
+    
+            <div class="row featured_property_list featured_isotope">
+                <!--~~~~~ Start Card Popular Property ~~~~~--> 
+
+                {% for type, properties in properties_by_type.items %}
+                    {% for property in  properties %}
+                        {% if property.featured %}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div class="col-lg-4 grid {{ type }}">
+    <div class="card card_popular_property">
+
+        <!-- IMAGE + BADGES -->
+        <div class="card_image">
+            {% if property.image %}
+                <img src="{{ property.image.url }}" alt="{{ property.image_alt }}" loading="lazy">
+            {% else %}
+                <img src="{% static 'images/georgiaestatelogo.png' %}" width="auto" height="auto"  alt="Georgia Real Estate Logo" class="site-logo">
+            {% endif %}
+
+           
+
+            <div class="property_name">
+                <span>{{ property.type }}</span>
+            </div>
+        </div>
+
+        <!-- BODY -->
+        <div class="card_body">
+            <h2 class="card_title">
+                <a href="{% url 'property_detail' property.slug property.status %}">
+                    {{ property|translate_property:"title" }}
+                </a>
+            </h2>
+
+            <div class="card_location">
+                <span>{{ property|translate_property:"city" }}</span>
+                {% if property.location %}
+                    <br>
+                    <span>{{ property|translate_property:"location"}}</span>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- META (OUTSIDE BODY — MATCH TEMPLATE) -->
+        <div class="property_meta">
+            {% if property.bedrooms %}
+                <div class="meta_bad_room">
+                    <i class="lp lp-bed"></i> {{ property.bedrooms }}
+                </div>
+            {% endif %}
+
+            {% if property.bathroom %}
+                <div class="meta_bath_room">
+                    <i class="lp lp-bathroom"></i> {{ property.bathroom }}
+                </div>
+            {% endif %}
+
+            {% if property.size %}
+                <div class="meta_property_size">
+                    <i class="lp lp-size"></i> {{ property.size|floatformat:1|intcomma }} SqFt
+                </div>
+            {% endif %}
+        </div>
+
+        <!-- FOOTER -->
+        <div class="card_footer">
+            <div data-price-aed="{{ property.formatted_price }}" class="price">
+                <h3>{{ property.formatted_price }}</h3>
+            </div>
+
+            <a href="{% url 'property_detail' property.slug property.status %}"
+               class="btn btn-default btn-small">
+                {% trans "Details" %}
+            </a>
+        </div>
+
+    </div>
+</div>
+
+                        {% endif %}
+                        {% endfor %}
+                {% endfor %}
+            </div>
+        </div>
+</section>
+
+    
+    <section class="site_info newsletter wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+        <div class="container">
+            <div class="row info_items">
+                <!--~~~~~ Start Info Item ~~~~~--> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="info_item">
+                            <h2 class="info_value">25,075</h2>
+                            <p class="text-sm md:text-base text-gray-600 leading-relaxed">{% trans 'Total Units' %}</p>
+                        </div>
+                    </br>
+                </div><!--~./ end info item ~-->
+                <!--~~~~~ Start Info Item ~~~~~--> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="info_item">
+                        <h2 class="info_value">138</h2>
+                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{% trans 'Partners' %}</p>
+                     
+                    </div>
+                </br>
+                </div><!--~./ end info item ~-->
+                <!--~~~~~ Start Info Item ~~~~~--> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                        <div class="info_item">
+                            <h2 class="info_value">$ 52.32 BN </h2>
+                            <p class="text-sm md:text-base text-gray-600 leading-relaxed">{% trans 'Projected' %}</p>
+                        </div>
+                    </br>
+                </div><!--~./ end info item ~-->
+                <!--~~~~~ Start Info Item ~~~~~--> 
+                <div class="col-lg-3 col-md-6 col-sm-6 col-12">
+                    <div class="info_item">
+                        <h2 class="info_value">10000+</h2>
+                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{% trans 'Clients' %}</p>
+                    </div>
+                </br>
+                </div><!--~./ end info item ~-->
+            </div>
+        </div>
+    </section><!-- /.site_info -->
+    
+    {% comment %} Agents {% endcomment %}
+    <section class="team_members pd-t-100 pd-b-100 wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+        <div class="container">
+          <div class="row">
+            <div class="col-lg-12">
+              <!-- ~~~~~ Start Section Header ~~~~~ -->
+              <div class="section_header section_header_two left_section_header short with-button">
+                <h2 class="section_title"  style="margin-left: 10px">{% trans 'Our Best Agents' %}</h2>
+                <div class="btn_links">
+                  <button class="btn btn-prev btn-large"><i class="lp lp-arrow-left"></i></button>
+                  <button class="btn btn-next btn-large"><i class="lp lp-arrow-right"></i></button>
+                </div>
+                <!-- /.btn-links -->
+              </div>
+              <div class="owl-carousel team_members_carousel" data-owl-items="3" data-owl-margin="30" data-owl-extranav="1" data-owl-loop="1">
+                {% for agent in agents %}
+                  <div class="card card_team_member">
+                    <div class="card_image" style="width: 50%;align-self: center;">
+                      {% if agent.picture %}
+                        <img src="{{ agent.picture.url }}" loading="lazy" />
+                      {% else %}
+                        <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                      {% endif %}
+                        <div class="social_links">
+                            {% comment %} <a href="#" class="fab fa-facebook-f"></a>
+                            <a href="#" class="fab fa-twitter"></a>
+                            <a href="#" class="fab fa-linkedin-in"></a>
+                            <a href="#" class="fab fa-google-plus-g"></a> {% endcomment %}
+                        </div>
+                    </div>
+                    <div class="card_body">
+                      <h2 class="card_title">{{ agent|translate_property:"name"  }}</h2>
+                      <p class="text-sm md:text-base text-gray-600 leading-relaxed">({{ agent|translate_property:"position"  }})</p>
+                    </div>
+                  </div>
+                {% endfor %}
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+    
+    {% if blog_posts %}
+        <section class="recent_blog_posts bg_gray pd-t-100 pd-b-100  wow fadeIn" data-wow-duration="1000ms" data-wow-delay="">
+            <div class="bg_image_overlay"></div>
+                <div class="container">
+                <!--~~~~~ Start Section Header ~~~~~--> 
+                <div class="section_header section_header_two">
+                    <h2 class="section_title">{{marker_insight.title}}</h2>
+                    <div class="section_lead">
+                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{marker_insight.paragraph}}</p>
+                    </div>
+                </div><!--~./ end section header ~-->
+                    <div class="row recent_blog card">
+                    {% for post in blog_posts %}
+                        <!-- Start Single Post -->
+                        <div class="col-lg-6">
+                            <article class="post">
+                                <div class="post-thumbnail">
+                                    <a href="{% url 'blog_detail' post.slug %}">
+                                        {% if post.image %}
+                                        <img src="{{  post.image.url }}"alt="{{ post.title }}" loading="lazy" />
+                                        {% else %}
+                                            <img src="{% static 'images/georgiaestatelogo.png' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                                        {% endif %}
+                                    </a>
+                                </div>
+                                <div class="post-info">
+                                    <div class="entry-meta">
+                                        <span class="date"><i class="fa fa-calendar-o"></i> {{ post.created_at|date:"F j, Y" }}</span>
+                                    </div>
+                                    <div class="entry-content">
+                                        <h2 class="entry-title">
+                                            <a href="{% url 'blog_detail'  post.slug %}">{{ post.title }}</a>
+                                        </h2>
+                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ post.content|striptags|slice:":50" }}...</p>
+                                        <a class="link-more" href="{% url 'blog_detail'  post.slug %}">{% trans 'Read more' %}</a>
+                                    </div>
+                                </div>
+                            </article>
+                        </div><!-- ./ end single post -->
+                    {% endfor %}
+                </div>
+                
+                <div class="btn_links text-center">
+                    <a href="{% url 'blogs' %}" class="btn btn-red btn-default">{% trans 'View All Posts' %}</a>
+                </div>
+                
+            </div>
+        </section>
+        
+   {% include "parts/subscribe.html" %}
+    {% endif %}
+
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            const saleTypeLinks = document.querySelectorAll(".nav-link[data-sale-type]");
+            const hiddenInput = document.getElementById("chosen_sale_type_input");
+            saleTypeLinks.forEach(link => {
+                link.addEventListener("click", function () {
+                    // Update the hidden input with the selected sale type
+                    hiddenInput.value = this.getAttribute("data-sale-type");
+        
+                    // Remove 'active' class from all tabs and add to the clicked one
+                    saleTypeLinks.forEach(el => el.classList.remove("active", "show"));
+                    this.classList.add("active", "show");
+                });
+            });
+
+            $(".submitForm").click(function () {
+                var full_name = $("#name").val();
+                var email = $("#email").val();
+                var phone = $("#con_phone_number").val();
+                var message = $("#message").val();
+            
+                // Optional property-related fields
+                var property_name = $("#property_title").val();
+                
+                // Get CSRF token
+                var csrf_token = $("input[name='csrfmiddlewaretoken']").val();
+            
+                // Perform basic validation
+                if (!full_name || !email || !phone || !message) {
+                    toastr.error("All fields are required!");
+                    return;
+                }
+            
+                // Optional: disable button during request
+                $(".submitForm").prop("disabled", true).text("Sending...");
+            
+                $.ajax({
+                    url: "{% url 'consultation_booking' %}",
+                    type: "POST",
+                    data: {
+                        full_name: full_name,
+                        email: email,
+                        phone: phone,
+                        message: message,
+                        csrfmiddlewaretoken: csrf_token
+                    },
+                    success: function (response) {
+                        if (response.status === "success") {
+                            toastr.success(response.message);
+                            // Clear the form
+                            $("#name").val('');
+                            $("#email").val('');
+                            $("#con_phone_number").val('');
+                            $("#message").val('');
+                        } else {
+                            toastr.info(response.message);
+                        }
+                    },
+                    error: function () {
+                        toastr.error("There was an error. Please try again.");
+                    },
+                    complete: function () {
+                        // Re-enable button
+                        $(".submitForm").prop("disabled", false).text("{{ _('Send Message') }}");
+                    }
+                });
+            });
+ // --- 1. Get references to the dropdown elements ---
+    const citySelect = document.getElementById('city_selector');
+    const subcitySelect = document.getElementById('subcity_selector');
+    const categorySelect = document.getElementById('category_selector');
+    const maxPriceSelect = document.getElementById('max_price_selector');
+            console
+    // Gracefully exit if any dropdown is not found on the page
+    if (!citySelect  || !categorySelect || !maxPriceSelect) {
+        //console.error("One or more filter elements are missing from the page.");
+        return;
+    }
+
+    // --- 2. Store the original, complete list of options from the HTML ---
+    // This is our "master list" that we will filter from.
+    var originalSubcityOptions= null
+    if (subcitySelect){
+        originalSubcityOptions= Array.from(subcitySelect.options);
+
+    }
+    const originalCategoryOptions = Array.from(categorySelect.options);
+
+    // --- 3. Initialize Tail Select on all dropdowns ---
+    const tsCity = tail.select(citySelect, { 
+        search: true, 
+        placeholder: 'City',
+        deselect: true 
+    });
+    var tsSubcity = null
+    if (subcitySelect){
+    tsSubcity = tail.select(subcitySelect, { 
+        search: true, 
+        placeholder: 'Sub City',
+        deselect: true 
+    });
+}
+    const tsCategory = tail.select(categorySelect, { 
+        search: true, 
+        placeholder: 'Property Type',
+        deselect: true 
+    });
+    const tsMaxPrice = tail.select(maxPriceSelect, {
+        placeholder: 'Max Price',
+        deselect: true
+    });
+
+    // --- 4. Define the functions that will update the dropdowns ---
+
+    /**
+     * Updates the Category dropdown based on the currently selected City and Sub-City.
+     */
+    function updateCategories() {
+        const selectedCityId = citySelect.value;
+        var selectedSubcityId = null
+        if (subcitySelect){
+            selectedSubcityId = subcitySelect.value;
+
+        }
+        // Clear the current options
+        categorySelect.innerHTML = '';
+
+        // Filter the master list and add back the matching options
+        originalCategoryOptions.forEach(option => {
+            const isPlaceholder = !option.value || option.value === '';
+            
+            if (isPlaceholder) {
+                // Always include placeholder
+                categorySelect.add(option.cloneNode(true));
+                return;
+            }
+
+            const optionCityId = option.dataset.cityId;
+            const optionSubcityId = option.dataset.subcityId;
+            // If neither city nor subcity is selected, show all categories
+            if (subcitySelect){
+                if (!selectedCityId && !selectedSubcityId) {
+                                categorySelect.add(option.cloneNode(true));
+                                return;
+                }
+            }else{
+            
+                  if (!selectedCityId) {
+                       categorySelect.add(option.cloneNode(true));
+                         return;
+                }
+            }
+           
+
+            let shouldShow = false;
+
+   
+
+            // If only city is selected (no subcity)
+            if (selectedCityId) {
+                if (optionCityId === selectedCityId) {
+                    shouldShow = true;
+                }
+            }
+
+            if (shouldShow) {
+                categorySelect.add(option.cloneNode(true));
+            }
+        });
+
+        // Preserve current selection if it still exists after filtering
+        const currentValue = categorySelect.querySelector(`option[value="${categorySelect.value}"]`);
+        if (!currentValue) {
+            categorySelect.value = "";
+        }
+        
+        // Refresh the Tail Select instance
+        if (tsCategory) {
+            tsCategory.reload();
+        }
+    }
+
+    // --- 5. Event Listeners ---
+    citySelect.addEventListener('change', function() {
+        console.log('City changed to:', this.value);
+            updateCategories() 
+     
+    });
+    // --- 6. Tail Select deselect event listeners ---
+    // Listen for when Tail Select triggers deselect events
+    if (tsCity) {
+        tsCity.on('change', function(item, state) {
+            // When city is deselected (value becomes empty)
+            if (state === 'unselect') {
+                tsCity.value = null
+                tsCity.reload();
+         
+                     updateCategories();
+                
+            }
+
+        });
+    }
+
+    if (tsSubcity) {
+        tsSubcity.on('change', function(item, state) {
+            // When subcity is deselected (value becomes empty)
+             if (state === 'unselect') {
+                console.log('Subcity deselected - updating categories');
+                tsSubcity.value = null
+                tsSubcity.reload();
+                updateCategories();
+                
+            }
+        });
+    }
+
+    // --- 7. Handle pre-selected values from server (if any) ---
+    function handlePreselectedValues() {
+        const cityValue = citySelect.value;
+        if (subcitySelect){
+             const subcityValue = subcitySelect.value;
+        }
+       
+        const categoryValue = categorySelect.value;
+
+        if (cityValue) {
+            // If city is pre-selected, update filters but preserve selections
+            if (subcitySelect){
+                const tempSubcity = subcityValue;
+                 updateSubcities();
+             }
+            const tempCategory = categoryValue;
+             
+           
+         
+            setTimeout(() => {
+         if (subcitySelect){
+
+                if (tempSubcity && subcitySelect.querySelector(`option[value="${tempSubcity}"]`)) {
+                    subcitySelect.value = tempSubcity;
+                    if (tsSubcity) tsSubcity.reload();
+                }
+                  }
+            // Restor
+                updateCategories();
+                
+                setTimeout(() => {
+                    if (tempCategory && categorySelect.querySelector(`option[value="${tempCategory}"]`)) {
+                        categorySelect.value = tempCategory;
+                        if (tsCategory) tsCategory.reload();
+                    }
+                }, 50);
+            }, 50);
+        }
+    }
+            setTimeout(() => {
+                handlePreselectedValues();
+            }, 100);
+                });
+                
+let currentCity = 0;
+let isPlaying = true;
+
+const properties = [
+    { video: "{% static 'images/bg/georgia.mp4' %}", poster: "{% static 'images/bg/georgia.jpg' %}" },
+    { video: "{% static 'images/bg/batoumi.mp4' %}", poster: "{% static 'images/bg/batoumi.jpg' %}" },
+    { video: "{% static 'images/bg/gudauri.mp4' %}", poster: "{% static 'images/bg/gudauri.jpg' %}" },
+    { video: "{% static 'images/bg/tbilisi.mp4' %}", poster: "{% static 'images/bg/tbilisi.jpg' %}" },
+];
+
+const video = document.getElementById('mainVideo');
+const progressDots = document.querySelectorAll('.sp-progress-dot');
+
+// Load video as blob
+function loadVideo(url) {
+    video.src = url;
+    video.load();
+}
+// Initialize
+async function init() {
+     updateDisplay(); // load first video
+    video.play().catch(err => console.warn("Initial play interrupted:", err));
+    video.addEventListener('ended', nextCity);
+
+    // Progress tracking
+    video.addEventListener('timeupdate', () => {
+        if (!video.duration) return;
+        const progress = (video.currentTime / video.duration) * 100;
+        const activeDot = progressDots[currentCity];
+        const filler = activeDot.querySelector('.filler');
+        filler.style.width = progress + '%';
+    });
+
+    // Dot click events
+    progressDots.forEach((dot, index) => {
+        dot.addEventListener('click', () => goToCity(index));
+    });
+}
+
+// Update display
+ function updateDisplay() {
+    const property = properties[currentCity];
+
+    // Set poster image for this city
+    video.poster = property.poster;
+
+    // Load video as Blob
+   loadVideo(property.video);
+
+    // Play video when ready
+    if (isPlaying) video.play().catch(err => console.warn(err));
+
+    // Reset progress indicators
+    progressDots.forEach((dot, index) => {
+        const filler = dot.querySelector('.filler');
+        filler.style.width = index < currentCity ? '100%' : '0%';
+    });
+}
+
+// Go to next city
+ function nextCity() {
+    currentCity = (currentCity + 1) % properties.length;
+     updateDisplay();
+}
+
+// Go to specific city
+ function goToCity(index) {
+    if (index < 0 || index >= properties.length) return;
+    currentCity = index;
+     updateDisplay();
+}
+
+init();
+
+document.querySelectorAll('#searchBox').forEach(searchBox => {
+    const suggestions = searchBox.parentElement.querySelector('#suggestions');
+    let timeout = null;
+
+    function showNoResults() {
+        if (!suggestions) return;
+        suggestions.innerHTML = '<li class="no-results">No properties found</li>';
+        suggestions.style.display = 'block';
+    }
+
+    // 🔹 SHOW CITIES ON CLICK / FOCUS
+    searchBox.addEventListener('focus', () => {
+        fetch('/ajax/search-suggestions/?cities=1')
+            .then(res => res.json())
+            .then(data => {
+                if (!suggestions) return;
+                suggestions.innerHTML = '';
+
+                if (data.length > 0) {
+                    console.log(data)
+                    data.forEach(city => {
+                        const li = document.createElement('li');
+                        li.textContent = city.name || city.city;
+                        li.addEventListener('click', () => {
+                            searchBox.value = li.textContent;
+                            suggestions.style.display = 'none';
+                        });
+                        suggestions.appendChild(li);
+                    });
+                    suggestions.style.display = 'block';
+                } else {
+                    showNoResults();
+                }
+            })
+            .catch(() => {
+                showNoResults();
+            });
+    });
+
+    // 🔹 SEARCH WHILE TYPING
+    searchBox.addEventListener('input', function () {
+        const query = this.value.trim();
+        clearTimeout(timeout);
+
+        if (query.length < 2) {
+            suggestions.style.display = 'none';
+            return;
+        }
+
+        timeout = setTimeout(() => {
+            fetch(`/ajax/search-suggestions/?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    if (!suggestions) return;
+                    suggestions.innerHTML = '';
+
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            const li = document.createElement('li');
+                            li.textContent =
+                                `${item.city ? item.city + ' - ' : ''}${item.location || item.building}`;
+
+                            li.addEventListener('click', () => {
+                                searchBox.value = li.textContent;
+                                suggestions.style.display = 'none';
+                            });
+
+                            suggestions.appendChild(li);
+                        });
+                        suggestions.style.display = 'block';
+                    } else {
+                        showNoResults();
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching suggestions:', err);
+                    showNoResults();
+                });
+        }, 300);
+    });
+
+    // 🔹 HIDE WHEN CLICKING OUTSIDE
+    document.addEventListener('click', e => {
+        if (!searchBox.contains(e.target) && !suggestions.contains(e.target)) {
+            suggestions.style.display = 'none';
+        }
+    });
+});
+
+
+
+       const mainSearchInput = document.getElementById('mainSearchInput');
+        const searchPanel = document.getElementById('searchPanel');
+        const backBtn = document.getElementById('backBtn');
+        const panelSearchInput = document.getElementById('panelSearchInput');
+        const locationItems = document.querySelectorAll('.location-item');
+
+        // Open panel when clicking main search input
+        mainSearchInput.addEventListener('click', function() {
+            searchPanel.classList.add('active');
+            panelSearchInput.focus();
+        });
+
+        // Close panel when clicking back button
+        backBtn.addEventListener('click', function() {
+            searchPanel.classList.remove('active');
+        });
+
+        // Handle location selection
+        locationItems.forEach(item => {
+            item.addEventListener('click', function() {
+                const locationName = this.querySelector('.location-name').textContent;
+                mainSearchInput.value = locationName;
+                panelSearchInput.value = locationName;
+                searchPanel.classList.remove('active');
+            });
+        });
+    let timeout = null;
+const locationList = document.getElementById('locationList');
+    panelSearchInput.addEventListener('input', function() {
+        const query = this.value.trim();
+        clearTimeout(timeout);
+
+        if (query.length < 2) {
+            showPopularLocations(); // fallback to default popular list
+            return;
+        }
+
+        timeout = setTimeout(() => {
+            fetch(`/ajax/search-suggestions/?q=${encodeURIComponent(query)}`)
+                .then(response => response.json())
+                .then(data => {
+                    locationList.innerHTML = ''; // clear previous results
+
+                    if (data.length > 0) {
+                        data.forEach(item => {
+                            const li = document.createElement('li');
+                            li.className = 'location-item';
+                            li.innerHTML = `
+                                <svg class="location-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                                    <circle cx="12" cy="10" r="3"/>
+                                </svg>
+                                <div class="location-info">
+                                    <div class="location-name">${item.location || item.building}</div>
+                                    <div class="location-address">${item.city || ''}</div>
+                                </div>
+                            `;
+                            li.addEventListener('click', function() {
+                                const locationName = li.querySelector('.location-name').textContent;
+                                mainSearchInput.value = locationName;
+                                panelSearchInput.value = locationName;
+                                searchPanel.classList.remove('active');
+                            });
+                            locationList.appendChild(li);
+                        });
+                    } else {
+                        locationList.innerHTML = '<li class="no-results">No results found</li>';
+                    }
+                })
+                .catch(err => {
+                    console.error('Error fetching suggestions:', err);
+                });
+        }, 300); // debounce
+    });
+
+ function showPopularLocations() {
+        locationList.innerHTML = `
+            <li class="location-item default-pre-selected" >
+                <svg class="location-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div class="location-info">
+                    <div class="location-name">Shekvetil</div>
+                    <div class="location-address">Shekvetil</div>
+                </div>
+            </li>
+               <li class="location-item default-pre-selected" >
+                <svg class="location-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div class="location-info">
+                    <div class="location-name">Batoumi</div>
+                    <div class="location-address">Batumi 6000</div>
+                </div>
+            </li>
+               <li class="location-item default-pre-selected" >
+                <svg class="location-icon" viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+                    <path d="M20 10c0 6-8 12-8 12s-8-6-8-12a8 8 0 0 1 16 0Z"/>
+                    <circle cx="12" cy="10" r="3"/>
+                </svg>
+                <div class="location-info">
+                    <div class="location-name">Tbilisi</div>
+                    <div class="location-address">Tbilisi</div>
+                </div>
+            </li>
+             
+        `;
+                              
+    }
+
+
+    // Load default popular locations on start
+    showPopularLocations();
+    //mobile 
+const defaultCities = document.querySelectorAll('.default-pre-selected');
+
+defaultCities.forEach(el => {
+    el.addEventListener('click', function() {
+        const locationName = el.querySelector('.location-name').textContent;
+        mainSearchInput.value = locationName;
+        panelSearchInput.value = locationName;
+        searchPanel.classList.remove('active');
+    });
+});
+
+
+  document.querySelectorAll('.option-item input').forEach(input => {
+    input.addEventListener('change', function () {
+      const label = this.closest('.option-item').dataset.label;
+      document.getElementById('propertyTypeBtn').textContent = label;
+    });
+  });
+
+   const btn = document.getElementById("bedsBathsBtn");
+
+  function updateButtonText() {
+    const bedsChecked = document.querySelectorAll('input[name="beds"]:checked');
+    const bathsChecked = document.querySelectorAll('input[name="baths"]:checked');
+
+    let bedsText = "";
+    let bathsText = "";
+
+    if (bedsChecked.length) {
+      bedsText = bedsChecked[bedsChecked.length - 1].value + " Beds";
+    }
+
+    if (bathsChecked.length) {
+      bathsText = bathsChecked[bathsChecked.length - 1].value + " Baths";
+    }
+
+    if (bedsText && bathsText) {
+      btn.textContent = `${bedsText} · ${bathsText}`;
+    } else if (bedsText) {
+      btn.textContent = bedsText;
+    } else if (bathsText) {
+      btn.textContent = bathsText;
+    } else {
+      btn.textContent = "Beds & Baths";
+    }
+  }
+
+  document.querySelectorAll('input[name="beds"], input[name="baths"]').forEach(input => {
+    input.addEventListener("change", updateButtonText);
+  });
+
+  // Run once on page load (Django GET support)
+  updateButtonText();
+
+        </script>
+        
+    {% endblock %}
+
+

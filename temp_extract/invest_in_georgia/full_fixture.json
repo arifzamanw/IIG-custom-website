@@ -1,0 +1,708 @@
+[
+  {
+    "model": "main.city",
+    "pk": 1,
+    "fields": {
+      "name": "Tbilisi",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.city",
+    "pk": 2,
+    "fields": {
+      "name": "Gudauri",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.city",
+    "pk": 3,
+    "fields": {
+      "name": "Batumi",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 1,
+    "fields": {
+      "name": "Swimming Pool",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 2,
+    "fields": {
+      "name": "Gym",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 3,
+    "fields": {
+      "name": "Parking",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 4,
+    "fields": {
+      "name": "WiFi",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 5,
+    "fields": {
+      "name": "Garden",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 6,
+    "fields": {
+      "name": "Security",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 7,
+    "fields": {
+      "name": "Sauna",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.amenity",
+    "pk": 8,
+    "fields": {
+      "name": "Elevator",
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.team",
+    "pk": 1,
+    "fields": {
+      "name": "John Doe",
+      "position": "Agent",
+      "caption": "Top real estate agent",
+      "socials": "{}",
+      "phone": "123456789",
+      "email": "john@example.com",
+      "license_no": "{}",
+      "picture": null,
+      "translations": {},
+      "bitrix_id": null
+    }
+  },
+  {
+    "model": "main.team",
+    "pk": 2,
+    "fields": {
+      "name": "Jane Smith",
+      "position": "Agent",
+      "caption": "Luxury property specialist",
+      "socials": "{}",
+      "phone": "123456789",
+      "email": "jane@example.com",
+      "license_no": "{}",
+      "picture": null,
+      "translations": {},
+      "bitrix_id": null
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 1,
+    "fields": {
+      "title": "Tbilisi Property 1",
+      "slug": "tbilisi-property-1",
+      "description": "Beautiful Tbilisi Property 1 in Tbilisi",
+      "price": 95897.58,
+      "city": 1,
+      "location": "Tbilisi, District 1",
+      "featured": true,
+      "property_type": "apartment",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 307.39,
+      "status": "available",
+      "amenities": [
+        4,
+        8,
+        6,
+        5
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "1",
+      "bathroom": "2",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": false,
+      "translations": {},
+      "keywords": "Tbilisi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 2,
+    "fields": {
+      "title": "Tbilisi Property 2",
+      "slug": "tbilisi-property-2",
+      "description": "Beautiful Tbilisi Property 2 in Tbilisi",
+      "price": 1530258.0,
+      "city": 1,
+      "location": "Tbilisi, District 2",
+      "featured": true,
+      "property_type": "apartment",
+      "sale_type": "rent",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 424.39,
+      "status": "available",
+      "amenities": [
+        2,
+        4,
+        8,
+        6
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 1,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "5",
+      "bathroom": "1",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": false,
+      "translations": {},
+      "keywords": "Tbilisi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 3,
+    "fields": {
+      "title": "Tbilisi Property 3",
+      "slug": "tbilisi-property-3",
+      "description": "Beautiful Tbilisi Property 3 in Tbilisi",
+      "price": 1709869.48,
+      "city": 1,
+      "location": "Tbilisi, District 3",
+      "featured": true,
+      "property_type": "villa",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 77.27,
+      "status": "available",
+      "amenities": [
+        7,
+        1,
+        4,
+        8
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "3",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Tbilisi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 4,
+    "fields": {
+      "title": "Tbilisi Property 4",
+      "slug": "tbilisi-property-4",
+      "description": "Beautiful Tbilisi Property 4 in Tbilisi",
+      "price": 202371.05,
+      "city": 1,
+      "location": "Tbilisi, District 4",
+      "featured": true,
+      "property_type": "villa",
+      "sale_type": "rent",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 84.56,
+      "status": "available",
+      "amenities": [
+        6,
+        4,
+        3,
+        5
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "1",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Tbilisi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 5,
+    "fields": {
+      "title": "Gudauri Property 1",
+      "slug": "gudauri-property-1",
+      "description": "Beautiful Gudauri Property 1 in Gudauri",
+      "price": 1151433.37,
+      "city": 2,
+      "location": "Gudauri, District 1",
+      "featured": false,
+      "property_type": "house",
+      "sale_type": "rent",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 322.7,
+      "status": "available",
+      "amenities": [
+        3,
+        6,
+        4,
+        5
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 1,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "2",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Gudauri, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 6,
+    "fields": {
+      "title": "Gudauri Property 2",
+      "slug": "gudauri-property-2",
+      "description": "Beautiful Gudauri Property 2 in Gudauri",
+      "price": 336995.4,
+      "city": 2,
+      "location": "Gudauri, District 2",
+      "featured": false,
+      "property_type": "villa",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 465.03,
+      "status": "available",
+      "amenities": [
+        5,
+        1,
+        3,
+        8
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "2",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Gudauri, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 7,
+    "fields": {
+      "title": "Gudauri Property 3",
+      "slug": "gudauri-property-3",
+      "description": "Beautiful Gudauri Property 3 in Gudauri",
+      "price": 1837987.5,
+      "city": 2,
+      "location": "Gudauri, District 3",
+      "featured": true,
+      "property_type": "villa",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 94.13,
+      "status": "available",
+      "amenities": [
+        8,
+        3,
+        6,
+        5
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "5",
+      "bathroom": "1",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Gudauri, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 8,
+    "fields": {
+      "title": "Gudauri Property 4",
+      "slug": "gudauri-property-4",
+      "description": "Beautiful Gudauri Property 4 in Gudauri",
+      "price": 1629066.32,
+      "city": 2,
+      "location": "Gudauri, District 4",
+      "featured": false,
+      "property_type": "apartment",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 203.01,
+      "status": "available",
+      "amenities": [
+        2,
+        4,
+        1,
+        3
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "3",
+      "bathroom": "2",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": false,
+      "translations": {},
+      "keywords": "Gudauri, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 9,
+    "fields": {
+      "title": "Batumi Property 1",
+      "slug": "batumi-property-1",
+      "description": "Beautiful Batumi Property 1 in Batumi",
+      "price": 252547.99,
+      "city": 3,
+      "location": "Batumi, District 1",
+      "featured": true,
+      "property_type": "house",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 411.94,
+      "status": "available",
+      "amenities": [
+        7,
+        8,
+        2,
+        6
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "4",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Batumi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 10,
+    "fields": {
+      "title": "Batumi Property 2",
+      "slug": "batumi-property-2",
+      "description": "Beautiful Batumi Property 2 in Batumi",
+      "price": 1434465.86,
+      "city": 3,
+      "location": "Batumi, District 2",
+      "featured": false,
+      "property_type": "apartment",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 466.13,
+      "status": "available",
+      "amenities": [
+        2,
+        5,
+        4,
+        1
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 1,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "1",
+      "bathroom": "2",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": false,
+      "translations": {},
+      "keywords": "Batumi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 11,
+    "fields": {
+      "title": "Batumi Property 3",
+      "slug": "batumi-property-3",
+      "description": "Beautiful Batumi Property 3 in Batumi",
+      "price": 128380.72,
+      "city": 3,
+      "location": "Batumi, District 3",
+      "featured": false,
+      "property_type": "villa",
+      "sale_type": "rent",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 468.28,
+      "status": "available",
+      "amenities": [
+        8,
+        4,
+        6,
+        2
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "3",
+      "bathroom": "2",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": false,
+      "translations": {},
+      "keywords": "Batumi, property, real estate"
+    }
+  },
+  {
+    "model": "main.property",
+    "pk": 12,
+    "fields": {
+      "title": "Batumi Property 4",
+      "slug": "batumi-property-4",
+      "description": "Beautiful Batumi Property 4 in Batumi",
+      "price": 1720159.22,
+      "city": 3,
+      "location": "Batumi, District 4",
+      "featured": false,
+      "property_type": "apartment",
+      "sale_type": "buy",
+      "location_latitude": "",
+      "location_longitude": "",
+      "size": 304.24,
+      "status": "available",
+      "amenities": [
+        3,
+        2,
+        8,
+        7
+      ],
+      "amenities_description": "Includes all modern amenities",
+      "image": null,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "agent": 2,
+      "ref": null,
+      "furnished": null,
+      "bedrooms": "2",
+      "bathroom": "3",
+      "completion_date": null,
+      "parking": null,
+      "is_imported": false,
+      "youtube_video": null,
+      "is_popular": true,
+      "translations": {},
+      "keywords": "Batumi, property, real estate"
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 1,
+    "fields": {
+      "title": "Luxury Living",
+      "description": "Premium residential project",
+      "location": "Tbilisi",
+      "price_range": "100000-500000",
+      "start_date": "2025-09-28",
+      "end_date": "2025-09-28",
+      "featured": false,
+      "properties": [
+        10,
+        2,
+        5,
+        11
+      ],
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.project",
+    "pk": 2,
+    "fields": {
+      "title": "Mountain Escape",
+      "description": "Cozy villas in Gudauri",
+      "location": "Gudauri",
+      "price_range": "80000-300000",
+      "start_date": "2025-09-28",
+      "end_date": "2025-09-28",
+      "featured": true,
+      "properties": [
+        11,
+        2,
+        12,
+        9
+      ],
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.blogpost",
+    "pk": 1,
+    "fields": {
+      "title": "Market Trends 2025",
+      "slug": "market-trends-2025",
+      "content": "Insights on real estate market trends.",
+      "author": 2,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "updated_at": "2025-09-28T13:31:36.430000",
+      "image": null,
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.blogpost",
+    "pk": 2,
+    "fields": {
+      "title": "Buying Tips",
+      "slug": "buying-tips",
+      "content": "How to buy your dream property easily.",
+      "author": 1,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "updated_at": "2025-09-28T13:31:36.430000",
+      "image": null,
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.blogpost",
+    "pk": 3,
+    "fields": {
+      "title": "Luxury Homes",
+      "slug": "luxury-homes",
+      "content": "Top luxury homes available now.",
+      "author": 1,
+      "created_at": "2025-09-28T13:31:36.430000",
+      "updated_at": "2025-09-28T13:31:36.430000",
+      "image": null,
+      "translations": {}
+    }
+  },
+  {
+    "model": "main.subscriber",
+    "pk": 1,
+    "fields": {
+      "email": "alice@example.com",
+      "date_subscribed": "2025-09-28T13:31:36.430000"
+    }
+  },
+  {
+    "model": "main.subscriber",
+    "pk": 2,
+    "fields": {
+      "email": "bob@example.com",
+      "date_subscribed": "2025-09-28T13:31:36.430000"
+    }
+  },
+  {
+    "model": "main.subscriber",
+    "pk": 3,
+    "fields": {
+      "email": "charlie@example.com",
+      "date_subscribed": "2025-09-28T13:31:36.430000"
+    }
+  }
+]

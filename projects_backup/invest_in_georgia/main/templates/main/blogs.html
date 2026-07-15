@@ -1,0 +1,119 @@
+{% extends 'global/base.html' %}
+{% load i18n %}
+{% load static %}
+{% load custom_filters %}
+
+{% block title %}
+  {{ seo|translate_property:"meta_title"|default:"Georgia Real Estate Blog | Investment Tips & Market Insights | Invest In Georgia" }}
+{% endblock %}
+
+{% block meta_description %}
+  {{ seo|translate_property:"meta_description"|default:"Expert articles on Georgian real estate investment, market trends, property tips and insights for UAE and international investors." }}
+{% endblock %}
+
+{% block meta_keywords %}
+  {{ seo|translate_property:"meta_keywords"|default:"georgia real estate blog, property investment tips, tbilisi market insights, batumi property news, georgia investment guide" }}
+{% endblock %}
+
+{% block extra_meta %}{% endblock %}
+
+{% block content %}
+
+<div class="site_content">
+
+  <div class="page_header bg_image bg_overlay" data-bg-image="{% static 'images/bg/1.jpg' %}">
+    <div class="container">
+
+      <h2 class="page_title">{% trans "Blogs" %}</h2>
+
+      <ol class="breadcrumb">
+        <li class="breadcrumb-item">
+          <a href="#">{% trans "Home" %}</a>
+        </li>
+        <li class="breadcrumb-item active">
+          {% trans "Blogs" %}
+        </li>
+      </ol>
+
+    </div>
+  </div>
+
+  {% if blog_posts %}
+  <section class="page-blog">
+    <div class="container">
+      <div class="row">
+
+        <div class="col-lg-9">
+          <div class="blog-page-content">
+
+            {% for blog in blog_posts %}
+
+            <article class="post post-large">
+
+              <div class="post-thumbnail">
+                <a href="{% url 'blog_detail' blog.slug %}">
+
+                  {% if blog.image %}
+                    <img src="{{ blog.image.url }}"
+                         alt="{{ blog|translate_property:'title' }}"
+                         loading="lazy">
+                  {% else %}
+                    <img src="{% static 'images/georgiaestatelogo.png' %}"
+                         alt="Georgia Real Estate Logo"
+                         class="site-logo">
+                  {% endif %}
+
+                </a>
+              </div>
+
+              <div class="entry-content">
+
+                <h2 class="entry-title">
+                  <a href="{% url 'blog_detail' blog.slug %}">
+                    {{ blog|translate_property:"title" }}
+                  </a>
+                </h2>
+
+                <p>
+                  {{ blog|translate_property:"content"|striptags|slice:":100" }}...
+                </p>
+
+                <a class="link-more btn btn-default btn-red"
+                   href="{% url 'blog_detail' blog.slug %}">
+                  {% trans "Read more" %}
+                </a>
+
+              </div>
+
+            </article>
+
+            {% endfor %}
+
+          </div>
+        </div>
+
+      </div>
+    </div>
+  </section>
+
+  {% else %}
+
+  <section class="page-blog">
+    <div class="container">
+
+      <div class="section_header center_section_header">
+        <h2 class="section_title">
+          {% trans "No Post Available At This Moment" %}
+        </h2>
+      </div>
+
+    </div>
+  </section>
+
+  {% endif %}
+
+</div>
+
+{% include "parts/subscribe.html" %}
+
+{% endblock %}
