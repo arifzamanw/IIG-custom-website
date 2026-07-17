@@ -239,7 +239,7 @@
       }
       .ev-second-bar .ev-bottom a:hover,
       .ev-second-bar .ev-bottom a.active {
-        color: #ec1c24;
+        color: #cb2c39;
         font-weight: bold;
       }
       
@@ -264,9 +264,9 @@
         .but-nav-btn:hover,
         .but-nav-btn:focus,
         .but-nav-btn.active {
-          background-color: #ec1c24;
+          background-color: #cb2c39;
           color: #fff !important;
-          border-color: #ec1c24;
+          border-color: #cb2c39;
         }
       }
       
@@ -399,7 +399,7 @@
         }
       
         .but-nav-btn.mobile-active {
-          color: #ec1c24 !important;
+          color: #cb2c39 !important;
           font-size: 20px;
         }
       }
@@ -412,7 +412,7 @@
         transform: translateX(-50%);
         z-index: 9999;
         padding: 14px 26px;
-        background: #ec1c24;
+        background: #cb2c39;
         color: #fff;
         font-size: 14px;
         font-weight: 600;
@@ -438,15 +438,16 @@
       
       /* ── Social links ── */
       .social_links {
-        display: grid;
-        grid-template-columns: repeat(4, 1fr);
-        gap: 5px;
+        display: flex;
+        flex-direction: row;
+        flex-wrap: nowrap;
+        gap: 10px;
         list-style: none;
         padding: 0;
         margin: 0;
       }
       .social_links > li {
-        justify-self: anchor-center;
+        margin: 0;
       }
       .social_links a {
         display: flex;
@@ -507,7 +508,7 @@
       <div class="container">
         <div class="ev-top d-flex align-items-center justify-content-between">
           <div class="ev-logo">
-            <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'images/logo_black.svg' %}" alt="Invest Georgia Logo" class="site-logo" style="width: 180px; height: auto;" /></a>
+            <a href="{% url 'home' %}" class="navbar-brand"><img src="{% static 'images/logo_black.svg' %}" alt="Invest Georgia Logo" class="site-logo" style="width: 130px; height: auto;" /></a>
           </div>
 
           <button class="ev-mobile-toggle d-lg-none" aria-label="Toggle menu"><span></span><span></span><span></span></button>
@@ -553,39 +554,21 @@
     </main>
 
     <!-- ══════════════════════════════════════ FOOTER ══ -->
+    <style>
+      .real_eastate_footer .footer_top {
+        padding: 40px 0 20px;
+      }
+      .real_eastate_footer .widget {
+        margin-bottom: 20px;
+      }
+      .real_eastate_footer .widget_title {
+        margin-bottom: 15px;
+      }
+    </style>
     <footer class="site_footer real_eastate_footer">
       <div class="footer_top">
         <div class="container">
           <div class="row footer_widget">
-            <!-- Social -->
-            <div class="col-lg-3 col-sm-6">
-              <div class="widget widget_about">
-                <br />
-                <div class="media_side">
-                  <ul class="social_links">
-                    <li>
-                      <a href="https://www.facebook.com/share/1DyZyiW6ii/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
-                    </li>
-                    <li>
-                      <a href="https://www.instagram.com/investin.georgia?igsh=MXdueGd4Z3ZwM2NjNg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
-                    </li>
-                    <li>
-                      <a href="https://x.com/ininvest86873?s=21" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
-                    </li>
-                    <li>
-                      <a href="https://www.tiktok.com/@investin.georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
-                    </li>
-                    <li>
-                      <a href="https://www.linkedin.com/company/invest-in-georgia/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
-                    </li>
-                    <li>
-                      <a href="https://www.youtube.com/@Invest.in.Georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
-                    </li>
-                  </ul>
-                </div>
-              </div>
-            </div>
-
             <!-- Property offers -->
             <div class="col-lg-3 col-sm-6">
               <div class="widget widget_info">
@@ -634,6 +617,35 @@
                       <h4>{% trans 'View On Map' %}</h4>
                     </div>
                   </a>
+                </div>
+              </div>
+            </div>
+
+            <!-- Social -->
+            <div class="col-lg-3 col-sm-6">
+              <div class="widget widget_about">
+                <div class="media_side">
+                  <h2 class="widget_title">{% trans 'Follow Us' %}</h2>
+                  <ul class="social_links">
+                    <li>
+                      <a href="https://www.facebook.com/share/1DyZyiW6ii/?mibextid=wwXIfr" target="_blank" rel="noopener noreferrer"><i class="fab fa-facebook-f"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.instagram.com/investin.georgia?igsh=MXdueGd4Z3ZwM2NjNg%3D%3D&utm_source=qr" target="_blank" rel="noopener noreferrer"><i class="fab fa-instagram"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://x.com/ininvest86873?s=21" target="_blank" rel="noopener noreferrer"><i class="fab fa-x"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.tiktok.com/@investin.georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-tiktok"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.linkedin.com/company/invest-in-georgia/" target="_blank" rel="noopener noreferrer"><i class="fab fa-linkedin-in"></i></a>
+                    </li>
+                    <li>
+                      <a href="https://www.youtube.com/@Invest.in.Georgia" target="_blank" rel="noopener noreferrer"><i class="fab fa-youtube"></i></a>
+                    </li>
+                  </ul>
                 </div>
               </div>
             </div>

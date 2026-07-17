@@ -28,7 +28,7 @@
 }
 .tail-select mark{
     color: #fff;
-    background-color: #ec1c24;
+    background-color: #cb2c39;
 }
 .tail-select button.tail-all,
 .tail-select button.tail-none{
@@ -52,13 +52,13 @@
     -webkit-box-shadow: none;
 }
 .tail-select button.tail-all:hover{
-    color: #ec1c24;
-    border-color: #ec1c24;
+    color: #cb2c39;
+    border-color: #cb2c39;
     background-color: transparent;
 }
 .tail-select button.tail-none:hover{
-    color: #ec1c24;
-    border-color: #ec1c24;
+    color: #cb2c39;
+    border-color: #cb2c39;
     background-color: transparent;
 }
 .tail-select-container{
@@ -84,7 +84,7 @@
     text-align: left;
     line-height: 16px;
     vertical-align: top;
-    background-color: #ec1c24;
+    background-color: #cb2c39;
     border-radius: 3px;
     -moz-border-radius: 3px;
     -webkit-border-radius: 3px;
@@ -93,7 +93,7 @@
     -webkit-transition: background 142ms linear;
 }
 .tail-select-container .select-handle:hover{
-    background-color: #ec1c24;
+    background-color: #cb2c39;
 }
 .tail-select-container .select-handle:after{
     top: 0;

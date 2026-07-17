@@ -123,7 +123,7 @@ def home(request):
     amenities        = cache.get_or_set("amenities",        lambda: Amenity.objects.prefetch_related("property_set"), timeout=600)
     blog_posts       = cache.get_or_set(
         "blog_posts",
-        lambda: list(BlogPost.objects.all().order_by('-created_at')[:3]),
+        lambda: list(BlogPost.objects.all().order_by('-created_at')[:10]),
         timeout=600
     )
 

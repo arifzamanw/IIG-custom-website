@@ -1,20 +1,20 @@
 ::-moz-selection {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 
 ::selection {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 
 .video_play_button .icon,
 .sidebar-estate .instagram .red-screen {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 
 .section_header .section_title:after,
@@ -30,24 +30,24 @@
 .page_sorting_info .page_sorting_tab .nav-tabs > .nav-item > .nav-link:hover, 
 .page_sorting_info .page_sorting_tab .nav-tabs > .nav-item > .nav-link.active,
 .sidebar .filter_tabs .tab.active, .advance_search_block .section_title:before {
-    background: #ec1c24;
+    background: #cb2c39;
     color: #ffffff !important;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 ) !important;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 ) !important;
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .filter_tabs_nav .tab:hover, .filter_tabs_nav .tab.active {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .sidebar-estate .post-item .post-info .post-title:hover {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 
 .card_team_member .card_body > p,
@@ -64,7 +64,7 @@
 .page_sorting_info .right .current-items,
 .widget .link-items .link-item:hover,
 .widget .link-items .link-item > span {
-    color: #ec1c24;
+    color: #cb2c39;
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -78,104 +78,104 @@
 .page_sorting_info .page_sorting_tab .nav-tabs > .nav-item > .nav-link:hover, 
 .page_sorting_info .page_sorting_tab .nav-tabs > .nav-item > .nav-link.active,
 .sidebar .filter_tabs {
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 .dropdown-menu {
-    border-top-color: #ec1c24;
+    border-top-color: #cb2c39;
 }
 .dropdown-menu::before {
-    border-bottom-color: #ec1c24;
+    border-bottom-color: #cb2c39;
 }
 
 .real_eastate_footer .widget.widget_about .link-items .link-item .fa {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .real_eastate_footer .widget.widget_contact .link-items .link-item .link-detail p {
-	color: #ec1c24;
+	color: #cb2c39;
 }
 .site_footer #return_to_top {
-	background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+	background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .estate_meta i {
-	color: #ec1c24;
+	color: #cb2c39;
 }
 .section-min-title:after,
 .section-max-title:after {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .estate_single_area .single-estate-title + .estate_meta:after {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .estate_single_area .estate_apartment_amities .amities_lists > li > .icon_thumb {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .average_estate_rating_wrap .fa-star,
 .estate_make_rating .fa-star {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .estate_single_area .estate_review_lists .review-list .review-metadata .fa-star {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .widget_estate_agent_contact .contact_title, 
 .widget_estate_agent_contact .agent_phone i {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .estate_sidebara_area .widget .widget_title:before,
 .sidebar-estate .widget-title:before,
 .sidebar-estate .filter_tabs .tab.active {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .sidebar-estate .search .search-form:after,
 .entry-meta > div > .fa {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .sidebar-estate .filter_tabs {
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .sidebar-estate .post-item .post-info .date:before,
 .section_header .title_script,
 .card-post .post-info > div:before,
 .site_content .comment-item .comment-info .rating .fa-star,
 .site_content .sub-section.leave-comments .section-title .number {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .card_contact_info:hover,
 .section-titlesed:after,
 .site_content .sub-section .section-title:after {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.3s;
     transition: all 0.3s;
 }
 
 .services_area.services_area_three > .service_items > .service_item:hover .service_icon,
 .card_top_review .card_body .location_rating .rating .fa-star {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 
 .services_area.services_style_two .service_items .service_item:hover {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
      -webkit-transition: color 0.5s ease;
   transition: color 0.5s ease;
 }
 /*
 .headline:before {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }*/
 
 .btn-prev:hover, 
@@ -183,9 +183,9 @@
 .card-next-prev.horizontal:hover 
 .card-body, 
 .btn-red:hover {
-    background: #ec1c24;
-    background:-webkit-linear-gradient( #ec1c24, #ec1c24 );
-    background: linear-gradient( #ec1c24, #ec1c24 ) !important;
+    background: #cb2c39;
+    background:-webkit-linear-gradient( #cb2c39, #cb2c39 );
+    background: linear-gradient( #cb2c39, #cb2c39 ) !important;
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -199,51 +199,51 @@
 .site_content .page-blog .blog-content .footer .tags:before,
 .site_content .page-blog .blog-content .about-admin .admin-info .title .admin-name .name,
 .card-next-prev.horizontal .date:before, .card_contact_info .info_icon {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .site_content .page-blog .blog-content .footer .social-links a:hover {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 .estate_single_area .estate_apartment_amities .nav-tabs {
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .estate_single_area .estate_apartment_amities .nav-tabs .nav-item.show .nav-link, 
 .estate_single_area .estate_apartment_amities .nav-tabs .nav-link.active {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
 }
 
 .card_hotel_package .card_image .price:before {
-    border-right-color: #ec1c24;
+    border-right-color: #cb2c39;
 }
 .card_hotel_package .card_image .price span {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 .google-map .card .card_body .rating_review .fa-star {
-    color: #ec1c24;
+    color: #cb2c39;
 }
 .card_tour_package .card_body .card_title:before, 
 .card_hotel_package .card_body .card_title:before {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
 }
 
 .pagination_area > .pagination > .page-item > .page-link:hover, 
 .pagination_area > .pagination > .page-item.active > .page-link {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
-    border-image: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
+    border-image: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
@@ -252,19 +252,19 @@
 .sidebar-estate .categories .link-item:hover:before,
 .sidebar-estate .archives .link-item:hover,
 .sidebar-estate .archives .link-item:hover:before {
-    color: #ec1c24;
+    color: #cb2c39;
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .card-next-prev.horizontal:hover .card-body {
-    background: #ec1c24;
-    background:-webkit-linear-gradient(#ec1c24,  #ec1c24 );
-    background: linear-gradient(#ec1c24,  #ec1c24 );
+    background: #cb2c39;
+    background:-webkit-linear-gradient(#cb2c39,  #cb2c39 );
+    background: linear-gradient(#cb2c39,  #cb2c39 );
     -webkit-transition: all 0.5s;
   transition: all 0.5s;
 }
 
 .site_content .listing-website:nth-child(2) .section-title:hover span {
-    color: #ec1c24;
+    color: #cb2c39;
 }

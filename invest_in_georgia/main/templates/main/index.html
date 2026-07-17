@@ -51,6 +51,49 @@
 
 {% block content %}
 <style>
+    .blog-carousel .owl-nav {
+        position: absolute;
+        top: 50%;
+        left: 0;
+        right: 0;
+        transform: translateY(-50%);
+        display: flex;
+        justify-content: space-between;
+        pointer-events: none;
+        z-index: 10;
+    }
+    .blog-carousel .owl-nav > div,
+    .blog-carousel .owl-nav .owl-prev,
+    .blog-carousel .owl-nav .owl-next {
+        pointer-events: auto;
+        background: #cb2c39 !important;
+        color: white !important;
+        width: 40px !important;
+        height: 40px !important;
+        min-width: 40px !important;
+        min-height: 40px !important;
+        max-width: 40px !important;
+        padding: 0 !important;
+        display: flex !important;
+        justify-content: center;
+        align-items: center;
+        flex-shrink: 0;
+        border-radius: 50% !important;
+        border: none !important;
+        margin: 0 -20px;
+        transition: all 0.3s ease;
+        font-size: 18px !important;
+    }
+    .blog-carousel .owl-nav > div:hover {
+        background: #a8242f !important;
+        transform: scale(1.1);
+    }
+    @media (max-width: 768px) {
+        .blog-carousel .owl-nav > div {
+            margin: 0 -10px;
+        }
+    }
+
     .video-container {
           padding-top: 0;
         margin-left: auto;
@@ -246,8 +289,8 @@
       
     }
     .btn-switch{
-        color: #ec1c24;
-        border: 1px solid #ec1c24;
+        color: #cb2c39;
+        border: 1px solid #cb2c39;
     }
 
     .search-container {
@@ -329,7 +372,7 @@
              border-top-right-radius: 25px;
     border-bottom-right-radius: 25px;
       padding: 13px 32px;
-      background: #ec1c24;
+      background: #cb2c39;
       color: white;
       border: none;
       font-size: 15px;
@@ -342,7 +385,7 @@
     .pplr_btn{
     zoom:0.5;
       padding: 12px 32px;
-      background: #ec1c24;
+      background: #cb2c39;
       color: white;
       border: none;
       border-radius: 8px;
@@ -467,7 +510,7 @@
         .section-title {
             font-size: 16px;
             font-weight: 600;
-             color: #ec1c24;
+             color: #cb2c39;
             margin-bottom: 16px;
         }
 
@@ -570,7 +613,7 @@
             width: 44px;
             height: 44px;
             border-radius: 50%;
-            background: #ec1c24;
+            background: #cb2c39;
             border: none;
             display: flex;
             align-items: center;
@@ -668,7 +711,7 @@
 .search-container > .nav-tabs > .nav-tab
 {
     padding: 12px 32px;
-    background: #ec1c24;
+    background: #cb2c39;
     color: white;
     border: none;
     border-radius: 8px;
@@ -748,9 +791,9 @@
 
 /* Checked = active */
 .options-grid .form-check-input:checked + .form-check-label {
-  background: #ec1c24;
+  background: #cb2c39;
   color: #fff;
-  border-color: #ec1c24;
+  border-color: #cb2c39;
 }
 
 /* Dropdown polish */
@@ -999,7 +1042,7 @@
       {% for feature in inevestment_section.features.all %}
         <div class="col-md-4 col-sm-12 mb-5">
           {% if feature.icon %}
-         <i class="{{ feature.icon }}" style="font-size: 48px; color: #ec1c24;"></i>
+         <i class="{{ feature.icon }}" style="font-size: 48px; color: #cb2c39;"></i>
         </br>
           {% endif %}
           <h3 style="font-size: 20px; font-weight: 600; color: #1a1a1a; margin-bottom: 12px;">
@@ -1238,36 +1281,48 @@
             <div class="bg_image_overlay"></div>
                 <div class="container">
                 <!--~~~~~ Start Section Header ~~~~~--> 
-                <div class="section_header section_header_two">
-                    <h2 class="section_title">{{marker_insight.title}}</h2>
-                    <div class="section_lead">
-                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{marker_insight.paragraph}}</p>
+                <div class="section_header section_header_two d-flex justify-content-between align-items-center">
+                    <div>
+                        <h2 class="section_title">{% trans 'Latest Blogs' %}</h2>
+                        {% if marker_insight.paragraph %}
+                        <div class="section_lead">
+                            <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{marker_insight.paragraph}}</p>
+                        </div>
+                        {% endif %}
+                    </div>
+                    <div class="btn_links d-none d-md-block">
+                        <a href="{% url 'blogs' %}" class="btn btn-red btn-default">{% trans 'View All Posts' %}</a>
                     </div>
                 </div><!--~./ end section header ~-->
-                    <div class="row recent_blog card">
+                
+                <div class="owl-carousel blog-carousel" data-owl-items="3" data-owl-margin="30" data-owl-nav="1" data-owl-dots="0" data-owl-loop="1">
                     {% for post in blog_posts %}
                         <!-- Start Single Post -->
-                        <div class="col-lg-6">
-                            <article class="post">
-                                <div class="post-thumbnail">
+                        <div class="item">
+                            <article class="post h-100 d-flex flex-column" style="background: #fff; border-radius: 8px; overflow: hidden; box-shadow: 0 4px 15px rgba(0,0,0,0.05);">
+                                <div class="post-thumbnail" style="height: 220px; overflow: hidden;">
                                     <a href="{% url 'blog_detail' post.slug %}">
                                         {% if post.image %}
-                                        <img src="{{  post.image.url }}"alt="{{ post.title }}" loading="lazy" />
+                                        <img src="{{ post.image.url }}" alt="{{ post.title }}" loading="lazy" style="width: 100%; height: 100%; object-fit: cover;" />
                                         {% else %}
-                                            <img src="{% static 'images/logo_black.svg' %}" alt="Gerigia Real Estate Logo" class="site-logo" />
+                                        <img src="{% static 'images/logo_black.svg' %}" alt="Georgia Real Estate Logo" class="site-logo" style="width: 100%; height: 100%; object-fit: contain; background: #f8f9fa; padding: 20px;" />
                                         {% endif %}
                                     </a>
                                 </div>
-                                <div class="post-info">
-                                    <div class="entry-meta">
-                                        <span class="date"><i class="fa fa-calendar-o"></i> {{ post.created_at|date:"F j, Y" }}</span>
+                                <div class="post-info p-4 d-flex flex-column flex-grow-1" style="height: 250px;">
+                                    <div class="entry-meta mb-2">
+                                        <span class="date text-muted"><i class="fa fa-calendar-o"></i> {{ post.created_at|date:"F j, Y" }}</span>
                                     </div>
-                                    <div class="entry-content">
-                                        <h2 class="entry-title">
-                                            <a href="{% url 'blog_detail'  post.slug %}">{{ post.title }}</a>
+                                    <div class="entry-content flex-grow-1 d-flex flex-column">
+                                        <h2 class="entry-title" style="font-size: 1.25rem; font-weight: 600; line-height: 1.4; display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden; margin-bottom: 10px;">
+                                            <a href="{% url 'blog_detail' post.slug %}" class="text-dark">{{ post.title }}</a>
                                         </h2>
-                                        <p class="text-sm md:text-base text-gray-600 leading-relaxed">{{ post.content|striptags|slice:":50" }}...</p>
-                                        <a class="link-more" href="{% url 'blog_detail'  post.slug %}">{% trans 'Read more' %}</a>
+                                        <p class="text-sm text-gray-600 leading-relaxed mb-3" style="display: -webkit-box; -webkit-line-clamp: 2; -webkit-box-orient: vertical; overflow: hidden;">
+                                            {{ post.content|striptags|slice:":100" }}...
+                                        </p>
+                                        <div class="mt-auto">
+                                            <a class="link-more font-weight-bold" href="{% url 'blog_detail' post.slug %}" style="color: #cb2c39;">{% trans 'Read more' %} <i class="fa fa-long-arrow-right"></i></a>
+                                        </div>
                                     </div>
                                 </div>
                             </article>
@@ -1275,7 +1330,7 @@
                     {% endfor %}
                 </div>
                 
-                <div class="btn_links text-center">
+                <div class="btn_links text-center d-block d-md-none mt-4">
                     <a href="{% url 'blogs' %}" class="btn btn-red btn-default">{% trans 'View All Posts' %}</a>
                 </div>
                 
@@ -1550,10 +1605,10 @@ let currentCity = 0;
 let isPlaying = true;
 
 const properties = [
-    { video: "{% static 'images/bg/georgia.mp4' %}", poster: "{% static 'images/bg/georgia.jpg' %}" },
     { video: "{% static 'images/bg/batoumi.mp4' %}", poster: "{% static 'images/bg/batoumi.jpg' %}" },
-    { video: "{% static 'images/bg/gudauri.mp4' %}", poster: "{% static 'images/bg/gudauri.jpg' %}" },
     { video: "{% static 'images/bg/tbilisi.mp4' %}", poster: "{% static 'images/bg/tbilisi.jpg' %}" },
+    { video: "{% static 'images/bg/georgia.mp4' %}", poster: "{% static 'images/bg/georgia.jpg' %}" },
+    { video: "{% static 'images/bg/gudauri.mp4' %}", poster: "{% static 'images/bg/gudauri.jpg' %}" },
 ];
 
 const video = document.getElementById('mainVideo');
